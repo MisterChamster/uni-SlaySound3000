@@ -17,6 +17,34 @@ public abstract class Sound extends Thread{
         this.format = null;
     }
 
+    Sound(float sampleRate){
+        this.soundName = "";
+        this.sampleRate = sampleRate;
+        this.durationInSeconds = 0;
+        this.sampleArray = null;
+        this.line = null;
+        this.format = null;
+    }
+
+    Sound(float sampleRate, double durationInSeconds){
+        this.soundName = "";
+        this.sampleRate = sampleRate;
+        this.durationInSeconds = durationInSeconds;
+        this.sampleArray = null;
+        this.line = null;
+        this.format = null;
+    }
+
+    Sound(float sampleRate, double durationInSeconds, String soundName){
+        this.soundName = soundName;
+        this.sampleRate = sampleRate;
+        this.durationInSeconds = durationInSeconds;
+        this.sampleArray = null;
+        this.line = null;
+        this.format = null;
+    }
+
+
     void setSampleRate(float input){
         this.sampleRate = input;
     }

@@ -1,45 +1,41 @@
 import javax.sound.sampled.*;
+//every note must have name and freq
 
 class SoundNote extends Sound{
-    //Already inherited
-    // String soundName;
-    // float sampleRate;
-    // double durationInSeconds;
-    // byte[] sampleArray;
-    // AudioFormat format;
-    // SourceDataLine line;
-
     double frequency;
 
-    SoundNote(double durationInSec, double frequency){
-        this.soundName = "";
-        this.sampleRate = 44100;
-        this.durationInSeconds = durationInSec;
+    // SoundNote(){
+    //     super();
+    //     this.frequency = 0;
+    // }
+
+    // //constructor for adding notes to chord
+    // SoundNote(double frequency){
+    //     super();
+    //     this.frequency = frequency;
+    // }
+
+    //constructor for adding notes to chord
+    SoundNote(double frequency, String soundName){
+        super();
         this.frequency = frequency;
-        this.sampleArray = null;
-        this.line = null;
-        this.format = null;
+        this.soundName = soundName;
     }
 
-    // void setSampleRate(float input){
-    //     this.sampleRate = input;
+    // SoundNote(float sampleRate, double durationInSec, double frequency){
+    //     super(sampleRate, durationInSec);
+    //     this.frequency = frequency;
     // }
 
-    // void setDurationInSec(double input){
-    //     this.durationInSeconds = input;
-    // }
+    SoundNote(float sampleRate, double durationInSec, double frequency, String soundName){
+        super(sampleRate, durationInSec, soundName);
+        this.frequency = frequency;
+    }
+
 
     void setFrequency(double input){
         this.frequency = input;
     }
-
-    // void setNamee(String input){
-    //     this.soundName = input;
-    // }
-
-    // byte[] getSampleArray(){
-    //     return this.sampleArray;
-    // }
 
     void computeSampleArray(){
         double twoPIFreq = 2.0 * Math.PI * frequency;
@@ -71,11 +67,6 @@ class SoundNote extends Sound{
         line.drain();
         line.close();
     }
-
-    // void stopSound(){
-    //     line.drain();
-    //     line.close();
-    // }
 
     public void run(){
         this.playSound();

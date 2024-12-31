@@ -1,22 +1,27 @@
 //incorporate sample size. PRIORITY
-//work on constructors
+//then, change wavfilesaver to take Sound children as inputs
+
+
+
+
+//two different freq notes can't be named the same
+//can create custom notes if note of the same freq or name doesn't exist
+
+//basic note list
+
+//Noteset must have at least two different notes
 
 public class prog{
     public static void main(String[] args){
-        SoundNote note1 = new SoundNote(2, 440);
-        SoundNote note2 = new SoundNote(2, 659.25);
-        SoundNote note3 = new SoundNote(2, 880);
+        SoundNote note1 = new SoundNote(44100, 2, 440, "A4");
+        SoundNote note2 = new SoundNote(44100, 2, 659.25, "E5");
+        SoundNote note3 = new SoundNote(44100, 2, 880, "A5");
         note1.prepareToPlay();
         note2.prepareToPlay();
         note3.prepareToPlay();
 
-        SoundChord chord1 = new SoundChord();
-        chord1.setDurationInSec(2);
-        chord1.setSampleRate(44100);
+        SoundNoteSet chord1 = new SoundNoteSet(44100, 2, "TrialChord");
         chord1.addNote(note3);
-        chord1.addNote(note3);
-        chord1.addNote(note3);
-        chord1.addNote(note2);
         chord1.addNote(note2);
         chord1.addNote(note1);
         // chord1.printNoteArray();
