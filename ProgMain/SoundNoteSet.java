@@ -105,14 +105,7 @@ class SoundNoteSet extends Sound{
             System.out.println("Noteset can be played if it has 2 or more different notes");
             System.exit(0);
         }
-        try {line.open(format);} catch (LineUnavailableException e) {System.exit(0);}
-        line.start();
-        //here it starts playing
-        line.write(sampleArray, 0, sampleArray.length);
-
-        //cleanup
-        line.drain();
-        line.close();
+        super.prepareToPlay();
     }
 
     public void run(){

@@ -72,5 +72,14 @@ public abstract class Sound extends Thread{
         line.close();
     }
 
-    void playSound(){}
+    void playSound(){
+        try {line.open(format);} catch (LineUnavailableException e) {System.exit(0);}
+        line.start();
+        //here it starts playing
+        line.write(sampleArray, 0, sampleArray.length);
+
+        //cleanup
+        line.drain();
+        line.close();
+    }
 }
