@@ -33,7 +33,16 @@ public abstract class Sound extends Thread{
         return this.sampleArray;
     }
 
-    void prepareToPlay(){}
+    void prepareToPlay(){
+        format = new AudioFormat(sampleRate, 8, 1, true, true); //8 bits sample size
+        try {line = AudioSystem.getSourceDataLine(format);}
+        catch (LineUnavailableException e) {System.exit(0);}
+    }
+    
+    void stopSound(){
+        line.drain();
+        line.close();
+    }
+
     void playSound(){}
-    void stopSound(){}
 }

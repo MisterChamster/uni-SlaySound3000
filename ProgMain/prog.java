@@ -1,4 +1,5 @@
 //incorporate sample size. PRIORITY
+//work on constructors
 
 public class prog{
     public static void main(String[] args){
@@ -27,6 +28,7 @@ public class prog{
         
         chord1.prepareToPlay();
         chord1.start();
+        chord1.stopSound();
 
         // note1.prepareToPlay();
         // note1.start();

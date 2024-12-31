@@ -1,13 +1,15 @@
 import javax.sound.sampled.*;
 
 class SoundNote extends Sound{
-    String soundName;
-    float sampleRate;
-    double durationInSeconds;
+    //Already inherited
+    // String soundName;
+    // float sampleRate;
+    // double durationInSeconds;
+    // byte[] sampleArray;
+    // AudioFormat format;
+    // SourceDataLine line;
+
     double frequency;
-    byte[] sampleArray;
-    AudioFormat format;
-    SourceDataLine line;
 
     SoundNote(double durationInSec, double frequency){
         this.soundName = "";
@@ -19,29 +21,25 @@ class SoundNote extends Sound{
         this.format = null;
     }
 
-    @Override
-    void setSampleRate(float input){
-        this.sampleRate = input;
-    }
+    // void setSampleRate(float input){
+    //     this.sampleRate = input;
+    // }
 
-    @Override
-    void setDurationInSec(double input){
-        this.durationInSeconds = input;
-    }
+    // void setDurationInSec(double input){
+    //     this.durationInSeconds = input;
+    // }
 
     void setFrequency(double input){
         this.frequency = input;
     }
 
-    @Override
-    void setNamee(String input){
-        this.soundName = input;
-    }
+    // void setNamee(String input){
+    //     this.soundName = input;
+    // }
 
-    @Override
-    byte[] getSampleArray(){
-        return this.sampleArray;
-    }
+    // byte[] getSampleArray(){
+    //     return this.sampleArray;
+    // }
 
     void computeSampleArray(){
         double twoPIFreq = 2.0 * Math.PI * frequency;
@@ -58,9 +56,7 @@ class SoundNote extends Sound{
     @Override
     void prepareToPlay(){
         computeSampleArray();
-        format = new AudioFormat(sampleRate, 8, 1, true, true); //8 bits sample size
-        try {line = AudioSystem.getSourceDataLine(format);}
-        catch (LineUnavailableException e) {System.exit(0);}
+        super.prepareToPlay();
     }
 
     @Override
@@ -76,11 +72,10 @@ class SoundNote extends Sound{
         line.close();
     }
 
-    @Override
-    void stopSound(){
-        line.drain();
-        line.close();
-    }
+    // void stopSound(){
+    //     line.drain();
+    //     line.close();
+    // }
 
     public void run(){
         this.playSound();
