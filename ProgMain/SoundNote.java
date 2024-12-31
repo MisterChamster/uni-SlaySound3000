@@ -4,28 +4,12 @@ import javax.sound.sampled.*;
 class SoundNote extends Sound{
     double frequency;
 
-    // SoundNote(){
-    //     super();
-    //     this.frequency = 0;
-    // }
-
-    // //constructor for adding notes to chord
-    // SoundNote(double frequency){
-    //     super();
-    //     this.frequency = frequency;
-    // }
-
     //constructor for adding notes to chord
     SoundNote(double frequency, String soundName){
         super();
         this.frequency = frequency;
         this.soundName = soundName;
     }
-
-    // SoundNote(float sampleRate, double durationInSec, double frequency){
-    //     super(sampleRate, durationInSec);
-    //     this.frequency = frequency;
-    // }
 
     SoundNote(float sampleRate, double durationInSec, double frequency, String soundName){
         super(sampleRate, durationInSec, soundName);
@@ -44,7 +28,7 @@ class SoundNote extends Sound{
 
         for (int i = 0; i < sampleArray.length; i++) {
             angle = twoPIFreq * i / sampleRate;
-            sampleArray[i] = (byte) (Math.sin(angle) * 127); //scale to byte range
+            sampleArray[i] = (byte) (Math.sin(angle) * 127); //scale to byte range //add 128??
             // System.out.println(sampleArray[i]);
         }
     }

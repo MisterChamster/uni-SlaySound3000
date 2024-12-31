@@ -5,18 +5,6 @@ class SoundNoteSet extends Sound{
     SoundNote[] noteArray;
     int noteArrayCLen;
 
-    // SoundNoteSet(){
-    //     super();
-    //     this.noteArray = new SoundNote[15]; //max note size of a noteset chosen arbitrarily
-    //     this.noteArrayCLen = 0;
-    // }
-
-    // SoundNoteSet(float sampleRate, double durationInSeconds){
-    //     super(sampleRate, durationInSeconds);
-    //     this.noteArray = new SoundNote[15];
-    //     this.noteArrayCLen = 0;
-    // }
-
     SoundNoteSet(float sampleRate, double durationInSeconds, String soundName){
         super(sampleRate, durationInSeconds, soundName);
         this.noteArray = new SoundNote[15];
@@ -94,7 +82,8 @@ class SoundNoteSet extends Sound{
             for (int j=0; j<noteArrayCLen; j++){
                 temp += (int) noteArray[j].sampleArray[i];
             }
-            sampleArray[i] = (byte) ((int)(temp/noteArrayCLen));
+            sampleArray[i] = (byte) ((int)(temp/noteArrayCLen)); //added 128??
+            System.out.println(sampleArray[i]);
             temp = 0;
         }
 

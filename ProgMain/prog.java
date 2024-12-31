@@ -1,13 +1,12 @@
 //incorporate sample size. PRIORITY
 //then, change wavfilesaver to take Sound children as inputs
 
-
+//make values unsigned
+//Problem probs lies in byte type
 
 
 //two different freq notes can't be named the same
 //can create custom notes if note of the same freq or name doesn't exist
-
-//basic note list
 
 //Noteset must have at least two different notes
 

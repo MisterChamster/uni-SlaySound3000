@@ -62,7 +62,7 @@ public abstract class Sound extends Thread{
     }
 
     void prepareToPlay(){
-        format = new AudioFormat(sampleRate, 8, 1, true, true); //8 bits sample size
+        format = new AudioFormat(sampleRate, 8, 1, false, true); //8 bits sample size
         try {line = AudioSystem.getSourceDataLine(format);}
         catch (LineUnavailableException e) {System.exit(0);}
     }
