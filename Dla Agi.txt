@@ -1,0 +1,25 @@
+Joł
+
+Można powoli zaczynać pisać elementy frontendu
+Backend, który napisałem potrafi robić parę rzeczy i trzeba zaczynać frontend,
+żeby pójść do przodu z niektórymi rzeczami (szczególnie z samym wyglądem
+okienka, który czały czas staram się projektować).
+
+Na początek poproszę Cię, żebyś napisała szkielet głównego okna. Powinno być
+całkiem spore na mój gust, ale zostawiam Ci ostateczną decyzję odnośnie
+wielkości.
+
+W tym okienku stwórz przyciski "Create Note", "Create Chord", "Export to .wav".
+Dodaj także jakieś drop-down menu z nazwą "Sample Size", w którym będą dwie
+opcje - "8 bit" i "16-bit".
+Na razie możesz zrobić tak, żeby kliknięcie przycisków albo wybranie opcji z
+drop-down menu wypisywało coś w konsoli. Funkcjonalnością zajmiemy się później.
+Rozmieszczenie tych przycisków na razie nie jest ważne i nie ma sensu się z tym
+nadmiernie bawić, przynajmniej na razie.
+
+Kolejne etapy swojej pracy wrzucaj regularnie do githuba do folderu ProgMain,
+żeby można było jakoś do nich ewentualnie wrócić. Samo otwarcie instancji klasy
+okna głównego przeprowadź w prog.java
+
+Jeśli coś będzie trudniejsze niż zakładam albo miałabyś jakieś pytania to pisz,
+bo komunikacja w projekcie jest ważna.
