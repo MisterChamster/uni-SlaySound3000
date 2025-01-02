@@ -17,20 +17,17 @@ public class prog{
         note2.prepareToPlay();
         note3.prepareToPlay();
 
-        SoundNoteSet chord1 = new SoundNoteSet(44100, 8, 2, "TrialChord");
+        SoundNoteSet chord1 = new SoundNoteSet(44100, 16, 2, "TrialChord");
         chord1.addNote(note1);
         chord1.addNote(note2);
         chord1.addNote(note3);
         chord1.prepareToPlay();
-        WavFileSaver.saveWavFile(chord1.sampleArray, chord1.sampleRate, chord1.sampleSize);
-
-        chord1.prepareToPlay();
+        WavFileSaver.saveWavFile(chord1);
         chord1.start();
 
 
 
-        // WavFileSaver.saveWavFile(note1.sampleArray, note1.sampleRate, note1.sampleSize);
-        // note1.prepareToPlay();
+        // WavFileSaver.saveWavFile(note1);
         // note1.start();
     }
 }

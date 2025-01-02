@@ -2,12 +2,16 @@ import javax.swing.*;
 import java.io.*;
 
 public class WavFileSaver {
+    //FOR SOME FUCKING REASON YOU NO LONGER HAVE TO prepareToPlay() AGAIN
+    //BECAUSE... REASONS! FUCK (YEAH)
+
     //After using this stupid function for some reason You have to use
     //prepareToPlay on the thing from which You took the sampleArray.
     //Please don't ask why.
-    static void saveWavFile(byte[] sampleArray, float sampleRate, int sampleSize) {
-        int waveOffset = (int)Math.pow(2, sampleSize-1);
-        for (int i=0; i<sampleArray.length; i++) {
+    // static void saveWavFile(byte[] sampleArray, float sampleRate, int sampleSize) {
+    static void saveWavFile(Sound soundChild) {
+        int waveOffset = (int) Math.pow(2, soundChild.sampleSize-1);
+        for (int i=0; i<soundChild.sampleArray.length; i++) {
             //This exact line is the problem. If it exists and You try to play
             //the sound it plays distorted version of it. Normally this program
             //(on the contrary to normal audio players) plays samples from -128
@@ -16,7 +20,7 @@ public class WavFileSaver {
             //that haven't been saved it's all good. But after this function,
             //without using prepareToPlay again, it plays that note in different
             //sample range. I've given up trying to understand this issue, sry.
-            sampleArray[i] = (byte) ((int)sampleArray[i] + waveOffset);
+            soundChild.sampleArray[i] = (byte) ((int)soundChild.sampleArray[i] + waveOffset);
         }
 
         JFileChooser fileChooser = new JFileChooser();
@@ -34,10 +38,10 @@ public class WavFileSaver {
 
             try (FileOutputStream fos = new FileOutputStream(fileToSave)) {
                 // Write the WAV file header
-                writeWavHeader(fos, sampleArray.length, sampleRate, sampleSize);
+                writeWavHeader(fos, soundChild.sampleArray.length, soundChild.sampleRate, soundChild.sampleSize);
 
                 // Write the audio data
-                fos.write(sampleArray);
+                fos.write(soundChild.sampleArray);
 
                 System.out.println("WAV file saved successfully: " + fileToSave.getAbsolutePath());
             } catch (IOException e) {
