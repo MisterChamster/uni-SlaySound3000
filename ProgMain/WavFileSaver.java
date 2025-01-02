@@ -5,8 +5,8 @@ public class WavFileSaver {
     //After using this stupid function for some reason You have to use
     //prepareToPlay on the thing from which You took the sampleArray.
     //Please don't ask why.
-    static void saveWavFile(byte[] sampleArray, float sampleRate, int sampleSizeInBits) {
-        int waveOffset = (int)Math.pow(2, sampleSizeInBits-1);
+    static void saveWavFile(byte[] sampleArray, float sampleRate, int sampleSize) {
+        int waveOffset = (int)Math.pow(2, sampleSize-1);
         for (int i=0; i<sampleArray.length; i++) {
             //This exact line is the problem. If it exists and You try to play
             //the sound it plays distorted version of it. Normally this program
@@ -34,7 +34,7 @@ public class WavFileSaver {
 
             try (FileOutputStream fos = new FileOutputStream(fileToSave)) {
                 // Write the WAV file header
-                writeWavHeader(fos, sampleArray.length, sampleRate, sampleSizeInBits);
+                writeWavHeader(fos, sampleArray.length, sampleRate, sampleSize);
 
                 // Write the audio data
                 fos.write(sampleArray);
@@ -46,10 +46,10 @@ public class WavFileSaver {
         }
     }
 
-    private static void writeWavHeader(FileOutputStream fos, int sampleArrayLength, float sampleRate, int sampleSizeInBits) throws IOException {
+    private static void writeWavHeader(FileOutputStream fos, int sampleArrayLength, float sampleRate, int sampleSize) throws IOException {
         int channels = 1;                                               // Mono audio
-        int byteRate = (int) (sampleRate * channels * sampleSizeInBits / 8);
-        int blockAlign = channels * sampleSizeInBits / 8;
+        int byteRate = (int) (sampleRate * channels * sampleSize / 8);
+        int blockAlign = channels * sampleSize / 8;
         int subChunk2Size = sampleArrayLength;
         int chunkSize = 36 + subChunk2Size;
 
@@ -63,7 +63,7 @@ public class WavFileSaver {
         fos.write(intToLittleEndian((int) sampleRate, 4));      // Sample rate
         fos.write(intToLittleEndian(byteRate, 4));              // Byte rate
         fos.write(intToLittleEndian(blockAlign, 2));            // Block align
-        fos.write(intToLittleEndian(sampleSizeInBits, 2));      // Bits per sample
+        fos.write(intToLittleEndian(sampleSize, 2));      // Bits per sample
         fos.write("data".getBytes());                                    // Subchunk2 ID
         fos.write(intToLittleEndian(subChunk2Size, 4));         // Subchunk2 size
     }

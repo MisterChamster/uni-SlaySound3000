@@ -5,8 +5,8 @@ class SoundNoteSet extends Sound{
     SoundNote[] noteArray;
     int noteArrayCLen;
 
-    SoundNoteSet(float sampleRate, double durationInSeconds, String soundName){
-        super(sampleRate, durationInSeconds, soundName);
+    SoundNoteSet(float sampleRate, int sampleSize, double durationInSeconds, String soundName){
+        super(sampleRate, sampleSize, durationInSeconds, soundName);
         this.noteArray = new SoundNote[15];
         this.noteArrayCLen = 0;
     }
@@ -21,6 +21,7 @@ class SoundNoteSet extends Sound{
         this.noteArrayCLen = noteArray.length;
     }
 
+
     private boolean isNoteInNoteArray(SoundNote note){
         for (int i=0; i<noteArrayCLen-1; i++){
             if (noteArray[i].frequency == note.frequency) return true;
@@ -28,9 +29,10 @@ class SoundNoteSet extends Sound{
         return false;
     }
 
-    //Class needs just note frequency and name, rest is useless
+    //This class needs just note frequency and name, rest can be erased with that function
     private void stripNote(SoundNote note){
         note.sampleRate = 0;
+        note.sampleSize = 0;
         note.durationInSeconds = 0;
         note.sampleArray = null;
         note.format = null;
@@ -65,8 +67,9 @@ class SoundNoteSet extends Sound{
         noteArray[noteArrayCLen] = null;
     }
 
+    //SAMPLESIZE not implemented
     void computeSampleArray(){
-        int sampleArrayLength = (int) Math.ceil(sampleRate * durationInSeconds);
+        int sampleArrayLength = (int) (Math.ceil(sampleRate * durationInSeconds) * (sampleSize/8));
         sampleArray = new byte[sampleArrayLength];
 
         for (int i=0; i<noteArrayCLen; i++){
@@ -83,7 +86,7 @@ class SoundNoteSet extends Sound{
                 temp += (int) noteArray[j].sampleArray[i];
             }
             sampleArray[i] = (byte) ((int)(temp/noteArrayCLen)); //added 128??
-            System.out.println(sampleArray[i]);
+            // System.out.println(sampleArray[i]);
             temp = 0;
         }
 
@@ -105,7 +108,7 @@ class SoundNoteSet extends Sound{
             System.out.println("Noteset can be played if it has 2 or more different notes");
             System.exit(0);
         }
-        super.prepareToPlay();
+        super.playSound();
     }
 
     public void run(){

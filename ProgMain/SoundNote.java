@@ -11,8 +11,8 @@ class SoundNote extends Sound{
         this.soundName = soundName;
     }
 
-    SoundNote(float sampleRate, double durationInSec, double frequency, String soundName){
-        super(sampleRate, durationInSec, soundName);
+    SoundNote(float sampleRate, int sampleSize, double durationInSec, double frequency, String soundName){
+        super(sampleRate, sampleSize, durationInSec, soundName);
         this.frequency = frequency;
     }
 
@@ -23,13 +23,26 @@ class SoundNote extends Sound{
 
     void computeSampleArray(){
         double twoPIFreq = 2.0 * Math.PI * frequency;
-        sampleArray = new byte[(int) Math.ceil(sampleRate * durationInSeconds)];
-        double angle;
+        int sampleNumInArray = (int) (Math.ceil(sampleRate * durationInSeconds));
+        sampleArray = new byte[sampleNumInArray * (sampleSize/8)];
+        double angleSIN;
 
-        for (int i = 0; i < sampleArray.length; i++) {
-            angle = twoPIFreq * i / sampleRate;
-            sampleArray[i] = (byte) (Math.sin(angle) * 127); //scale to byte range //add 128??
-            // System.out.println(sampleArray[i]);
+        if (sampleSize == 8){
+            for (int i = 0; i < sampleArray.length; i++) {
+                angleSIN = Math.sin(twoPIFreq * i / sampleRate);
+                sampleArray[i] = (byte) (angleSIN * 127); //scale to byte range ((2**(8-1))-1)
+                // System.out.println(sampleArray[i]);
+            }
+        }
+        //plays disto for good amount of time
+        else if (sampleSize == 16){
+            short tempScaledAngleSIN;
+            for (int i = 0, j = 0; i < sampleNumInArray; i++, j += 2) {
+                angleSIN = Math.sin(twoPIFreq * i / sampleRate);
+                tempScaledAngleSIN = (short) (angleSIN * 32767); //scale to byte range ((2**(16-1))-1)
+                sampleArray[j] = (byte) (tempScaledAngleSIN & 0xFF);
+                sampleArray[j+1] = (byte) ((tempScaledAngleSIN >> 8) & 0xFF);
+            }
         }
     }
 
@@ -37,11 +50,14 @@ class SoundNote extends Sound{
     void prepareToPlay(){
         computeSampleArray();
         super.prepareToPlay();
+        // format = new AudioFormat(sampleRate, sampleSize, 1, true, true); //8 bits sample size
+        // try {line = AudioSystem.getSourceDataLine(format);}
+        // catch (LineUnavailableException e) {System.exit(0);}
     }
 
     @Override
     void playSound(){
-        super.prepareToPlay();
+        super.playSound();
     }
 
     public void run(){

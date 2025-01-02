@@ -1,8 +1,6 @@
 //incorporate sample size. PRIORITY
 //then, change wavfilesaver to take Sound children as inputs
 
-//make values unsigned
-//Problem probs lies in byte type
 
 
 //two different freq notes can't be named the same
@@ -12,31 +10,30 @@
 
 public class prog{
     public static void main(String[] args){
-        SoundNote note1 = new SoundNote(44100, 2, 440, "A4");
-        SoundNote note2 = new SoundNote(44100, 2, 659.25, "E5");
-        SoundNote note3 = new SoundNote(44100, 2, 880, "A5");
+        SoundNote note1 = new SoundNote(44100, 16, 2, 440, "A4");
+        SoundNote note2 = new SoundNote(44100, 16, 2, 659.25, "E5");
+        SoundNote note3 = new SoundNote(44100, 16, 2, 880, "A5");
         note1.prepareToPlay();
         note2.prepareToPlay();
         note3.prepareToPlay();
-
-        SoundNoteSet chord1 = new SoundNoteSet(44100, 2, "TrialChord");
-        chord1.addNote(note3);
-        chord1.addNote(note2);
-        chord1.addNote(note1);
-        // chord1.printNoteArray();
-        // chord1.delNote(13);
-        chord1.prepareToPlay();
-
-        // WavFileSaver.saveWavFile(note1.sampleArray, 44100, 8);
-        WavFileSaver.saveWavFile(chord1.sampleArray, 44100, 8);
-        
-        chord1.prepareToPlay();
-        chord1.start();
-        chord1.stopSound();
-
-        // note1.prepareToPlay();
         // note1.start();
-        // note2.start();
-        // note3.start();
+
+        // SoundNoteSet chord1 = new SoundNoteSet(44100, 8, 2, "TrialChord");
+        // chord1.addNote(note3);
+        // chord1.addNote(note2);
+        // chord1.addNote(note1);
+        // // chord1.printNoteArray();
+        // // chord1.delNote(13);
+        // chord1.prepareToPlay();
+
+        WavFileSaver.saveWavFile(note1.sampleArray, note1.sampleRate, note1.sampleSize);
+        note1.prepareToPlay();
+        note1.start();
+
+        // WavFileSaver.saveWavFile(chord1.sampleArray, 44100, 8);
+        
+        // chord1.prepareToPlay();
+        // chord1.start();
+        // chord1.stopSound();
     }
 }
