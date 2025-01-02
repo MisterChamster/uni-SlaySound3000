@@ -1,12 +1,9 @@
-//incorporate sample size. PRIORITY
-//then, change wavfilesaver to take Sound children as inputs
-
-
-
 //two different freq notes can't be named the same
 //can create custom notes if note of the same freq or name doesn't exist
 
 //Noteset must have at least two different notes
+
+//every note must have name and freq
 
 public class prog{
     public static void main(String[] args){

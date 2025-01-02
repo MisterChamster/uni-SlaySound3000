@@ -2,24 +2,9 @@ import javax.swing.*;
 import java.io.*;
 
 public class WavFileSaver {
-    //FOR SOME FUCKING REASON YOU NO LONGER HAVE TO prepareToPlay() AGAIN
-    //BECAUSE... REASONS! FUCK (YEAH)
-
-    //After using this stupid function for some reason You have to use
-    //prepareToPlay on the thing from which You took the sampleArray.
-    //Please don't ask why.
-    // static void saveWavFile(byte[] sampleArray, float sampleRate, int sampleSize) {
     static void saveWavFile(Sound soundChild) {
         int waveOffset = (int) Math.pow(2, soundChild.sampleSize-1);
         for (int i=0; i<soundChild.sampleArray.length; i++) {
-            //This exact line is the problem. If it exists and You try to play
-            //the sound it plays distorted version of it. Normally this program
-            //(on the contrary to normal audio players) plays samples from -128
-            //to 127, but after this damn line it plays from 0 to 255 I persume.
-            //I don't think anything changes the range - when I play other notes
-            //that haven't been saved it's all good. But after this function,
-            //without using prepareToPlay again, it plays that note in different
-            //sample range. I've given up trying to understand this issue, sry.
             soundChild.sampleArray[i] = (byte) ((int)soundChild.sampleArray[i] + waveOffset);
         }
 
@@ -67,7 +52,7 @@ public class WavFileSaver {
         fos.write(intToLittleEndian((int) sampleRate, 4));      // Sample rate
         fos.write(intToLittleEndian(byteRate, 4));              // Byte rate
         fos.write(intToLittleEndian(blockAlign, 2));            // Block align
-        fos.write(intToLittleEndian(sampleSize, 2));      // Bits per sample
+        fos.write(intToLittleEndian(sampleSize, 2));            // Bits per sample
         fos.write("data".getBytes());                                    // Subchunk2 ID
         fos.write(intToLittleEndian(subChunk2Size, 4));         // Subchunk2 size
     }

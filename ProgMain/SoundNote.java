@@ -1,5 +1,4 @@
 import javax.sound.sampled.*;
-//every note must have name and freq
 
 class SoundNote extends Sound{
     double frequency;
@@ -31,10 +30,8 @@ class SoundNote extends Sound{
             for (int i = 0; i < sampleArray.length; i++) {
                 angleSIN = Math.sin(twoPIFreq * i / sampleRate);
                 sampleArray[i] = (byte) (angleSIN * 127); //scale to byte range ((2**(8-1))-1)
-                // System.out.println(sampleArray[i]);
             }
         }
-        //plays disto for good amount of time
         else if (sampleSize == 16){
             short tempScaledAngleSIN;
             for (int i = 0, j = 0; i < sampleNumInArray; i++, j += 2) {
@@ -50,9 +47,6 @@ class SoundNote extends Sound{
     void prepareToPlay(){
         computeSampleArray();
         super.prepareToPlay();
-        // format = new AudioFormat(sampleRate, sampleSize, 1, true, true); //8 bits sample size
-        // try {line = AudioSystem.getSourceDataLine(format);}
-        // catch (LineUnavailableException e) {System.exit(0);}
     }
 
     @Override

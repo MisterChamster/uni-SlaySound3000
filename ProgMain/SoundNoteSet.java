@@ -1,5 +1,4 @@
 import javax.sound.sampled.*;
-//cant have two same freq notes
 
 class SoundNoteSet extends Sound{
     SoundNote[] noteArray;
@@ -48,6 +47,7 @@ class SoundNoteSet extends Sound{
     }
 
     void addNote(SoundNote note){
+        //cant have two same freq notes
         if (!isNoteInNoteArray(note)){
             stripNote(note);
             //Resizes the array if the user is stupid enough to use more than 15 notes in a noteset
@@ -67,7 +67,6 @@ class SoundNoteSet extends Sound{
         noteArray[noteArrayCLen] = null;
     }
 
-    //SAMPLESIZE not implemented
     void computeSampleArray(){
         int sampleArrayLength = (int) (Math.ceil(sampleRate * durationInSeconds) * (sampleSize/8));
         sampleArray = new byte[sampleArrayLength];
@@ -87,7 +86,6 @@ class SoundNoteSet extends Sound{
                 temp += (int) noteArray[j].sampleArray[i];
             }
             sampleArray[i] = (byte) ((int)(temp/noteArrayCLen));
-            // System.out.println(sampleArray[i]);
             temp = 0;
         }
 
