@@ -74,6 +74,7 @@ class SoundNoteSet extends Sound{
 
         for (int i=0; i<noteArrayCLen; i++){
             noteArray[i].setSampleRate(this.sampleRate);
+            noteArray[i].setSampleSize(this.sampleSize);
             noteArray[i].setDurationInSec(this.durationInSeconds);
             noteArray[i].computeSampleArray();
         }
@@ -85,7 +86,7 @@ class SoundNoteSet extends Sound{
             for (int j=0; j<noteArrayCLen; j++){
                 temp += (int) noteArray[j].sampleArray[i];
             }
-            sampleArray[i] = (byte) ((int)(temp/noteArrayCLen)); //added 128??
+            sampleArray[i] = (byte) ((int)(temp/noteArrayCLen));
             // System.out.println(sampleArray[i]);
             temp = 0;
         }
