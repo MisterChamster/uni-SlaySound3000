@@ -19,8 +19,12 @@ public class prog{
         chord1.addNote(note2);
         chord1.addNote(note3);
         chord1.prepareToPlay();
-        WavFileSaver.saveWavFile(chord1);
-        chord1.start();
+        // WavFileSaver.saveWavFile(chord1);
+        // chord1.start();
+
+
+        UserInterface ui = new UserInterface();
+        ui.setVisible(true);
 
 
 

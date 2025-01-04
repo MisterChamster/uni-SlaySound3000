@@ -7,7 +7,6 @@ class SoundNote extends Sound{
     SoundNote(double frequency, String soundName){
         super();
         this.frequency = frequency;
-        this.soundName = soundName;
     }
 
     SoundNote(float sampleRate, int sampleSize, double durationInSec, double frequency, String soundName){
