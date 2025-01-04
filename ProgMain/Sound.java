@@ -75,7 +75,8 @@ public abstract class Sound extends Thread{
         try {line = AudioSystem.getSourceDataLine(format);}
         catch (LineUnavailableException e) {System.exit(0);}
     }
-    
+
+    //cleanup
     void stopSound(){
         line.drain();
         line.close();
@@ -87,8 +88,6 @@ public abstract class Sound extends Thread{
         //here it starts playing
         line.write(sampleArray, 0, sampleArray.length);
 
-        //cleanup
-        line.drain();
-        line.close();
+        stopSound();
     }
 }
