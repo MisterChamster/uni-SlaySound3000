@@ -15,7 +15,7 @@ public class UserInterface extends JFrame{
     //Backend variables
     int mainSampleSize = 8;
     float mainSampleRate = 44100;
-    String basicNoteArray, userNoteArray;
+    String[] basicNoteArray, userNoteArray;
     
     // SoundNote[] mainNotesUsedArray = new SoundNote[5];
     // SoundNoteSet[] mainNoteSetsUsedArray = new SoundNoteSet[5];
