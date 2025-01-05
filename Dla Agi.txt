@@ -1,16 +1,14 @@
 Joł
 
-W ProgMain dodałem Twoje okienko. Trochę już usiadłem do jego kodu.
-Proszę Cię teraz o stworzenie kolejnej klasy okienka. Będzie się ono
-pojawiać po naciśnięciu jednego z przycisków (zaznaczyłem gdzie komentarzem).
+CreateNote działa i ma się dobrze z resztą programu. Teraz trzeba je trochę ulepszyć,
+tj: zamknięcie okienka CreateNote iksem w prawym górnym nie powinno kończyć programu, 
+a naciśnięcie "discard" albo "create" powinno zamknąć okienko CreateNote.
 
-Powinno mieć nazwę "Create note" i jak sama nazwa wskazuje, tworzyć instancję klasy SoundNote.
-Powinno mieć dwa pola do wpisania tekstu. W jendnym user będzie wpisywać nazwę nuty (string),
-a w drugim frequency (float). Na dole powinien być guzik "discard" zamykający okienko i "create".
-"create" na razie powinien też zamykać to okienko. Podczas zamykania okienka "createm" możesz
-wypisać do konsoli wartości podane przez usera.
-Jeśli się da i jest to proste to spraw, żeby, kiedy okienko "Create note" jest otwarte, 
-nie dało się kliknąć okienka głównego.
+W głównym UI stworzyłem dwie tablice String: basicNoteArray i userNoteArray.
+Proszę, abyś po ich deklaracji je wypełniła; w głównym pliku w katalogu notes są
+dwa pliki tekstowe: basicNotes i pusty userNotes. Każda linijka powinna być jednym 
+elementem odpowiadającej tablicy. (userNotes.txt jest na razie pusty, ale dla 
+userNoteArray też trzeba zaimplementować wypełnianie)
 
 
 Jeśli coś będzie trudniejsze niż zakładam albo miałabyś jakieś pytania to pisz,
