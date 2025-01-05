@@ -15,6 +15,8 @@ public class UserInterface extends JFrame{
     //Backend variables
     int mainSampleSize = 8;
     float mainSampleRate = 44100;
+    String basicNoteArray, userNoteArray;
+    
     // SoundNote[] mainNotesUsedArray = new SoundNote[5];
     // SoundNoteSet[] mainNoteSetsUsedArray = new SoundNoteSet[5];
 
@@ -37,7 +39,8 @@ public class UserInterface extends JFrame{
         initialize();
 
         createNoteButton.addActionListener(e -> {
-            //AGA tutaj powinno otworzyć się okienko
+            CreateNote createNoteWindow = new CreateNote();
+            createNoteWindow.setVisible(true);
             System.out.println("Button 'Create Note' clicked");
         });
 
