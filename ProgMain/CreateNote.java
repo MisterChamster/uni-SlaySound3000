@@ -52,7 +52,7 @@ public class CreateNote extends JFrame {
                         "Note name must only contain letters and cannot be empty.",
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
-                return; 
+                return;
             }
 
             try {
@@ -62,7 +62,10 @@ public class CreateNote extends JFrame {
                 dispose();
                 parentFrame.setEnabled(true); 
             } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(this, "Frequency must be a valid number and cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this,
+                        "Frequency must be a valid number and cannot be empty.", 
+                        "Error", 
+                        JOptionPane.ERROR_MESSAGE);
             }
         });
         add(buttonPanel, BorderLayout.SOUTH);
