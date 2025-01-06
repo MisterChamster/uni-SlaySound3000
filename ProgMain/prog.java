@@ -8,7 +8,7 @@
 public class prog{
     public static void main(String[] args){
         SoundNote note1 = new SoundNote(44100, 16, 2, 440, "A4");
-        SoundNote note2 = new SoundNote(44100, 16, 2, 659.25, "E5");
+        SoundNote note2 = new SoundNote(44100, 16, 2, 659.25f, "E5");
         SoundNote note3 = new SoundNote(44100, 16, 2, 880, "A5");
         note1.prepareToPlay();
         note2.prepareToPlay();

@@ -16,7 +16,6 @@ public class UserInterface extends JFrame{
     int mainSampleSize = 8;
     float mainSampleRate = 44100;
     String[] basicNoteArray, userNoteArray;
-    
     // SoundNote[] mainNotesUsedArray = new SoundNote[5];
     // SoundNoteSet[] mainNoteSetsUsedArray = new SoundNoteSet[5];
 
@@ -26,22 +25,22 @@ public class UserInterface extends JFrame{
         setSize(800, 600);
         setLayout(new FlowLayout());
 
+        add(sampleSizeLabel);
+        add(sampleSizeDropdown);
         add(createNoteButton);
         add(createChordButton);
         add(exportToWavButton);
-        add(sampleSizeLabel);
-        add(sampleSizeDropdown);
+
     }
-
-
+ 
     public UserInterface() {
         super("SlaySound 3000");
         initialize();
 
         createNoteButton.addActionListener(e -> {
-            CreateNote createNoteWindow = new CreateNote();
+            this.setEnabled(false);
+            CreateNote createNoteWindow = new CreateNote(this);
             createNoteWindow.setVisible(true);
-            System.out.println("Button 'Create Note' clicked");
         });
 
         createChordButton.addActionListener(e -> {

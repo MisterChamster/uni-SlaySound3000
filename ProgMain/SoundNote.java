@@ -1,21 +1,21 @@
 import javax.sound.sampled.*;
 
 class SoundNote extends Sound{
-    double frequency;
+    float frequency;
 
     //constructor for adding notes to chord
-    SoundNote(double frequency, String soundName){
+    SoundNote(float frequency, String soundName){
         super();
         this.frequency = frequency;
     }
 
-    SoundNote(float sampleRate, int sampleSize, double durationInSec, double frequency, String soundName){
+    SoundNote(float sampleRate, int sampleSize, double durationInSec, float frequency, String soundName){
         super(sampleRate, sampleSize, durationInSec, soundName);
         this.frequency = frequency;
     }
 
 
-    void setFrequency(double input){
+    void setFrequency(float input){
         this.frequency = input;
     }
 
