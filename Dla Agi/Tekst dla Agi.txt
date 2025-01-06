@@ -45,13 +45,17 @@ W głównym UI stworzyłem dwie tablice String[]: basicNoteArray i userNoteArray
 wypełniła; w głównym pliku w katalogu notes są dwa pliki tekstowe: basicNotes i
 pusty userNotes. Każda linijka powinna być jednym elementem odpowiadającej
 tablicy. (userNotes.txt jest na razie pusty, ale dla userNoteArray też trzeba
-zaimplementować wypełnianie w razie, jak coś tam będzie przed otwarciem 
+zaimplementować wypełnianie w razie, jak coś tam będzie przed otwarciem
 programu)
 
 
 
 Commity robię dosyć często kiedy siedzę nad kodem, żeby, kiedy nadejdą jakieś
 ewentualności, móc wracać do bardziej konkretnej i działającej wersji.
+Jak siadasz do pisania kodu, to zacznij proszę od napisania mi, że siadasz do 
+kodu i pobrania najnowszej wersji programu, bo jeśli nad tym aktualnie siedzę
+albo znając siebie zrobiłem milion małych commitów to wystapi niezgodność wersji
+i będzie to katorga do naprawienia :-D
 
-Jeśli coś będzie niejasne albo trudniejsze niż zakładam albo miałabyś jakieś 
+Jeśli coś będzie niejasne albo trudniejsze niż zakładam albo miałabyś jakieś
 pytania to pisz, bo komunikacja w projekcie jest ważna.
