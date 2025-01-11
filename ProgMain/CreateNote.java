@@ -1,15 +1,17 @@
 import javax.swing.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowAdapter;
 import java.awt.*;
 
 public class CreateNote extends JFrame {
-    //UI variables
+    // UI variables
     JTextField noteNameField;
     JTextField frequencyField;
     JFrame parentFrame;
-    JPanel inputPanel = new JPanel(new GridLayout(2,2,5,5)); // uklad siatki (GridLayout)
+    JPanel inputPanel = new JPanel(new GridLayout(2,2,5,5)); // grid layout
     JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
-    //Sound variables
+    // Sound variables
     SoundNote createdNote = new SoundNote(0, " ");
 
     public CreateNote(JFrame parentFrame) {
@@ -19,7 +21,7 @@ public class CreateNote extends JFrame {
     }
 
     private void initialize(){
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //zamkniecie okna konczy dzialanie aplikacji
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(400, 200);
         setLayout(new BorderLayout());
 
@@ -37,6 +39,13 @@ public class CreateNote extends JFrame {
         JButton createButton = new JButton("Create");
         buttonPanel.add(discardButton);
         buttonPanel.add(createButton);
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                parentFrame.setEnabled(true);
+            }
+        });
 
         discardButton.addActionListener(e -> {
             dispose(); 
