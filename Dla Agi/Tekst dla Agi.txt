@@ -1,16 +1,6 @@
 Joł
 
 
-Co do samego sprawdzania poprawności wpisanych danych: nutki jak najbardziej
-mogą mieć w sobie cyferki i wydaje mi się, że nie ma potrzeby analizowania
-samego napisu, to już inwencja użytkownika. Jedyne co można sprawdzać w nazwie
-to czy ma ponad 20 znaków, bo nie można dać userowi za dużo wolności.
-Wartości frequency za to dałaś jako float a nie double, ale w zasadzie to nie
-potrzebne jest korzystanie z double, więc zmieniłem konwencję całego programu
-(dzięki). Spraw jeszcze proszę, żeby sprawdzane było, czy frequency jest
-pomiędzy 0 a 22000, bo ujemna częstotliwość albo zakresy nie słyszane przez
-człowieka nie są nam raczej potrzebne.
-
 W głównym UI stworzyłem dwie tablice String[]: basicNoteArray i userNoteArray
 (tymi zakomentowanymi się nie przejmuj). Proszę, abyś po ich deklaracji je
 wypełniła; w głównym pliku w katalogu notes są dwa pliki tekstowe: basicNotes i
