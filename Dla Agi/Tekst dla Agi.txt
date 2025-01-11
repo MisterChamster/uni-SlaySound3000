@@ -1,18 +1,5 @@
 Joł
 
-Wiem, że dałem Ci całkiem sporo rzeczy do zrobienia. Absolutnie nie musisz się z
-nimi śpieszyć, bo mam parę innych rzeczy wymagających mojego czasu i wysiłku i
-nie jest to potrzebne na gwałt, a ja z kolei nie chcę, żebyś się przepracowała,
-szczególnie że widzę ile masz na głowie i że jest Ci ciężko. Dbaj o siebie Ziom
-i trzymaj się <3
-
-
-
-Pojawił się mały problem: zamknięcie okienka CreateNote iksem w prawym górnym
-nie kończy programu, ale za to nawet po tym nie da się niczego zrobić w głównym
-UI i trzeba zamknąć program w terminalu. Nie znam się na tym wcale, ale wydaje
-mi się, że może mieć to coś wspólnego z funkcją setDefaultCloseOperation, jednak
-nie znam się.
 
 Co do samego sprawdzania poprawności wpisanych danych: nutki jak najbardziej
 mogą mieć w sobie cyferki i wydaje mi się, że nie ma potrzeby analizowania
@@ -23,22 +10,6 @@ potrzebne jest korzystanie z double, więc zmieniłem konwencję całego program
 (dzięki). Spraw jeszcze proszę, żeby sprawdzane było, czy frequency jest
 pomiędzy 0 a 22000, bo ujemna częstotliwość albo zakresy nie słyszane przez
 człowieka nie są nam raczej potrzebne.
-
-Pojawiające się okienko krzyczące na usera jest świetne swoją drogą.
-
-Do głównego UI potrzeba dodać opcję dla usera ustawienia (float) sample rate.
-W tym celu stwórz małe pole tekstowe, w którym będzie napisana aktualna wartość
-zmiennej mainSampleRate z klasy UI. Poczytałem trochę o textfield i proszę Cię,
-abyś zaimplementowała opcję FocusListener. Powinna ona sprawić, że po tym, kiedy
-user po kliknięciu w text field kliknie gdzieś obok, sprawdzone jest czy wartość
-w tym textfieldzie jest floatem od 0 do 200 000. Jeśli tak, to ustawia taką
-wartość zmiennej mainSampleRate JEŻELI akutalna wartość zmiennej mainSampleRate
-jest inna od podanej, a jeśli nie, to w textfieldzie wypisuje aktualną wartość
-mainSampleRate. Obok textfielda dodaj przycisk "set basic", który ustawia
-wartość mainSampleRate na 44100 i tekst w textfieldzie na tyle samo, JEŻELI
-zmienna mainSampleRate nie wynosi 44100.
-(ważne jest dla dalszych kroków, abyś uwzględniła oba "JEŻELI" odpowiednim ifem,
-chociaż teraz w progamie nie są one potrzebne)
 
 W głównym UI stworzyłem dwie tablice String[]: basicNoteArray i userNoteArray
 (tymi zakomentowanymi się nie przejmuj). Proszę, abyś po ich deklaracji je
