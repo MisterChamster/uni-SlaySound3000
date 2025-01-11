@@ -56,9 +56,9 @@ public class CreateNote extends JFrame {
             String noteName = noteNameField.getText();
             String frequencyText = frequencyField.getText();
 
-            if (noteName.isEmpty() || !noteName.matches("[a-zA-Z\\s]+")) {
+            if (noteName.isEmpty() || noteName.length() > 20) {
                 JOptionPane.showMessageDialog(this,
-                        "Note name must only contain letters and cannot be empty.",
+                        "Note name cannot be empty and must be 20 characters or less.",
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
                 return;
@@ -66,10 +66,17 @@ public class CreateNote extends JFrame {
 
             try {
                 float frequency = Float.parseFloat(frequencyText);
-                System.out.println("Note Name: " + noteName);
-                System.out.println("Frequency: " + frequency);
-                dispose();
-                parentFrame.setEnabled(true); 
+                if (frequency > 0 && frequency <= 22000) {
+                    System.out.println("Note Name: " + noteName);
+                    System.out.println("Frequency: " + frequency);
+                    dispose();
+                    parentFrame.setEnabled(true);
+                } else {
+                    JOptionPane.showMessageDialog(this,
+                            "Frequency must be between 0 and 22000.", 
+                            "Error", 
+                            JOptionPane.ERROR_MESSAGE);
+                }
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this,
                         "Frequency must be a valid number and cannot be empty.", 
