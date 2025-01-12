@@ -3,11 +3,13 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.awt.*;
-import java.util.ArrayList;
+import java.awt.event.FocusEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.WindowAdapter;
 import java.util.List;
+import java.util.ArrayList;
 
 //listening to enter in text fields should work as createnote listener
 //createButton.addActionListener to addListeners, not separate functions
@@ -93,8 +95,28 @@ public class CreateNote extends JFrame {
             dispose(); 
             parentFrame.setEnabled(true); 
         });
-        
+
         createButton.addActionListener(e -> {createFunction();});
+
+        noteNameField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                noteNameField.addActionListener(enter -> {
+                    createFunction();
+                });
+            }
+            public void focusLost(FocusEvent e) {}
+        });
+
+        frequencyField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                frequencyField.addActionListener(enter -> {
+                    createFunction();
+                });
+            }
+            public void focusLost(FocusEvent e) {}
+        });
     }
 
     private void createFunction() {

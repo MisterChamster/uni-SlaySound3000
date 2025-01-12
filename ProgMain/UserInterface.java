@@ -1,13 +1,13 @@
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.event.FocusListener;
+import java.awt.event.FocusEvent;
+import java.awt.*;
+import java.io.FileNotFoundException;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.FileReader;
 import java.io.File;
 
 public class UserInterface extends JFrame{
