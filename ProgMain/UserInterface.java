@@ -3,10 +3,12 @@ import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.File;
 
 public class UserInterface extends JFrame{
     //UI variables
@@ -17,7 +19,6 @@ public class UserInterface extends JFrame{
     String[] sampleSizes = {"8-bit", "16-bit"};
     JComboBox<String> sampleSizeDropdown = new JComboBox<>(sampleSizes);
 
-    
     JLabel sampleRateLabel = new JLabel("Sample Rate: ");
     JTextField sampleRateField = new JTextField(10);
     JButton setBasicButton = new JButton("Set Basic");
@@ -33,6 +34,36 @@ public class UserInterface extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //zamkniecie okna konczy dzialanie aplikacji
         setSize(800, 600);
         setLayout(new FlowLayout());
+
+        String basicNotesPath = "notes/basicNotes.txt";
+        if (!(new File(basicNotesPath).isFile())) {
+            JOptionPane.showMessageDialog(this, "Error: Could not find file: " + basicNotesPath, "Error", JOptionPane.ERROR_MESSAGE);
+            this.dispose();
+            System.exit(0);
+        } else {
+            try {
+                basicNoteArray = loadNotesFromFile(basicNotesPath);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this,"Could not load basic notes. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                this.dispose();
+                System.exit(0);
+            }
+        }
+
+        String userNotesPath = "notes/userNotes.txt";
+        if (!(new File(userNotesPath).isFile())) {
+            JOptionPane.showMessageDialog(this, "Error: Could not find file: " + userNotesPath, "Error", JOptionPane.ERROR_MESSAGE);
+            this.dispose();
+            System.exit(0);
+        } else {
+            try {
+                basicNoteArray = loadNotesFromFile(userNotesPath);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this,"Could not load basic notes. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                this.dispose();
+                System.exit(0);
+            }
+        }
 
         add(sampleSizeLabel);
         add(sampleSizeDropdown);
@@ -50,9 +81,6 @@ public class UserInterface extends JFrame{
     public UserInterface() {
         super("SlaySound 3000");
         initialize();
-
-        basicNoteArray = loadNotesFromFile("notes/basicNotes.txt");
-        userNoteArray = loadNotesFromFile("notes/userNotes.txt");
 
         createNoteButton.addActionListener(e -> {
             this.setEnabled(false);
