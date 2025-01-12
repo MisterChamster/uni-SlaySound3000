@@ -81,81 +81,73 @@ public class CreateNote extends JFrame {
         buttonPanel.add(discardButton);
         buttonPanel.add(createButton);
         add(buttonPanel, BorderLayout.SOUTH);
-
-        this.listenToTheWindow();
-        this.listenToTheDiscard();
-        this.listenToTheCreate();
     }
 
-    private void listenToTheWindow() {
+    private void addListeners() {
         this.addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosed(WindowEvent e) {
-                parentFrame.setEnabled(true);
-            }
+            public void windowClosed(WindowEvent e) {parentFrame.setEnabled(true);}
         });
-    }
 
-    private void listenToTheDiscard() {
         discardButton.addActionListener(e -> {
             dispose(); 
             parentFrame.setEnabled(true); 
         });
+        
+        createButton.addActionListener(e -> {createFunction();});
     }
 
-    private void listenToTheCreate() {
-        createButton.addActionListener(e -> {
-            String noteName = noteNameField.getText();
-            String frequencyText = frequencyField.getText();
+    private void createFunction() {
+        String noteName = noteNameField.getText();
+        String frequencyText = frequencyField.getText();
 
-            if (noteName.isEmpty() || noteName.length() > 20) {
-                JOptionPane.showMessageDialog(this,
-                        "Note name cannot be empty and must be 20 characters or less.",
-                        "Error",
-                        JOptionPane.ERROR_MESSAGE);
-                return;
-            }
+        if (noteName.isEmpty() || noteName.length() > 20) {
+            JOptionPane.showMessageDialog(this,
+                    "Note name cannot be empty and must be 20 characters or less.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-            try {
-                float frequency = Float.parseFloat(frequencyText);
-                if (frequency > 0 && frequency <= 22000) {
-                    if (isNoteNameInBasicNoteArray(noteName)){
-                        JOptionPane.showMessageDialog(this, "Note name exists in basicNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-
-                    else if (isNoteNameInUserNoteArray(noteName)){
-                        JOptionPane.showMessageDialog(this, "Note name exists in userNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-
-                    else if (isNoteFrequencyInBasicNoteArray(frequency)){
-                        JOptionPane.showMessageDialog(this, "Note frequency exists in basicNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-
-                    else if (isNoteFrequencyInUserNoteArray(frequency)){
-                        JOptionPane.showMessageDialog(this, "Note frequency exists in userNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-
-                    else {
-                        System.out.println("Note Name: " + noteName);
-                        System.out.println("Frequency: " + frequency);
-                        createdNote.setName(noteName);
-                        createdNote.setFrequency(frequency);
-                        dispose();
-                        parentFrame.setEnabled(true);
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(this,
-                            "Frequency must be between 0 and 22000.", 
-                            "Error", 
-                            JOptionPane.ERROR_MESSAGE);
+        try {
+            float frequency = Float.parseFloat(frequencyText);
+            if (frequency > 0 && frequency <= 22000) {
+                if (isNoteNameInBasicNoteArray(noteName)){
+                    JOptionPane.showMessageDialog(this, "Note name exists in basicNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-            } catch (NumberFormatException ex) {
+
+                else if (isNoteNameInUserNoteArray(noteName)){
+                    JOptionPane.showMessageDialog(this, "Note name exists in userNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+                else if (isNoteFrequencyInBasicNoteArray(frequency)){
+                    JOptionPane.showMessageDialog(this, "Note frequency exists in basicNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+                else if (isNoteFrequencyInUserNoteArray(frequency)){
+                    JOptionPane.showMessageDialog(this, "Note frequency exists in userNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+                else {
+                    System.out.println("Note Name: " + noteName);
+                    System.out.println("Frequency: " + frequency);
+                    createdNote.setName(noteName);
+                    createdNote.setFrequency(frequency);
+                    dispose();
+                    parentFrame.setEnabled(true);
+                }
+            } else {
                 JOptionPane.showMessageDialog(this,
-                        "Frequency must be a valid number and cannot be empty.", 
+                        "Frequency must be between 0 and 22000.", 
                         "Error", 
                         JOptionPane.ERROR_MESSAGE);
             }
-        });
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this,
+                    "Frequency must be a valid number and cannot be empty.", 
+                    "Error", 
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private Boolean isNoteNameInBasicNoteArray(String noteName) {
