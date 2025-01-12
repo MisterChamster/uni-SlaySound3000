@@ -75,7 +75,6 @@ public class UserInterface extends JFrame{
         sampleRateField.setText(String.valueOf(mainSampleRate));
         add(sampleRateField);
         add(setBasicButton);
-
     }
  
     public UserInterface() {

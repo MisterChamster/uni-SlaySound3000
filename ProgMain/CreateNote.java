@@ -8,8 +8,10 @@ public class CreateNote extends JFrame {
     JTextField noteNameField;
     JTextField frequencyField;
     JFrame parentFrame;
-    JPanel inputPanel = new JPanel(new GridLayout(2,2,5,5)); // grid layout
+    JPanel inputPanel = new JPanel(new GridLayout(2,2,5,5));
     JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+    JButton discardButton = new JButton("Discard");
+    JButton createButton = new JButton("Create");
 
     // Sound variables
     SoundNote createdNote = new SoundNote(0, " ");
@@ -18,6 +20,7 @@ public class CreateNote extends JFrame {
         super("Create Note");
         this.parentFrame = parentFrame;
         initialize();
+        addListeners();
     }
 
     private void initialize(){
@@ -35,11 +38,12 @@ public class CreateNote extends JFrame {
 
         add(inputPanel, BorderLayout.CENTER);
 
-        JButton discardButton = new JButton("Discard");
-        JButton createButton = new JButton("Create");
         buttonPanel.add(discardButton);
         buttonPanel.add(createButton);
+        add(buttonPanel, BorderLayout.SOUTH);
+    }
 
+    private void addListeners() {
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
@@ -84,6 +88,7 @@ public class CreateNote extends JFrame {
                         JOptionPane.ERROR_MESSAGE);
             }
         });
-        add(buttonPanel, BorderLayout.SOUTH);
     }
+
+    
 }
