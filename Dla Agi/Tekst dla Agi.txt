@@ -1,14 +1,16 @@
 Joł
 
+Po pierwsze, poproszę dwa przyciski w głównym UI - delete note i delete chord
+
+Po drugie, poproszę nowa klase okienka - Create Chord.
+Powinien byc w niej textfield, przed którym będzie napis "Name: "
+Pod tym, trochę nizej, napis "Notes used", pod którym będzie kolejny textfield.
+Pod tym textfieldem dwa przyciski - "Add note..." i "Delete note..."
+Na pasku dolnym za to discard i create, jak bylo w create note
 
 
 
-Commity robię dosyć często kiedy siedzę nad kodem, żeby, kiedy nadejdą jakieś
-ewentualności, móc wracać do bardziej konkretnej i działającej wersji.
-Jak siadasz do pisania kodu, to zacznij proszę od napisania mi, że siadasz do 
-kodu i pobrania najnowszej wersji programu, bo jeśli nad tym aktualnie siedzę
-albo znając siebie zrobiłem milion małych commitów to wystapi niezgodność wersji
-i będzie to katorga do naprawienia :-D
+Proszę rób częściej commity UwU
 
 Jeśli coś będzie niejasne albo trudniejsze niż zakładam albo miałabyś jakieś
 pytania to pisz, bo komunikacja w projekcie jest ważna.
