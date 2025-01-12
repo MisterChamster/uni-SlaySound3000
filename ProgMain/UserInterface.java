@@ -27,6 +27,8 @@ public class UserInterface extends JFrame{
     int mainSampleSize = 8;
     float mainSampleRate = 44100;
     String[] basicNoteArray, userNoteArray;
+    String basicNotesPath = "notes/basicNotes.txt";
+    String userNotesPath = "notes/userNotes.txt";
     // SoundNote[] mainNotesUsedArray = new SoundNote[5];
     // SoundNoteSet[] mainNoteSetsUsedArray = new SoundNoteSet[5];
 
@@ -35,7 +37,6 @@ public class UserInterface extends JFrame{
         setSize(800, 600);
         setLayout(new FlowLayout());
 
-        String basicNotesPath = "notes/basicNotes.txt";
         if (!(new File(basicNotesPath).isFile())) {
             JOptionPane.showMessageDialog(this, "Error: Could not find file: " + basicNotesPath, "Error", JOptionPane.ERROR_MESSAGE);
             this.dispose();
@@ -50,7 +51,6 @@ public class UserInterface extends JFrame{
             }
         }
 
-        String userNotesPath = "notes/userNotes.txt";
         if (!(new File(userNotesPath).isFile())) {
             JOptionPane.showMessageDialog(this, "Error: Could not find file: " + userNotesPath, "Error", JOptionPane.ERROR_MESSAGE);
             this.dispose();
@@ -85,6 +85,8 @@ public class UserInterface extends JFrame{
             this.setEnabled(false);
             CreateNote createNoteWindow = new CreateNote(this);
             createNoteWindow.setVisible(true);
+            System.out.println(createNoteWindow.getCreatedNote().soundName);
+            System.out.println(createNoteWindow.getCreatedNote().frequency);
         });
 
         createChordButton.addActionListener(e -> {

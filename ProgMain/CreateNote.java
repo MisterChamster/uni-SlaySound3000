@@ -73,6 +73,9 @@ public class CreateNote extends JFrame {
                 if (frequency > 0 && frequency <= 22000) {
                     System.out.println("Note Name: " + noteName);
                     System.out.println("Frequency: " + frequency);
+                    createdNote.setName(noteName);
+                    createdNote.setFrequency(frequency);
+
                     dispose();
                     parentFrame.setEnabled(true);
                 } else {
@@ -90,5 +93,7 @@ public class CreateNote extends JFrame {
         });
     }
 
-    
+    public SoundNote getCreatedNote() {
+        return createdNote;
+    }
 }
