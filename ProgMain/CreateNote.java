@@ -50,7 +50,7 @@ public class CreateNote extends JFrame {
             try {
                 basicNoteArray = loadNotesFromFile(basicNotesPath);
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this,"Could not load basic notes. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Could not load basic notes. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 this.dispose();
                 System.exit(0);
             }
@@ -64,7 +64,7 @@ public class CreateNote extends JFrame {
             try {
                 userNoteArray = loadNotesFromFile(userNotesPath);
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this,"Could not load user notes. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Could not load user notes. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 this.dispose();
                 System.exit(0);
             }

@@ -10,6 +10,7 @@ import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.File;
 
@@ -118,8 +119,14 @@ public class UserInterface extends JFrame{
             public void windowClosed(WindowEvent e) {
                 if (createNoteWindow.getCreatedNote().frequency != 0) {
                     String noteToFile = createNoteWindow.getCreatedNote().soundName + " " + createNoteWindow.getCreatedNote().frequency;
-                    //START FROM HERE, DUMMY
                     System.out.println(noteToFile);
+
+                    try (FileWriter writer = new FileWriter(userNotesPath, true)) {
+                        writer.write(noteToFile + "\n");
+                    } catch (IOException ex) {
+                        // I don't know how to test this, but should be alright I guess(?)
+                        JOptionPane.showMessageDialog(createNoteWindow, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
                 
             }
