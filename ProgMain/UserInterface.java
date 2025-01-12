@@ -1,6 +1,9 @@
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.event.WindowListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.FocusEvent;
 import java.awt.*;
@@ -84,13 +87,7 @@ public class UserInterface extends JFrame{
     }
 
     private void addListeners() {
-        createNoteButton.addActionListener(e -> {
-            this.setEnabled(false);
-            CreateNote createNoteWindow = new CreateNote(this);
-            createNoteWindow.setVisible(true);
-            // System.out.println(createNoteWindow.getCreatedNote().soundName);
-            // System.out.println(createNoteWindow.getCreatedNote().frequency);
-        });
+        createNoteButton.addActionListener(e -> {createNoteListenFunction();});
 
         createChordButton.addActionListener(e -> {
             System.out.println("Button 'Create Chord' clicked");
@@ -109,6 +106,24 @@ public class UserInterface extends JFrame{
         });
 
         addSampleRateListeners();
+    }
+
+    private void createNoteListenFunction() {
+        this.setEnabled(false);
+        CreateNote createNoteWindow = new CreateNote(this);
+        createNoteWindow.setVisible(true);
+
+        createNoteWindow.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                if (createNoteWindow.getCreatedNote().frequency != 0) {
+                    String noteToFile = createNoteWindow.getCreatedNote().soundName + " " + createNoteWindow.getCreatedNote().frequency;
+                    //START FROM HERE, DUMMY
+                    System.out.println(noteToFile);
+                }
+                
+            }
+        });
     }
 
     private void addSampleRateListeners() {

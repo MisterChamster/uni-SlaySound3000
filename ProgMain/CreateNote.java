@@ -151,9 +151,7 @@ public class CreateNote extends JFrame {
                 }
 
                 else {
-                    System.out.println("Note Name: " + noteName);
-                    System.out.println("Frequency: " + frequency);
-                    createdNote.setName(noteName);
+                    createdNote.setNamee(noteName);
                     createdNote.setFrequency(frequency);
                     dispose();
                     parentFrame.setEnabled(true);
