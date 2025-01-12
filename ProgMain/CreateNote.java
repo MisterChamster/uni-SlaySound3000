@@ -9,6 +9,9 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+//listening to enter in text fields should work as createnote listener
+//createButton.addActionListener to addListeners, not separate functions
+
 public class CreateNote extends JFrame {
     // UI variables
     JTextField noteNameField;
@@ -78,21 +81,29 @@ public class CreateNote extends JFrame {
         buttonPanel.add(discardButton);
         buttonPanel.add(createButton);
         add(buttonPanel, BorderLayout.SOUTH);
+
+        this.listenToTheWindow();
+        this.listenToTheDiscard();
+        this.listenToTheCreate();
     }
 
-    private void addListeners() {
+    private void listenToTheWindow() {
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
                 parentFrame.setEnabled(true);
             }
         });
+    }
 
+    private void listenToTheDiscard() {
         discardButton.addActionListener(e -> {
             dispose(); 
             parentFrame.setEnabled(true); 
         });
+    }
 
+    private void listenToTheCreate() {
         createButton.addActionListener(e -> {
             String noteName = noteNameField.getText();
             String frequencyText = frequencyField.getText();
