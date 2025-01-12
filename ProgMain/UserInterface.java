@@ -21,7 +21,7 @@ public class UserInterface extends JFrame{
 
     JLabel sampleRateLabel = new JLabel("Sample Rate: ");
     JTextField sampleRateField = new JTextField(10);
-    JButton setBasicButton = new JButton("Set Basic");
+    JButton setBasicSampleRateButton = new JButton("Set Basic");
 
     //Backend variables
     int mainSampleSize = 8;
@@ -31,6 +31,13 @@ public class UserInterface extends JFrame{
     String userNotesPath = "notes/userNotes.txt";
     // SoundNote[] mainNotesUsedArray = new SoundNote[5];
     // SoundNoteSet[] mainNoteSetsUsedArray = new SoundNoteSet[5];
+
+
+    public UserInterface() {
+        super("SlaySound 3000");
+        initialize();
+        addListeners();
+    }
 
     private void initialize(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //zamkniecie okna konczy dzialanie aplikacji
@@ -70,17 +77,13 @@ public class UserInterface extends JFrame{
         add(createNoteButton);
         add(createChordButton);
         add(exportToWavButton);
-
         add(sampleRateLabel);
         sampleRateField.setText(String.valueOf(mainSampleRate));
         add(sampleRateField);
-        add(setBasicButton);
+        add(setBasicSampleRateButton);
     }
- 
-    public UserInterface() {
-        super("SlaySound 3000");
-        initialize();
 
+    private void addListeners() {
         createNoteButton.addActionListener(e -> {
             this.setEnabled(false);
             CreateNote createNoteWindow = new CreateNote(this);
@@ -105,6 +108,10 @@ public class UserInterface extends JFrame{
             System.out.println("Program sample size: " + mainSampleSize);
         });
 
+        addSampleRateListeners();
+    }
+
+    private void addSampleRateListeners() {
         sampleRateField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -140,7 +147,7 @@ public class UserInterface extends JFrame{
             }
         });
 
-        setBasicButton.addActionListener(e -> {
+        setBasicSampleRateButton.addActionListener(e -> {
             if (mainSampleRate != 44100) {
                 mainSampleRate = 44100;
                 sampleRateField.setText(String.valueOf(mainSampleRate));
