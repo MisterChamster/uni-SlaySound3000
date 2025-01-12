@@ -1,14 +1,6 @@
 Joł
 
 
-W głównym UI stworzyłem dwie tablice String[]: basicNoteArray i userNoteArray
-(tymi zakomentowanymi się nie przejmuj). Proszę, abyś po ich deklaracji je
-wypełniła; w głównym pliku w katalogu notes są dwa pliki tekstowe: basicNotes i
-pusty userNotes. Każda linijka powinna być jednym elementem odpowiadającej
-tablicy. (userNotes.txt jest na razie pusty, ale dla userNoteArray też trzeba
-zaimplementować wypełnianie w razie, jak coś tam będzie przed otwarciem
-programu)
-
 
 
 Commity robię dosyć często kiedy siedzę nad kodem, żeby, kiedy nadejdą jakieś
