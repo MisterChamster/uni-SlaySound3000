@@ -88,8 +88,8 @@ public class UserInterface extends JFrame{
             this.setEnabled(false);
             CreateNote createNoteWindow = new CreateNote(this);
             createNoteWindow.setVisible(true);
-            System.out.println(createNoteWindow.getCreatedNote().soundName);
-            System.out.println(createNoteWindow.getCreatedNote().frequency);
+            // System.out.println(createNoteWindow.getCreatedNote().soundName);
+            // System.out.println(createNoteWindow.getCreatedNote().frequency);
         });
 
         createChordButton.addActionListener(e -> {
