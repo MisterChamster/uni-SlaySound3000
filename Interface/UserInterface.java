@@ -49,6 +49,7 @@ public class UserInterface extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         setSize(800, 600);
         setLayout(new BorderLayout()); 
+        setLocationRelativeTo(null);
         
         JPanel mainPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -117,7 +118,7 @@ public class UserInterface extends JFrame{
     private void addListeners() {
         createNoteButton.addActionListener(e -> {createNoteListenFunction();});
 
-        createChordButton.addActionListener(e -> {
+        createChordButton.addActionListener(e -> {createChordListenFunction();
             System.out.println("Button 'Create Chord' clicked");
         });
 
@@ -166,6 +167,21 @@ public class UserInterface extends JFrame{
                 
             }
         });
+    }
+
+    private void createChordListenFunction() {
+
+            this.setEnabled(false);
+            CreateChord createChordWindow = new CreateChord(this);
+            createChordWindow.setVisible(true);
+        
+            createChordWindow.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    setEnabled(true); // Włącz ponownie główne okno po zamknięciu okna CreateChord
+                }
+            });
+        
     }
 
     private void addSampleRateListeners() {
