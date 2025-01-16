@@ -19,6 +19,8 @@ public class UserInterface extends JFrame{
     JButton createNoteButton = new JButton("Create Note");
     JButton createChordButton = new JButton("Create Chord");
     JButton exportToWavButton = new JButton("Export to .wav");
+    JButton deleteNoteButton = new JButton("Delete Note");
+    JButton deleteChordButton = new JButton("Delete Chord");
     JLabel sampleSizeLabel = new JLabel("Sample Size: ");
     String[] sampleSizes = {"8-bit", "16-bit"};
     JComboBox<String> sampleSizeDropdown = new JComboBox<>(sampleSizes);
@@ -44,10 +46,46 @@ public class UserInterface extends JFrame{
     }
 
     private void initialize(){
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //zamkniecie okna konczy dzialanie aplikacji
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         setSize(800, 600);
-        setLayout(new FlowLayout());
-
+        setLayout(new BorderLayout()); 
+        setLocationRelativeTo(null);
+        
+        JPanel mainPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.anchor = GridBagConstraints.CENTER; 
+        
+        JPanel settingsPanel = new JPanel(new GridLayout(3, 2, 10, 10)); 
+        settingsPanel.setBorder(BorderFactory.createTitledBorder("Settings"));
+        settingsPanel.add(sampleSizeLabel);
+        settingsPanel.add(sampleSizeDropdown);
+        settingsPanel.add(sampleRateLabel);
+        sampleRateField.setText(String.valueOf(mainSampleRate));
+        settingsPanel.add(sampleRateField);
+        settingsPanel.add(new JLabel()); 
+        settingsPanel.add(setBasicSampleRateButton);
+        
+        settingsPanel.setPreferredSize(new Dimension(400, 150)); 
+        
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        mainPanel.add(settingsPanel, gbc);
+        
+        JPanel actionsPanel = new JPanel(new GridLayout(2, 3, 10, 10));
+        actionsPanel.setBorder(BorderFactory.createTitledBorder("Actions"));
+        actionsPanel.add(createNoteButton);
+        actionsPanel.add(createChordButton);
+        actionsPanel.add(exportToWavButton);
+        actionsPanel.add(deleteNoteButton);
+        actionsPanel.add(deleteChordButton);
+        
+        actionsPanel.setPreferredSize(new Dimension(400, 150)); 
+        
+        gbc.gridy = 1;
+        mainPanel.add(actionsPanel, gbc);
+        add(mainPanel, BorderLayout.CENTER);
+                
         if (!(new File(basicNotesPath).isFile())) {
             JOptionPane.showMessageDialog(this, "Error: Could not find file: " + basicNotesPath, "Error", JOptionPane.ERROR_MESSAGE);
             this.dispose();
@@ -75,22 +113,12 @@ public class UserInterface extends JFrame{
                 System.exit(0);
             }
         }
-
-        add(sampleSizeLabel);
-        add(sampleSizeDropdown);
-        add(createNoteButton);
-        add(createChordButton);
-        add(exportToWavButton);
-        add(sampleRateLabel);
-        sampleRateField.setText(String.valueOf(mainSampleRate));
-        add(sampleRateField);
-        add(setBasicSampleRateButton);
     }
 
     private void addListeners() {
         createNoteButton.addActionListener(e -> {createNoteListenFunction();});
 
-        createChordButton.addActionListener(e -> {
+        createChordButton.addActionListener(e -> {createChordListenFunction();
             System.out.println("Button 'Create Chord' clicked");
         });
 
@@ -98,6 +126,14 @@ public class UserInterface extends JFrame{
             System.out.println("Button 'Export To Wav' clicked");
         });
 
+        deleteNoteButton.addActionListener(e -> {
+            System.out.println("Button 'Delete Note' clicked");
+        });
+
+        deleteChordButton.addActionListener(e -> {
+            System.out.println("Button 'Delete Chord' clicked");
+        });
+        
         //should recompute all notes and chords
         sampleSizeDropdown.addActionListener(e -> {
             String selectedSize = (String) sampleSizeDropdown.getSelectedItem();
@@ -131,6 +167,21 @@ public class UserInterface extends JFrame{
                 
             }
         });
+    }
+
+    private void createChordListenFunction() {
+
+            this.setEnabled(false);
+            CreateChord createChordWindow = new CreateChord(this);
+            createChordWindow.setVisible(true);
+        
+            createChordWindow.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    setEnabled(true); // Włącz ponownie główne okno po zamknięciu okna CreateChord
+                }
+            });
+        
     }
 
     private void addSampleRateListeners() {
