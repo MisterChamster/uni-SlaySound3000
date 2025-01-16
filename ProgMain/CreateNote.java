@@ -37,10 +37,6 @@ public class CreateNote extends JFrame {
     private void initialize(){
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(400, 200);
-        setLayout(new BorderLayout());
-
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(400, 200);
         setLayout(new BorderLayout(10, 10)); 
         setLocationRelativeTo(null); 
 

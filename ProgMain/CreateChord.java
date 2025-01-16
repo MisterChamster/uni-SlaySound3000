@@ -127,16 +127,34 @@ public class CreateChord extends JFrame {
             }
         });
 
-        addNoteButton.addActionListener(e -> openAddNoteDialog());
-        deleteNoteButton.addActionListener(e -> openDeleteNoteDialog());
+        addNoteButton.addActionListener(e -> openAddNoteFrame());
+        deleteNoteButton.addActionListener(e -> openDeleteNoteFrame());
     }
 
-    private void openAddNoteDialog() {
-        AddNoteDialog addDialog = new AddNoteDialog(this, notesUsedField);
+    private void openAddNoteFrame() {
+        this.setEnabled(false);
+        AddNoteFrame addFrame = new AddNoteFrame(this, notesUsedField);
+        addFrame.setVisible(true);
+
+        addFrame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                setEnabled(true);
+            }
+        });
     }
 
-    private void openDeleteNoteDialog() {
-        DeleteNoteDialog deleteDialog = new DeleteNoteDialog(this, notesUsedField);
+    private void openDeleteNoteFrame() {
+        this.setEnabled(false);
+        DeleteNoteFrame delFrame = new DeleteNoteFrame(this, notesUsedField);
+        delFrame.setVisible(true);
+
+        delFrame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                setEnabled(true);
+            }
+        });
     }
 
     public String getCreatedChordName() {
