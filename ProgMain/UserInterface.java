@@ -62,13 +62,13 @@ public class UserInterface extends JFrame{
         settingsPanel.add(sampleRateField);
         settingsPanel.add(new JLabel()); 
         settingsPanel.add(setBasicSampleRateButton);
-        
+
         settingsPanel.setPreferredSize(new Dimension(400, 150)); 
-        
+
         gbc.gridx = 0;
         gbc.gridy = 0;
         mainPanel.add(settingsPanel, gbc);
-        
+
         JPanel actionsPanel = new JPanel(new GridLayout(2, 3, 10, 10));
         actionsPanel.setBorder(BorderFactory.createTitledBorder("Actions"));
         actionsPanel.add(createNoteButton);
@@ -76,9 +76,9 @@ public class UserInterface extends JFrame{
         actionsPanel.add(exportToWavButton);
         actionsPanel.add(deleteNoteButton);
         actionsPanel.add(deleteChordButton);
-        
+
         actionsPanel.setPreferredSize(new Dimension(400, 150)); 
-        
+
         gbc.gridy = 1;
         mainPanel.add(actionsPanel, gbc);
         add(mainPanel, BorderLayout.CENTER);
@@ -97,7 +97,7 @@ public class UserInterface extends JFrame{
         deleteNoteButton.addActionListener(e -> {deleteNoteListenFunction();});
 
         deleteChordButton.addActionListener(e -> {deleteChordListenFunction();});
-        
+
         //should recompute all notes and chords
         sampleSizeDropdown.addActionListener(e -> {
             String selectedSize = (String) sampleSizeDropdown.getSelectedItem();
@@ -129,24 +129,21 @@ public class UserInterface extends JFrame{
                         JOptionPane.showMessageDialog(createNoteWindow, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
-                
             }
         });
     }
 
     private void createChordListenFunction() {
+        this.setEnabled(false);
+        CreateChord createChordWindow = new CreateChord(this);
+        createChordWindow.setVisible(true);
 
-            this.setEnabled(false);
-            CreateChord createChordWindow = new CreateChord(this);
-            createChordWindow.setVisible(true);
-        
-            createChordWindow.addWindowListener(new WindowAdapter() {
-                @Override
-                public void windowClosed(WindowEvent e) {
-                    setEnabled(true); // Włącz ponownie główne okno po zamknięciu okna CreateChord
-                }
-            });
-        
+        createChordWindow.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                setEnabled(true); // Włącz ponownie główne okno po zamknięciu okna CreateChord
+            }
+        });
     }
 
     private void exportToWavListenFunction() {

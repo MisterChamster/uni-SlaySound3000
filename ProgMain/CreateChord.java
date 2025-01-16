@@ -132,53 +132,7 @@ public class CreateChord extends JFrame {
     }
 
     private void openNoteSelectionDialog(String actionType) {
-        JDialog dialog = new JDialog(this, actionType + " Note", true);
-        dialog.setSize(350, 250);
-        dialog.setLayout(new BorderLayout(10, 10));
-        dialog.setLocationRelativeTo(this);
-
-        String[] notes = {"C4", "D4", "E4", "F4", "G4", "A4", "B4"};  //do zmodyfikowania to tylko przyklad
-        JList<String> notesList = new JList<>(notes);
-        notesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        JScrollPane scrollPane = new JScrollPane(notesList);
-        dialog.add(scrollPane, BorderLayout.CENTER);
-
-        JPanel dialogButtonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        JButton cancelButton = new JButton("Cancel");
-        JButton confirmButton = new JButton(actionType);
-
-        dialogButtonPanel.add(cancelButton);
-        dialogButtonPanel.add(confirmButton);
-        dialog.add(dialogButtonPanel, BorderLayout.SOUTH);
-
-        cancelButton.addActionListener(e -> dialog.dispose());
-
-        confirmButton.addActionListener(e -> {
-            String selectedNote = notesList.getSelectedValue();
-            if (selectedNote != null) {
-                if (actionType.equals("Add")) {
-                    String currentNotes = notesUsedField.getText();
-                    notesUsedField.setText(currentNotes.isEmpty() ? selectedNote : currentNotes + ", " + selectedNote);
-                } else if (actionType.equals("Delete")) {
-                    String[] currentNotesArray = notesUsedField.getText().split(", ");
-                    StringBuilder updatedNotes = new StringBuilder();
-                    for (String note : currentNotesArray) {
-                        if (!note.equals(selectedNote)) {
-                            if (updatedNotes.length() > 0) {
-                                updatedNotes.append(", ");
-                            }
-                            updatedNotes.append(note);
-                        }
-                    }
-                    notesUsedField.setText(updatedNotes.toString());
-                }
-                dialog.dispose();
-            } else {
-                JOptionPane.showMessageDialog(dialog, "Please select a note!", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        });
-
-        dialog.setVisible(true);
+        NoteSelectionDialog dialog = new NoteSelectionDialog(this, actionType, notesUsedField);
     }
 
     public String getCreatedChordName() {
