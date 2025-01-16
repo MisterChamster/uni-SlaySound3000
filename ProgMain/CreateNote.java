@@ -26,15 +26,13 @@ public class CreateNote extends JFrame {
 
     // Sound variables
     SoundNote createdNote = new SoundNote(0, " ");
-    String[] basicNoteArray, userNoteArray;
-    String basicNotesPath = "notes/basicNotes.txt";
-    String userNotesPath = "notes/userNotes.txt";
+    // String[] basicNoteArray, userNoteArray;
+    // String basicNotesPath = "notes/basicNotes.txt";
+    // String userNotesPath = "notes/userNotes.txt";
 
     public CreateNote(UserInterface parentFrame) {
         super("Create Note");
         this.parentFrame = parentFrame;
-        parentFrame.TEMPincrementer();
-        System.out.println("Program temp: " + parentFrame.TEMP);
         initialize();
         addListeners();
     }
@@ -49,7 +47,6 @@ public class CreateNote extends JFrame {
         setLayout(new BorderLayout(10, 10)); 
         setLocationRelativeTo(null); 
 
-    
         inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); 
         inputPanel.add(new JLabel("Note name:"));
         noteNameField = new JTextField(15);
@@ -69,39 +66,38 @@ public class CreateNote extends JFrame {
 
         add(buttonPanel, BorderLayout.SOUTH);
 
-        this.parentFrame.TEMPincrementer();
-        // parentFrame.updateBasicNoteArray();
-        // parentFrame.updateUserNoteArray();
+        parentFrame.updateBasicNoteArray();
+        parentFrame.updateUserNoteArray();
         
-        if (!(new File(basicNotesPath).isFile())) {
-            JOptionPane.showMessageDialog(this, "Error: Could not find file: " + basicNotesPath, "Error", JOptionPane.ERROR_MESSAGE);
-            this.dispose();
-            System.exit(0);
-        } else {
-            try {
-                basicNoteArray = loadNotesFromFile(basicNotesPath);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Could not load basic notes. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                this.dispose();
-                System.exit(0);
-            }
-        }
+        // if (!(new File(basicNotesPath).isFile())) {
+        //     JOptionPane.showMessageDialog(this, "Error: Could not find file: " + basicNotesPath, "Error", JOptionPane.ERROR_MESSAGE);
+        //     this.dispose();
+        //     System.exit(0);
+        // } else {
+        //     try {
+        //         basicNoteArray = loadNotesFromFile(basicNotesPath);
+        //     } catch (Exception e) {
+        //         JOptionPane.showMessageDialog(this, "Could not load basic notes. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        //         this.dispose();
+        //         System.exit(0);
+        //     }
+        // }
 
-        if (!(new File(userNotesPath).isFile())) {
-            JOptionPane.showMessageDialog(this, "Error: Could not find file: " + userNotesPath, "Error", JOptionPane.ERROR_MESSAGE);
-            this.dispose();
-            System.exit(0);
-        } else {
-            try {
-                userNoteArray = loadNotesFromFile(userNotesPath);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Could not load user notes. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                this.dispose();
-                System.exit(0);
-            }
-        }
-
+        // if (!(new File(userNotesPath).isFile())) {
+        //     JOptionPane.showMessageDialog(this, "Error: Could not find file: " + userNotesPath, "Error", JOptionPane.ERROR_MESSAGE);
+        //     this.dispose();
+        //     System.exit(0);
+        // } else {
+        //     try {
+        //         userNoteArray = loadNotesFromFile(userNotesPath);
+        //     } catch (Exception e) {
+        //         JOptionPane.showMessageDialog(this, "Could not load user notes. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        //         this.dispose();
+        //         System.exit(0);
+        //     }
+        // }
     }
+
     private void addListeners() {
         this.addWindowListener(new WindowAdapter() {
             @Override
@@ -151,20 +147,20 @@ public class CreateNote extends JFrame {
         try {
             float frequency = Float.parseFloat(frequencyText);
             if (frequency > 0 && frequency <= 22000) {
-                if (isNoteNameInBasicNoteArray(noteName)){
-                    JOptionPane.showMessageDialog(this, "Note name exists in basicNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
+                if (parentFrame.isNoteNameInBasicNoteArray(noteName)){
+                    JOptionPane.showMessageDialog(this, "Note named " + noteName + " already exists in basicNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
-                else if (isNoteNameInUserNoteArray(noteName)){
-                    JOptionPane.showMessageDialog(this, "Note name exists in userNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
+                else if (parentFrame.isNoteNameInUserNoteArray(noteName)){
+                    JOptionPane.showMessageDialog(this, "Note named " + noteName + " already exists in userNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
-                else if (isNoteFrequencyInBasicNoteArray(frequency)){
-                    JOptionPane.showMessageDialog(this, "Note frequency exists in basicNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
+                else if (parentFrame.isNoteFrequencyInBasicNoteArray(frequency)){
+                    JOptionPane.showMessageDialog(this, "Note with frequency " + frequency + " exists in basicNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
-                else if (isNoteFrequencyInUserNoteArray(frequency)){
-                    JOptionPane.showMessageDialog(this, "Note frequency exists in userNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
+                else if (parentFrame.isNoteFrequencyInUserNoteArray(frequency)){
+                    JOptionPane.showMessageDialog(this, "Note with frequency " + frequency + " exists in userNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
                 else {
@@ -185,48 +181,6 @@ public class CreateNote extends JFrame {
                     "Error", 
                     JOptionPane.ERROR_MESSAGE);
         }
-    }
-
-    private Boolean isNoteNameInBasicNoteArray(String noteName) {
-        for(String name : basicNoteArray) {
-            if(noteName.equals(name.split(" ")[0])) return true;
-        }
-        return false;
-    }
-
-    private Boolean isNoteFrequencyInBasicNoteArray(float noteFrequency) {
-        for(String freq : basicNoteArray) {
-            if(noteFrequency == Float.parseFloat(freq.split(" ")[1])) return true;
-        }
-        return false;
-    }
-
-    private Boolean isNoteNameInUserNoteArray(String noteName) {
-        for(String name : userNoteArray) {
-            if(noteName.equals(name.split(" ")[0])) return true;
-        }
-        return false;
-    }
-
-    private Boolean isNoteFrequencyInUserNoteArray(float noteFrequency) {
-        for(String freq : userNoteArray) {
-            if(noteFrequency == Float.parseFloat(freq.split(" ")[1])) return true;
-        }
-        return false;
-    }
-
-    private String[] loadNotesFromFile(String filePath) {
-        List<String> notesList = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                notesList.add(line);
-            }
-        } catch (IOException e) {
-            System.err.println("Error reading file: " + filePath);
-            e.printStackTrace();
-        }
-        return notesList.toArray(new String[0]);
     }
 
     public SoundNote getCreatedNote() {

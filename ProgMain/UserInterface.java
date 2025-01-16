@@ -15,7 +15,6 @@ import java.io.FileReader;
 import java.io.File;
 
 public class UserInterface extends JFrame{
-    int TEMP;/////////////////////////////
     //UI variables
     JButton createNoteButton = new JButton("Create Note");
     JButton createChordButton = new JButton("Create Chord");
@@ -41,7 +40,6 @@ public class UserInterface extends JFrame{
 
     public UserInterface() {
         super("SlaySound 3000");
-        TEMPincrementer();///////////////////////////
         initialize();
         addListeners();
     }
@@ -133,6 +131,7 @@ public class UserInterface extends JFrame{
 
                     try (FileWriter writer = new FileWriter(userNotesPath, true)) {
                         writer.write(noteToFile + "\n");
+                        updateUserNoteArray();
                     } catch (IOException ex) {
                         // I don't know how to test this, but should be alright I guess(?)
                         JOptionPane.showMessageDialog(createNoteWindow, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
@@ -202,8 +201,6 @@ public class UserInterface extends JFrame{
             }
         });
     }
-
-    public void TEMPincrementer(){TEMP++;}
 
     public void updateBasicNoteArray() {
         if (!(new File(basicNotesPath).isFile())) {
