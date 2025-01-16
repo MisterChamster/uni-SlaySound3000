@@ -5,13 +5,13 @@ import javax.sound.sampled.*;     //FOR TESTING
 class SoundNote extends Sound{
     float frequency;
 
+    //constructor for adding notes
     SoundNote(){}
 
-    //constructor for adding notes
-    SoundNote(float frequency, String soundName){
-        super();
-        this.frequency = frequency;
-    }
+    // SoundNote(float frequency, String soundName){
+    //     super();
+    //     this.frequency = frequency;
+    // }
 
     SoundNote(float sampleRate, int sampleSize, double durationInSec, float frequency, String soundName){
         super(sampleRate, sampleSize, durationInSec, soundName);

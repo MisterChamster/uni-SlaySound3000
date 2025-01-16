@@ -117,7 +117,7 @@ public class UserInterface extends JFrame{
         createNoteWindow.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
-                if (createNoteWindow.getCreatedNote().frequency != 0) {
+                if (createNoteWindow.getCreatedNote().soundName != null) {
                     String noteToFile = createNoteWindow.getCreatedNote().soundName + " " + createNoteWindow.getCreatedNote().frequency;
                     System.out.println(noteToFile);
 

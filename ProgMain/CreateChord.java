@@ -75,15 +75,12 @@ public class CreateChord extends JFrame {
         JPanel notesButtonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
         notesButtonPanel.add(addNoteButton);
         notesButtonPanel.add(deleteNoteButton);
-
         inputPanel.add(notesButtonPanel, gbc);
-
         add(inputPanel, BorderLayout.CENTER);
 
         buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 15, 10));
         discardButton = new JButton("Discard");
         createButton = new JButton("Create");
-
         discardButton.setPreferredSize(new Dimension(140, 40));
         createButton.setPreferredSize(new Dimension(140, 40));
         buttonPanel.add(discardButton);

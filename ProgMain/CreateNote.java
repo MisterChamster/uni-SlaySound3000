@@ -25,7 +25,7 @@ public class CreateNote extends JFrame {
     JButton createButton = new JButton("Create");
 
     // Sound variables
-    SoundNote createdNote = new SoundNote(0, " ");
+    SoundNote createdNote = new SoundNote();
 
     public CreateNote(UserInterface parentFrame) {
         super("Create Note");

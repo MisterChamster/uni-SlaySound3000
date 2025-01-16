@@ -14,7 +14,7 @@ public abstract class Sound extends Thread{
     SourceDataLine  line;
 
     Sound(){
-        this.soundName = "";
+        this.soundName = null;
         this.sampleRate = 0;
         this.sampleSize = 0;
         this.durationInSeconds = 0;
