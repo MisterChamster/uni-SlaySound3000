@@ -127,12 +127,16 @@ public class CreateChord extends JFrame {
             }
         });
 
-        addNoteButton.addActionListener(e -> openNoteSelectionDialog("Add"));
-        deleteNoteButton.addActionListener(e -> openNoteSelectionDialog("Delete"));
+        addNoteButton.addActionListener(e -> openAddNoteDialog());
+        deleteNoteButton.addActionListener(e -> openDeleteNoteDialog());
     }
 
-    private void openNoteSelectionDialog(String actionType) {
-        NoteSelectionDialog dialog = new NoteSelectionDialog(this, actionType, notesUsedField);
+    private void openAddNoteDialog() {
+        AddNoteDialog addDialog = new AddNoteDialog(this, notesUsedField);
+    }
+
+    private void openDeleteNoteDialog() {
+        DeleteNoteDialog deleteDialog = new DeleteNoteDialog(this, notesUsedField);
     }
 
     public String getCreatedChordName() {
