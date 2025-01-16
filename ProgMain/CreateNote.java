@@ -30,7 +30,7 @@ public class CreateNote extends JFrame {
     String basicNotesPath = "notes/basicNotes.txt";
     String userNotesPath = "notes/userNotes.txt";
 
-    public CreateNote(JFrame parentFrame) {
+    public CreateNote(UserInterface parentFrame) {
         super("Create Note");
         this.parentFrame = parentFrame;
         initialize();
