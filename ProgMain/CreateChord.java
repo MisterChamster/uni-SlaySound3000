@@ -19,7 +19,7 @@ public class CreateChord extends JFrame {
     private String createdChordName;
     private String notesUsed;
 
-    public CreateChord(JFrame parentFrame) {
+    public CreateChord(UserInterface parentFrame) {
         super("Create Chord");
         this.parentFrame = parentFrame;
         initialize();

@@ -85,20 +85,23 @@ public class UserInterface extends JFrame{
         gbc.gridy = 1;
         mainPanel.add(actionsPanel, gbc);
         add(mainPanel, BorderLayout.CENTER);
-                
-        if (!(new File(basicNotesPath).isFile())) {
-            JOptionPane.showMessageDialog(this, "Error: Could not find file: " + basicNotesPath, "Error", JOptionPane.ERROR_MESSAGE);
-            this.dispose();
-            System.exit(0);
-        } else {
-            try {
-                basicNoteArray = loadNotesFromFile(basicNotesPath);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this,"Could not load basic notes. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                this.dispose();
-                System.exit(0);
-            }
-        }
+
+        upateBasicNoteArray();
+        upateUserNoteArray();
+
+        // if (!(new File(basicNotesPath).isFile())) {
+        //     JOptionPane.showMessageDialog(this, "Error: Could not find file: " + basicNotesPath, "Error", JOptionPane.ERROR_MESSAGE);
+        //     this.dispose();
+        //     System.exit(0);
+        // } else {
+        //     try {
+        //         basicNoteArray = loadNotesFromFile(basicNotesPath);
+        //     } catch (Exception e) {
+        //         JOptionPane.showMessageDialog(this,"Could not load basic notes. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        //         this.dispose();
+        //         System.exit(0);
+        //     }
+        // }
 
         if (!(new File(userNotesPath).isFile())) {
             JOptionPane.showMessageDialog(this, "Error: Could not find file: " + userNotesPath, "Error", JOptionPane.ERROR_MESSAGE);
@@ -118,9 +121,7 @@ public class UserInterface extends JFrame{
     private void addListeners() {
         createNoteButton.addActionListener(e -> {createNoteListenFunction();});
 
-        createChordButton.addActionListener(e -> {createChordListenFunction();
-            System.out.println("Button 'Create Chord' clicked");
-        });
+        createChordButton.addActionListener(e -> {createChordListenFunction();});
 
         exportToWavButton.addActionListener(e -> {
             System.out.println("Button 'Export To Wav' clicked");
@@ -229,6 +230,38 @@ public class UserInterface extends JFrame{
         });
     }
 
+    public void upateBasicNoteArray() {
+        if (!(new File(basicNotesPath).isFile())) {
+            JOptionPane.showMessageDialog(this, "Error: Could not find file: " + basicNotesPath, "Error", JOptionPane.ERROR_MESSAGE);
+            this.dispose();
+            System.exit(0);
+        } else {
+            try {
+                basicNoteArray = loadNotesFromFile(basicNotesPath);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Could not load basic notes. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                this.dispose();
+                System.exit(0);
+            }
+        }
+    }
+
+    public void upateUserNoteArray() {
+        if (!(new File(userNotesPath).isFile())) {
+            JOptionPane.showMessageDialog(this, "Error: Could not find file: " + userNotesPath, "Error", JOptionPane.ERROR_MESSAGE);
+            this.dispose();
+            System.exit(0);
+        } else {
+            try {
+                userNoteArray = loadNotesFromFile(userNotesPath);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Could not load user notes. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                this.dispose();
+                System.exit(0);
+            }
+        }
+    }
+
     private String[] loadNotesFromFile(String filePath) {
         List<String> notesList = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -242,4 +275,33 @@ public class UserInterface extends JFrame{
         }
         return notesList.toArray(new String[0]);
     }
+
+    public Boolean isNoteNameInBasicNoteArray(String noteName) {
+        for(String name : basicNoteArray) {
+            if(noteName.equals(name.split(" ")[0])) return true;
+        }
+        return false;
+    }
+
+    public Boolean isNoteFrequencyInBasicNoteArray(float noteFrequency) {
+        for(String freq : basicNoteArray) {
+            if(noteFrequency == Float.parseFloat(freq.split(" ")[1])) return true;
+        }
+        return false;
+    }
+
+    public Boolean isNoteNameInUserNoteArray(String noteName) {
+        for(String name : userNoteArray) {
+            if(noteName.equals(name.split(" ")[0])) return true;
+        }
+        return false;
+    }
+
+    public Boolean isNoteFrequencyInUserNoteArray(float noteFrequency) {
+        for(String freq : userNoteArray) {
+            if(noteFrequency == Float.parseFloat(freq.split(" ")[1])) return true;
+        }
+        return false;
+    }
+
 }
