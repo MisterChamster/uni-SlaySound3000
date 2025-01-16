@@ -1,8 +1,15 @@
-import javax.sound.sampled.*;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.SourceDataLine;
+import javax.sound.sampled.*;     //FOR TESTING
 
 class SoundNoteSet extends Sound{
     SoundNote[] noteArray;
     int noteArrayCLen;
+
+    //constructor for adding note sets
+    SoundNoteSet(String soundName){
+        super();
+    }
 
     SoundNoteSet(float sampleRate, int sampleSize, double durationInSeconds, String soundName){
         super(sampleRate, sampleSize, durationInSeconds, soundName);
@@ -11,14 +18,14 @@ class SoundNoteSet extends Sound{
     }
 
     //testing function
-    SoundNoteSet(SoundNote[] noteArray){
-        super();
-        for (int i=0; i<noteArray.length; i++){
-            stripNote(noteArray[i]);
-        }
-        this.noteArray = noteArray;
-        this.noteArrayCLen = noteArray.length;
-    }
+    // SoundNoteSet(SoundNote[] noteArray){
+    //     super();
+    //     for (int i=0; i<noteArray.length; i++){
+    //         stripNote(noteArray[i]);
+    //     }
+    //     this.noteArray = noteArray;
+    //     this.noteArrayCLen = noteArray.length;
+    // }
 
 
     private boolean isNoteInNoteArray(SoundNote note){

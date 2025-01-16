@@ -16,8 +16,9 @@ public class CreateChord extends JFrame {
     private JButton deleteNoteButton;
 
     // Backend variables
-    private String createdChordName;
-    private String notesUsed;
+    SoundNoteSet createdChord;
+    String createdChordName;
+    String notesUsed;
 
     public CreateChord(UserInterface parentFrame) {
         super("Create Chord");
@@ -122,7 +123,7 @@ public class CreateChord extends JFrame {
                 return;
             }
 
-            JOptionPane.showMessageDialog(this, "Chord created successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            // JOptionPane.showMessageDialog(this, "Chord created successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
             dispose();
             if (parentFrame != null) {
                 parentFrame.setEnabled(true);

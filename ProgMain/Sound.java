@@ -1,4 +1,8 @@
-import javax.sound.sampled.*;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.SourceDataLine;
+import javax.sound.sampled.*;     //FOR TESTING
 
 public abstract class Sound extends Thread{
     String          soundName;

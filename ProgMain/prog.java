@@ -1,9 +1,4 @@
-//two different freq notes can't be named the same
-//can create custom notes if note of the same freq or name doesn't exist
-
 //Noteset must have at least two different notes
-
-//every note must have name and freq
 
 public class prog{
     public static void main(String[] args){

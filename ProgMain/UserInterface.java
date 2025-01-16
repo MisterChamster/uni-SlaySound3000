@@ -35,8 +35,6 @@ public class UserInterface extends JFrame{
     String[] basicNoteArray, userNoteArray;
     String basicNotesPath = "notes/basicNotes.txt";
     String userNotesPath = "notes/userNotes.txt";
-    // SoundNote[] mainNotesUsedArray = new SoundNote[5];
-    // SoundNoteSet[] mainNoteSetsUsedArray = new SoundNoteSet[5];
 
     public UserInterface() {
         super("SlaySound 3000");
@@ -94,17 +92,11 @@ public class UserInterface extends JFrame{
 
         createChordButton.addActionListener(e -> {createChordListenFunction();});
 
-        exportToWavButton.addActionListener(e -> {
-            System.out.println("Button 'Export To Wav' clicked");
-        });
+        exportToWavButton.addActionListener(e -> {exportToWavListenFunction();});
 
-        deleteNoteButton.addActionListener(e -> {
-            System.out.println("Button 'Delete Note' clicked");
-        });
+        deleteNoteButton.addActionListener(e -> {deleteNoteListenFunction();});
 
-        deleteChordButton.addActionListener(e -> {
-            System.out.println("Button 'Delete Chord' clicked");
-        });
+        deleteChordButton.addActionListener(e -> {deleteChordListenFunction();});
         
         //should recompute all notes and chords
         sampleSizeDropdown.addActionListener(e -> {
@@ -155,6 +147,18 @@ public class UserInterface extends JFrame{
                 }
             });
         
+    }
+
+    private void exportToWavListenFunction() {
+        System.out.println("Button 'Export To Wav' clicked");
+    }
+
+    private void deleteNoteListenFunction() {
+        System.out.println("Button 'Delete Note' clicked");
+    }
+
+    private void deleteChordListenFunction() {
+        System.out.println("Button 'Delete Chord' clicked");
     }
 
     private void addSampleRateListeners() {

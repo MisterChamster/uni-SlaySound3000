@@ -26,9 +26,6 @@ public class CreateNote extends JFrame {
 
     // Sound variables
     SoundNote createdNote = new SoundNote(0, " ");
-    // String[] basicNoteArray, userNoteArray;
-    // String basicNotesPath = "notes/basicNotes.txt";
-    // String userNotesPath = "notes/userNotes.txt";
 
     public CreateNote(UserInterface parentFrame) {
         super("Create Note");
@@ -68,34 +65,6 @@ public class CreateNote extends JFrame {
 
         parentFrame.updateBasicNoteArray();
         parentFrame.updateUserNoteArray();
-        
-        // if (!(new File(basicNotesPath).isFile())) {
-        //     JOptionPane.showMessageDialog(this, "Error: Could not find file: " + basicNotesPath, "Error", JOptionPane.ERROR_MESSAGE);
-        //     this.dispose();
-        //     System.exit(0);
-        // } else {
-        //     try {
-        //         basicNoteArray = loadNotesFromFile(basicNotesPath);
-        //     } catch (Exception e) {
-        //         JOptionPane.showMessageDialog(this, "Could not load basic notes. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        //         this.dispose();
-        //         System.exit(0);
-        //     }
-        // }
-
-        // if (!(new File(userNotesPath).isFile())) {
-        //     JOptionPane.showMessageDialog(this, "Error: Could not find file: " + userNotesPath, "Error", JOptionPane.ERROR_MESSAGE);
-        //     this.dispose();
-        //     System.exit(0);
-        // } else {
-        //     try {
-        //         userNoteArray = loadNotesFromFile(userNotesPath);
-        //     } catch (Exception e) {
-        //         JOptionPane.showMessageDialog(this, "Could not load user notes. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        //         this.dispose();
-        //         System.exit(0);
-        //     }
-        // }
     }
 
     private void addListeners() {

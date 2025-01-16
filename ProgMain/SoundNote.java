@@ -1,9 +1,13 @@
-import javax.sound.sampled.*;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.SourceDataLine;
+import javax.sound.sampled.*;     //FOR TESTING
 
 class SoundNote extends Sound{
     float frequency;
 
-    //constructor for adding notes to chord
+    SoundNote(){}
+
+    //constructor for adding notes
     SoundNote(float frequency, String soundName){
         super();
         this.frequency = frequency;

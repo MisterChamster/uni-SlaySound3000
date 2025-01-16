@@ -1,5 +1,7 @@
-import javax.swing.*;
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import javax.swing.JFileChooser;
 
 public class WavFileSaver {
     static void saveWavFile(Sound soundChild) {
