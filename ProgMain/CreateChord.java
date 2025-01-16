@@ -5,9 +5,9 @@ import java.awt.event.WindowEvent;
 
 public class CreateChord extends JFrame {
     // UI Components
+    private UserInterface parentFrame;
     private JTextField chordNameField;
     private JTextField notesUsedField;
-    private JFrame parentFrame;
     private JPanel inputPanel;
     private JPanel buttonPanel;
     private JButton discardButton;

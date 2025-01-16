@@ -16,9 +16,9 @@ import java.util.ArrayList;
 
 public class CreateNote extends JFrame {
     // UI variables
+    UserInterface parentFrame;
     JTextField noteNameField;
     JTextField frequencyField;
-    JFrame parentFrame;
     JPanel inputPanel = new JPanel(new GridLayout(2,2,5,5));
     JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
     JButton discardButton = new JButton("Discard");
@@ -33,6 +33,8 @@ public class CreateNote extends JFrame {
     public CreateNote(UserInterface parentFrame) {
         super("Create Note");
         this.parentFrame = parentFrame;
+        parentFrame.TEMPincrementer();
+        System.out.println("Program temp: " + parentFrame.TEMP);
         initialize();
         addListeners();
     }
@@ -66,6 +68,10 @@ public class CreateNote extends JFrame {
         buttonPanel.add(createButton);
 
         add(buttonPanel, BorderLayout.SOUTH);
+
+        this.parentFrame.TEMPincrementer();
+        // parentFrame.updateBasicNoteArray();
+        // parentFrame.updateUserNoteArray();
         
         if (!(new File(basicNotesPath).isFile())) {
             JOptionPane.showMessageDialog(this, "Error: Could not find file: " + basicNotesPath, "Error", JOptionPane.ERROR_MESSAGE);
