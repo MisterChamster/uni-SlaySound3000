@@ -17,7 +17,7 @@ public class AddNoteFrame extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(350, 250);
         setLayout(new BorderLayout(10, 10));
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(getOwner());
 
         String[] notes = {"C4", "D4", "E4", "F4", "G4", "A4", "B4"};
         JList<String> notesList = new JList<>(notes);

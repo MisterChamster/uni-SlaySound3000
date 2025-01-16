@@ -21,6 +21,7 @@ public class DeleteNoteFrame extends JFrame {
 
         String[] currentNotesArray = notesUsedField.getText().split(", ");
         JList<String> notesList = new JList<>(currentNotesArray);
+        // notesList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         notesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane scrollPane = new JScrollPane(notesList);
         add(scrollPane, BorderLayout.CENTER);
