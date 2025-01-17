@@ -17,12 +17,19 @@ public class CreateChord extends JFrame {
 
     // Backend variables
     SoundNoteSet createdChord;
+    String[] basicUnusedNotesArr, basicUsedNotesArr, userUnusedNotesArr, userUsedNotesArr;
     String createdChordName;
     String notesUsed;
 
     public CreateChord(UserInterface parentFrame) {
         super("Create Chord");
         this.parentFrame = parentFrame;
+        parentFrame.updateBasicNoteArray();
+        parentFrame.updateUserNoteArray();
+        this.basicUnusedNotesArr = parentFrame.basicNoteArray;
+        this.userUnusedNotesArr = parentFrame.userNoteArray;
+        this.basicUsedNotesArr = new String[0];
+        this.userUsedNotesArr = new String[0];
         initialize();
         addListeners();
     }
@@ -127,13 +134,13 @@ public class CreateChord extends JFrame {
             }
         });
 
-        addNoteButton.addActionListener(e -> openAddNoteFrame());
-        deleteNoteButton.addActionListener(e -> openDeleteNoteFrame());
+        addNoteButton.addActionListener(e -> openAddNoteToNoteSetFrame());
+        deleteNoteButton.addActionListener(e -> openDeleteNoteToNoteSetFrame());
     }
 
-    private void openAddNoteFrame() {
+    private void openAddNoteToNoteSetFrame() {
         this.setEnabled(false);
-        AddNoteFrame addFrame = new AddNoteFrame(this, notesUsedField);
+        AddNoteToNoteSetFrame addFrame = new AddNoteToNoteSetFrame(this, notesUsedField);
         addFrame.setVisible(true);
 
         addFrame.addWindowListener(new WindowAdapter() {
@@ -144,9 +151,9 @@ public class CreateChord extends JFrame {
         });
     }
 
-    private void openDeleteNoteFrame() {
+    private void openDeleteNoteToNoteSetFrame() {
         this.setEnabled(false);
-        DeleteNoteFrame delFrame = new DeleteNoteFrame(this, notesUsedField);
+        DeleteNoteToNoteSetFrame delFrame = new DeleteNoteToNoteSetFrame(this, notesUsedField);
         delFrame.setVisible(true);
 
         delFrame.addWindowListener(new WindowAdapter() {

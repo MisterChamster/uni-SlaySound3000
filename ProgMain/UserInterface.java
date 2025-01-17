@@ -16,18 +16,18 @@ import java.io.File;
 
 public class UserInterface extends JFrame{
     //UI variables
-    JButton createNoteButton = new JButton("Create Note");
-    JButton createChordButton = new JButton("Create Chord");
-    JButton exportToWavButton = new JButton("Export to .wav");
-    JButton deleteNoteButton = new JButton("Delete Note");
-    JButton deleteChordButton = new JButton("Delete Chord");
-    JLabel sampleSizeLabel = new JLabel("Sample Size: ");
-    String[] sampleSizes = {"8-bit", "16-bit"};
-    JComboBox<String> sampleSizeDropdown = new JComboBox<>(sampleSizes);
+    private JButton createNoteButton = new JButton("Create Note");
+    private JButton createChordButton = new JButton("Create Chord");
+    private JButton exportToWavButton = new JButton("Export to .wav");
+    private JButton deleteNoteButton = new JButton("Delete Note");
+    private JButton deleteChordButton = new JButton("Delete Chord");
+    private JLabel sampleSizeLabel = new JLabel("Sample Size: ");
+    private String[] sampleSizes = {"8-bit", "16-bit"};
+    private JComboBox<String> sampleSizeDropdown = new JComboBox<>(sampleSizes);
 
-    JLabel sampleRateLabel = new JLabel("Sample Rate: ");
-    JTextField sampleRateField = new JTextField(10);
-    JButton setBasicSampleRateButton = new JButton("Set Basic");
+    private JLabel sampleRateLabel = new JLabel("Sample Rate: ");
+    private JTextField sampleRateField = new JTextField(10);
+    private JButton setBasicSampleRateButton = new JButton("Set Basic");
 
     //Backend variables
     int mainSampleSize = 8;
