@@ -7,7 +7,7 @@ public class CreateChord extends JFrame {
     // UI Components
     private UserInterface parentFrame;
     private JTextField chordNameField;
-    private JTextField notesUsedField;
+    JTextField notesUsedField;
     private JPanel inputPanel;
     private JPanel buttonPanel;
     private JButton discardButton;
@@ -25,7 +25,9 @@ public class CreateChord extends JFrame {
         this.parentFrame = parentFrame;
         parentFrame.updateBasicNoteArray();
         parentFrame.updateUserNoteArray();
+        parentFrame.updateBasicNoteArray();
         this.basicUnusedNotesArr = parentFrame.basicNoteArray;
+        parentFrame.updateUserNoteArray();
         this.userUnusedNotesArr = parentFrame.userNoteArray;
         this.basicUsedNotesArr = new String[0];
         this.userUsedNotesArr = new String[0];
@@ -142,7 +144,7 @@ public class CreateChord extends JFrame {
 
     private void openAddNoteToNoteSetFrame() {
         this.setEnabled(false);
-        AddNoteToNoteSetFrame addFrame = new AddNoteToNoteSetFrame(this, notesUsedField);
+        AddNoteToNoteSetFrame addFrame = new AddNoteToNoteSetFrame(this);
         addFrame.setVisible(true);
 
         addFrame.addWindowListener(new WindowAdapter() {
@@ -155,7 +157,7 @@ public class CreateChord extends JFrame {
 
     private void openDeleteNoteToNoteSetFrame() {
         this.setEnabled(false);
-        DeleteNoteToNoteSetFrame delFrame = new DeleteNoteToNoteSetFrame(this, notesUsedField);
+        DeleteNoteToNoteSetFrame delFrame = new DeleteNoteToNoteSetFrame(this);
         delFrame.setVisible(true);
 
         delFrame.addWindowListener(new WindowAdapter() {

@@ -6,10 +6,10 @@ public class DeleteNoteToNoteSetFrame extends JFrame {
     private CreateChord parentFrame;
     JTextField notesUsedField;
 
-    public DeleteNoteToNoteSetFrame(CreateChord parentFrame, JTextField notesUsedField) {
+    public DeleteNoteToNoteSetFrame(CreateChord parentFrame) {
         super("Delete Note");
         this.parentFrame = parentFrame;
-        this.notesUsedField = notesUsedField;
+        this.notesUsedField = parentFrame.notesUsedField;
         initialize();
     }
 

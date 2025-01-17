@@ -2,12 +2,9 @@
 
 public class prog{
     public static void main(String[] args){
-        // UserInterface ui = new UserInterface();
-        // ui.setVisible(true);
-        SoundNoteSet hello = new SoundNoteSet(" ");
-        SoundNote note1 = new SoundNote(44100, 16, 2, 440, "A4");
-        System.out.println(hello.isNoteInNoteArray(note1));
-        hello.printNoteArray();
+        UserInterface ui = new UserInterface();
+        ui.setVisible(true);
+        
 
         // SoundNote note1 = new SoundNote(44100, 16, 2, 440, "A4");
         // SoundNote note2 = new SoundNote(44100, 16, 2, 659.25f, "E5");
@@ -21,5 +18,8 @@ public class prog{
         // chord1.addNote(note2);
         // chord1.addNote(note3);
         // chord1.prepareToPlay();
+        // // chord1.printNoteArray();
+
+        // chord1.playSound();
     }
 }

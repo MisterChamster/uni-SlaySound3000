@@ -8,11 +8,12 @@ class SoundNoteSet extends Sound{
     //constructor for adding note sets
     SoundNoteSet(String soundName){
         super();
+        this.noteArray = new SoundNote[0];
     }
 
     SoundNoteSet(float sampleRate, int sampleSize, double durationInSeconds, String soundName){
         super(sampleRate, sampleSize, durationInSeconds, soundName);
-        this.noteArray = new SoundNote[15];
+        this.noteArray = new SoundNote[0];
     }
 
     //testing function
@@ -26,15 +27,6 @@ class SoundNoteSet extends Sound{
     // }
 
 
-    public boolean isNoteInNoteArray(SoundNote note){
-        if (noteArray != null) {
-            for (int i=0; i<noteArray.length-1; i++){
-                if (noteArray[i].frequency == note.frequency) return true;
-            }
-        }
-        return false;
-    }
-
     // This class needs just note frequency and name,
     // the rest can be erased with that function
     private void stripNote(SoundNote note){
@@ -44,6 +36,17 @@ class SoundNoteSet extends Sound{
         note.sampleArray = null;
         note.format = null;
         note.line = null;
+    }
+
+    public boolean isNoteInNoteArray(SoundNote note){
+        if (noteArray != null) {
+            for (int i=0; i<noteArray.length-1; i++){
+                if (noteArray[i].frequency == note.frequency) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     void addNote(SoundNote inputNote){
@@ -105,15 +108,13 @@ class SoundNoteSet extends Sound{
     }
 
     @Override
-    void playSound(){
-        if (noteArray == null) {
-            //condition not necessary in final version
-            if (noteArray.length < 2) {
-                System.out.println("Noteset can be played if it has 2 or more different notes");
-                System.exit(0);
-            }
-            super.playSound();
+    void playSound() {
+        //condition not necessary in final version
+        if (noteArray.length < 2) {
+            System.out.println("Noteset can be played if it has 2 or more different notes");
+            System.exit(0);
         }
+        super.playSound();
     }
 
     public void run(){
@@ -121,11 +122,9 @@ class SoundNoteSet extends Sound{
     }
 
     //debug function
-    void printNoteArray(){
-        if (noteArray != null){
-            for(int i=0; i<noteArray.length; i++){
-                System.out.println((i+1) + ". " + noteArray[i].frequency);
-            }
+    void printNoteArray() {
+        for (int i = 0; i < noteArray.length; i++) {
+            System.out.println((i + 1) + ". " + noteArray[i].frequency);
         }
     }
 }
