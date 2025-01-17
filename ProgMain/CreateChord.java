@@ -18,7 +18,6 @@ public class CreateChord extends JFrame {
     // Backend variables
     SoundNoteSet createdChord;
     String[] basicUnusedNotesArr, basicUsedNotesArr, userUnusedNotesArr, userUsedNotesArr;
-    String createdChordName;
     String notesUsed;
 
     public CreateChord(UserInterface parentFrame) {
@@ -114,20 +113,23 @@ public class CreateChord extends JFrame {
         });
 
         createButton.addActionListener(e -> {
-            createdChordName = chordNameField.getText();
+            String createdChordName = chordNameField.getText();
             notesUsed = notesUsedField.getText();
 
             if (createdChordName.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Chord name cannot be empty!", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Chord name cannot be empty!", 
+                                        "Error", JOptionPane.ERROR_MESSAGE);
                 return;
+            } else {
+                createdChord.soundName = createdChordName;
             }
 
             if (notesUsed.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "You must add at least one note to create a chord.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "You must add at least one note to create a chord.", 
+                                        "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            // JOptionPane.showMessageDialog(this, "Chord created successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
             dispose();
             if (parentFrame != null) {
                 parentFrame.setEnabled(true);
@@ -165,7 +167,7 @@ public class CreateChord extends JFrame {
     }
 
     public String getCreatedChordName() {
-        return createdChordName;
+        return createdChord.soundName;
     }
 
     public String getNotesUsed() {
