@@ -5,7 +5,7 @@ import java.awt.event.WindowEvent;
 
 public class CreateChord extends JFrame {
     // UI Components
-    private UserInterface parentFrame;
+    UserInterface parentFrame;
     private JTextField chordNameField;
     JTextField notesUsedField;
     private JPanel inputPanel;
@@ -17,18 +17,14 @@ public class CreateChord extends JFrame {
 
     // Backend variables
     SoundNoteSet createdChord;
-    String[] basicUnusedNotesArr, basicUsedNotesArr, userUnusedNotesArr, userUsedNotesArr;
-    String notesUsed;
+    String[] basicUsedNotesArr, userUsedNotesArr, notesUsedArr;
 
     public CreateChord(UserInterface parentFrame) {
         super("Create Chord");
         this.parentFrame = parentFrame;
+        this.createdChord = new SoundNoteSet(" ");
         parentFrame.updateBasicNoteArray();
         parentFrame.updateUserNoteArray();
-        parentFrame.updateBasicNoteArray();
-        this.basicUnusedNotesArr = parentFrame.basicNoteArray;
-        parentFrame.updateUserNoteArray();
-        this.userUnusedNotesArr = parentFrame.userNoteArray;
         this.basicUsedNotesArr = new String[0];
         this.userUsedNotesArr = new String[0];
         initialize();
@@ -116,18 +112,18 @@ public class CreateChord extends JFrame {
 
         createButton.addActionListener(e -> {
             String createdChordName = chordNameField.getText();
-            notesUsed = notesUsedField.getText();
+            notesUsedArr = notesUsedField.getText().split(", ");
 
             if (createdChordName.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Chord name cannot be empty!", 
+                JOptionPane.showMessageDialog(this, "Chord name cannot be empty.", 
                                         "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             } else {
                 createdChord.soundName = createdChordName;
             }
 
-            if (notesUsed.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "You must add at least one note to create a chord.", 
+            if (notesUsedArr.length < 2) {
+                JOptionPane.showMessageDialog(this, "You must add at least two notes to create a chord.", 
                                         "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
@@ -172,7 +168,7 @@ public class CreateChord extends JFrame {
         return createdChord.soundName;
     }
 
-    public String getNotesUsed() {
-        return notesUsed;
-    }
+    // public String getNotesUsed() {
+    //     return notesUsed;
+    // }
 }

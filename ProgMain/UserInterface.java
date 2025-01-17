@@ -21,13 +21,14 @@ public class UserInterface extends JFrame{
     private JButton exportToWavButton = new JButton("Export to .wav");
     private JButton deleteNoteButton = new JButton("Delete Note");
     private JButton deleteChordButton = new JButton("Delete Chord");
+    private JButton setBasicSampleRateButton = new JButton("Set Basic");
+    private JButton playSoundButton = new JButton("Play Sound");
     private JLabel sampleSizeLabel = new JLabel("Sample Size: ");
+
     private String[] sampleSizes = {"8-bit", "16-bit"};
     private JComboBox<String> sampleSizeDropdown = new JComboBox<>(sampleSizes);
-
     private JLabel sampleRateLabel = new JLabel("Sample Rate: ");
     private JTextField sampleRateField = new JTextField(10);
-    private JButton setBasicSampleRateButton = new JButton("Set Basic");
 
     //Backend variables
     int mainSampleSize = 8;
@@ -76,6 +77,7 @@ public class UserInterface extends JFrame{
         actionsPanel.add(exportToWavButton);
         actionsPanel.add(deleteNoteButton);
         actionsPanel.add(deleteChordButton);
+        actionsPanel.add(playSoundButton);
 
         actionsPanel.setPreferredSize(new Dimension(400, 150)); 
 
@@ -97,6 +99,8 @@ public class UserInterface extends JFrame{
         deleteNoteButton.addActionListener(e -> {deleteNoteListenFunction();});
 
         deleteChordButton.addActionListener(e -> {deleteChordListenFunction();});
+
+        playSoundButton.addActionListener(e -> {playSoundListenFunction();});
 
         //should recompute all notes and chords
         sampleSizeDropdown.addActionListener(e -> {
@@ -156,6 +160,10 @@ public class UserInterface extends JFrame{
 
     private void deleteChordListenFunction() {
         System.out.println("Button 'Delete Chord' clicked");
+    }
+
+    private void playSoundListenFunction() {
+        System.out.println("Button 'Play Sound' clicked");
     }
 
     private void addSampleRateListeners() {

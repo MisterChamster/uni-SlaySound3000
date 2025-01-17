@@ -24,6 +24,7 @@ public class AddNoteToNoteSetFrame extends JFrame {
         initialize();
     }
 
+    
     private void initialize() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(400, 200);
@@ -32,18 +33,11 @@ public class AddNoteToNoteSetFrame extends JFrame {
 
         inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         inputPanel.add(new JLabel("Basic Notes:"));
-        basicNotesDropdown = new JComboBox<>(parentFrame.basicUnusedNotesArr);
+        basicNotesDropdown = new JComboBox<>(parentFrame.parentFrame.basicNoteArray);
         inputPanel.add(basicNotesDropdown);
         inputPanel.add(new JLabel("User Notes:"));
-        userNotesDropdown = new JComboBox<>(parentFrame.userUnusedNotesArr);
+        userNotesDropdown = new JComboBox<>(parentFrame.parentFrame.userNoteArray);
         inputPanel.add(userNotesDropdown);
-        add(inputPanel, BorderLayout.CENTER);
-
-        // String[] notes = {"C4", "D4", "E4", "F4", "G4", "A4", "B4"};
-        // JComboBox<String> notesComboBox = new JComboBox<>(notes);
-        // inputPanel.add(new JLabel("Note:"));
-        // inputPanel.add(notesComboBox);
-
         add(inputPanel, BorderLayout.CENTER);
 
         buttonPanel.add(cancelButton);

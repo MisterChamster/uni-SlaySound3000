@@ -98,9 +98,33 @@ public class CreateNote extends JFrame {
         String noteName = noteNameField.getText();
         String frequencyText = frequencyField.getText();
 
-        if (noteName.isEmpty() || noteName.length() > 20) {
+        if (noteName.isEmpty()) {
             JOptionPane.showMessageDialog(this,
-                    "Note name cannot be empty and must be 20 characters or less.",
+                    "Note name cannot be empty.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        else if (noteName.length() > 20) {
+            JOptionPane.showMessageDialog(this,
+                    "Note name must be 20 characters or less.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        else if (noteName.contains(",")) {
+            JOptionPane.showMessageDialog(this,
+                    "Note name cannot contain commas.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        else if (frequencyText.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Frequency cannot be empty.",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
             return;
