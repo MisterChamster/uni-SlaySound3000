@@ -1,5 +1,3 @@
-//Noteset must have at least two different notes
-
 public class prog{
     public static void main(String[] args){
         UserInterface ui = new UserInterface();

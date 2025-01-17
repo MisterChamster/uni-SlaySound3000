@@ -46,7 +46,6 @@ public class AddNoteToNoteSetFrame extends JFrame {
 
     private void setupInputPanel() {
         Boolean wasNoteUsedFlag;
-        parentFrame.updateNotesUsedArr();
         inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         String[] tempStringArr = new String[1 + parentFrame.parentFrame.basicNoteArray.length];
@@ -54,8 +53,8 @@ public class AddNoteToNoteSetFrame extends JFrame {
         
         for (int i = 0; i < parentFrame.parentFrame.basicNoteArray.length; i++) {
             wasNoteUsedFlag = false;
-            if (parentFrame.notesUsedArr != null) {
-                for (String note : parentFrame.notesUsedArr) {
+            if (parentFrame.getNotesUsedArr() != null) {
+                for (String note : parentFrame.getNotesUsedArr()) {
                     if (note.equals(parentFrame.parentFrame.basicNoteArray[i])) {
                         wasNoteUsedFlag = true;
                     }
@@ -70,8 +69,8 @@ public class AddNoteToNoteSetFrame extends JFrame {
         tempStringArr[0] = "  --empty--  ";
         for (int i = 0; i < parentFrame.parentFrame.userNoteArray.length; i++) {
             wasNoteUsedFlag = false;
-            if (parentFrame.notesUsedArr != null) {
-                for (String note : parentFrame.notesUsedArr) {
+            if (parentFrame.getNotesUsedArr() != null) {
+                for (String note : parentFrame.getNotesUsedArr()) {
                     if (note.equals(parentFrame.parentFrame.userNoteArray[i])) {
                         wasNoteUsedFlag = true;
                     }
@@ -109,7 +108,6 @@ public class AddNoteToNoteSetFrame extends JFrame {
                 }
 
                 notesUsedField.setText(currentNotes);
-                parentFrame.updateNotesUsedArr();
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Please select a note!", "Error", JOptionPane.ERROR_MESSAGE);

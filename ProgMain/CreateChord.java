@@ -113,7 +113,6 @@ public class CreateChord extends JFrame {
 
         createButton.addActionListener(e -> {
             String createdChordName = chordNameField.getText();
-            updateNotesUsedArr();
 
             if (createdChordName.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Chord name cannot be empty.", 
@@ -123,7 +122,7 @@ public class CreateChord extends JFrame {
                 createdChord.soundName = createdChordName;
             }
 
-            if (notesUsedArr.length < 2) {
+            if (notesUsedField.getText().split(", ").length < 2) {
                 JOptionPane.showMessageDialog(this, "You must add at least two notes to create a chord.", 
                                         "Error", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -139,8 +138,31 @@ public class CreateChord extends JFrame {
         deleteNoteButton.addActionListener(e -> openDeleteNoteToNoteSetFrame());
     }
 
-    void updateNotesUsedArr() {
-        notesUsedArr = notesUsedField.getText().split(", ");
+    public String[] getNotesUsedArr() {
+        return notesUsedField.getText().split(", ");
+    }
+
+    public void deleteNote(String inputNote) {
+        String[] tempArr = notesUsedField.getText().split(", ");
+        String[] retArr = new String[tempArr.length - 1];
+        int index = 0;
+        while (index < tempArr.length) {
+            if (!tempArr[index].equals(inputNote)) {retArr[index] = tempArr[index];}
+            else break;
+            index++;
+        }
+        index++;
+        while (index < tempArr.length) {
+            retArr[index - 1] = tempArr[index];
+            index++;
+        }
+
+        String text = "";
+        for (int i = 0; i < retArr.length - 1; i++) {
+            text += retArr[i] + ", ";
+        }
+        text += retArr[retArr.length - 1];
+        notesUsedField.setText(text);
     }
 
     private void openAddNoteToNoteSetFrame() {

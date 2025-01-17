@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 public class DeleteNoteToNoteSetFrame extends JFrame {
     private CreateChord parentFrame;
     JTextField notesUsedField;
+    JList<String> notesList;
 
     public DeleteNoteToNoteSetFrame(CreateChord parentFrame) {
         super("Delete Note");
@@ -19,12 +20,7 @@ public class DeleteNoteToNoteSetFrame extends JFrame {
         setLayout(new BorderLayout(10, 10));
         setLocationRelativeTo(getOwner());
 
-        String[] currentNotesArray = notesUsedField.getText().split(", ");
-        JList<String> notesList = new JList<>(currentNotesArray);
-        // notesList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        notesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        JScrollPane scrollPane = new JScrollPane(notesList);
-        add(scrollPane, BorderLayout.CENTER);
+        setupScrollPane();
 
         JPanel frameButtonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         JButton cancelButton = new JButton("Cancel");
@@ -38,21 +34,20 @@ public class DeleteNoteToNoteSetFrame extends JFrame {
         confirmButton.addActionListener(confirmAction(notesList));
     }
 
+    private void setupScrollPane() {
+        notesList = new JList<>(parentFrame.getNotesUsedArr());
+        // notesList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        notesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        JScrollPane scrollPane = new JScrollPane(notesList);
+        add(scrollPane, BorderLayout.CENTER);
+    }
+
     private ActionListener confirmAction(JList<String> notesList) {
         return e -> {
             String selectedNote = notesList.getSelectedValue();
             if (selectedNote != null) {
-                String[] currentNotesArray = notesUsedField.getText().split(", ");
-                StringBuilder updatedNotes = new StringBuilder();
-                for (String note : currentNotesArray) {
-                    if (!note.equals(selectedNote)) {
-                        if (updatedNotes.length() > 0) {
-                            updatedNotes.append(", ");
-                        }
-                        updatedNotes.append(note);
-                    }
-                }
-                notesUsedField.setText(updatedNotes.toString());
+                parentFrame.deleteNote(selectedNote);
+
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Please select a note!", "Error", JOptionPane.ERROR_MESSAGE);
