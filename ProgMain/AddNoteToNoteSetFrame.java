@@ -4,6 +4,7 @@ import javax.swing.*;     //FOR TESTING
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
+import java.util.Arrays;
 
 
 public class AddNoteToNoteSetFrame extends JFrame {
@@ -24,36 +25,91 @@ public class AddNoteToNoteSetFrame extends JFrame {
         initialize();
     }
 
-    
+
     private void initialize() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(400, 200);
         setLayout(new BorderLayout(10, 10));
         setLocationRelativeTo(getOwner());
 
-        inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        inputPanel.add(new JLabel("Basic Notes:"));
-        basicNotesDropdown = new JComboBox<>(parentFrame.parentFrame.basicNoteArray);
-        inputPanel.add(basicNotesDropdown);
-        inputPanel.add(new JLabel("User Notes:"));
-        userNotesDropdown = new JComboBox<>(parentFrame.parentFrame.userNoteArray);
-        inputPanel.add(userNotesDropdown);
-        add(inputPanel, BorderLayout.CENTER);
+        
+
+        setupInputPanel();
 
         buttonPanel.add(cancelButton);
         buttonPanel.add(addButton);
         add(buttonPanel, BorderLayout.SOUTH);
 
         cancelButton.addActionListener(e -> dispose());
-        addButton.addActionListener(confirmAction(basicNotesDropdown, userNotesDropdown));
+        addButton.addActionListener(confirmAction());
     }
 
-    private ActionListener confirmAction(JComboBox<String> notesComboBox, JComboBox<String> userNotesComboBox) {
+    private void setupInputPanel() {
+        Boolean wasNoteUsedFlag;
+        parentFrame.updateNotesUsedArr();
+        inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        String[] tempStringArr = new String[1 + parentFrame.parentFrame.basicNoteArray.length];
+        tempStringArr[0] = "  --empty--  ";
+        
+        for (int i = 0; i < parentFrame.parentFrame.basicNoteArray.length; i++) {
+            wasNoteUsedFlag = false;
+            if (parentFrame.notesUsedArr != null) {
+                for (String note : parentFrame.notesUsedArr) {
+                    if (note.equals(parentFrame.parentFrame.basicNoteArray[i])) {
+                        wasNoteUsedFlag = true;
+                    }
+                }
+            }
+            if (!wasNoteUsedFlag) tempStringArr[i + 1] = parentFrame.parentFrame.basicNoteArray[i];
+            else tempStringArr[i + 1] = "  --used--  ";
+        }
+        basicNotesDropdown = new JComboBox<>(tempStringArr);
+
+        tempStringArr = new String[1 + parentFrame.parentFrame.userNoteArray.length];
+        tempStringArr[0] = "  --empty--  ";
+        for (int i = 0; i < parentFrame.parentFrame.userNoteArray.length; i++) {
+            wasNoteUsedFlag = false;
+            if (parentFrame.notesUsedArr != null) {
+                for (String note : parentFrame.notesUsedArr) {
+                    if (note.equals(parentFrame.parentFrame.userNoteArray[i])) {
+                        wasNoteUsedFlag = true;
+                    }
+                }
+            }
+            if (!wasNoteUsedFlag) tempStringArr[i + 1] = parentFrame.parentFrame.userNoteArray[i];
+            else tempStringArr[i + 1] = "  --used--  ";
+        }
+        userNotesDropdown = new JComboBox<>(tempStringArr);
+
+
+        inputPanel.add(new JLabel("Basic Notes:"));
+        inputPanel.add(basicNotesDropdown);
+        inputPanel.add(new JLabel("User Notes:"));
+        inputPanel.add(userNotesDropdown);
+        add(inputPanel, BorderLayout.CENTER);
+    }
+
+    private ActionListener confirmAction() {
         return e -> {
-            String selectedNote = (String) notesComboBox.getSelectedItem();
-            if (selectedNote != null) {
-                String currentNotes = notesUsedField.getText();
-                notesUsedField.setText(currentNotes.isEmpty() ? selectedNote : currentNotes + ", " + selectedNote);
+            String selectedBasicNote = (String) basicNotesDropdown.getSelectedItem();
+            String selectedUserNote = (String) userNotesDropdown.getSelectedItem();
+            String currentNotes = notesUsedField.getText();
+            String[] evilArr = new String[] {"  --empty--  ", "  --used--  "};
+            if (!Arrays.asList(evilArr).contains(selectedBasicNote) || 
+                !Arrays.asList(evilArr).contains(selectedBasicNote)) {
+
+                if (!selectedBasicNote.equals("  --empty--  ") && !selectedBasicNote.equals("  --used--  ")) {
+                    if (currentNotes.length() > 0) {currentNotes += ", ";}
+                    currentNotes += selectedBasicNote;
+                }
+                if (!selectedUserNote.equals("  --empty--  ") && !selectedUserNote.equals("  --used--  ")) {
+                    if (currentNotes.length() > 0) {currentNotes += ", ";}
+                    currentNotes += selectedUserNote;
+                }
+
+                notesUsedField.setText(currentNotes);
+                parentFrame.updateNotesUsedArr();
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Please select a note!", "Error", JOptionPane.ERROR_MESSAGE);

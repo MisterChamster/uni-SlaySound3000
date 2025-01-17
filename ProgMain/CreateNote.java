@@ -122,6 +122,14 @@ public class CreateNote extends JFrame {
             return;
         }
 
+        else if (noteName == " --empty-- " || noteName == " --used-- ") {
+            JOptionPane.showMessageDialog(this,
+                    "Note name cannot be --empty-- or --used--.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         else if (frequencyText.isEmpty()) {
             JOptionPane.showMessageDialog(this,
                     "Frequency cannot be empty.",
