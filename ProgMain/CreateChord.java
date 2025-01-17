@@ -17,8 +17,6 @@ public class CreateChord extends JFrame {
 
     // Backend variables
     SoundNoteSet createdChord;
-    String[] notesUsedArr;
-    // String[] basicUsedNotesArr, userUsedNotesArr;
 
     public CreateChord(UserInterface parentFrame) {
         super("Create Chord");
@@ -122,7 +120,7 @@ public class CreateChord extends JFrame {
                 createdChord.soundName = createdChordName;
             }
 
-            if (notesUsedField.getText().split(", ").length < 2) {
+            if (getNotesUsedArr().length < 2) {
                 JOptionPane.showMessageDialog(this, "You must add at least two notes to create a chord.", 
                                         "Error", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -173,6 +171,7 @@ public class CreateChord extends JFrame {
         addFrame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
+
                 setEnabled(true);
             }
         });
@@ -190,12 +189,4 @@ public class CreateChord extends JFrame {
             }
         });
     }
-
-    // public String getCreatedChordName() {
-    //     return createdChord.soundName;
-    // }
-
-    // public String getNotesUsed() {
-    //     return notesUsed;
-    // }
 }

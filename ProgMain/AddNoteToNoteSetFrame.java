@@ -95,8 +95,9 @@ public class AddNoteToNoteSetFrame extends JFrame {
             String selectedUserNote = (String) userNotesDropdown.getSelectedItem();
             String currentNotes = notesUsedField.getText();
             String[] evilArr = new String[] {"  --empty--  ", "  --used--  "};
+            System.out.println(!Arrays.asList(evilArr).contains(selectedBasicNote));
             if (!Arrays.asList(evilArr).contains(selectedBasicNote) || 
-                !Arrays.asList(evilArr).contains(selectedBasicNote)) {
+                !Arrays.asList(evilArr).contains(selectedUserNote)) {
 
                 if (!selectedBasicNote.equals("  --empty--  ") && !selectedBasicNote.equals("  --used--  ")) {
                     if (currentNotes.length() > 0) {currentNotes += ", ";}
@@ -110,7 +111,7 @@ public class AddNoteToNoteSetFrame extends JFrame {
                 notesUsedField.setText(currentNotes);
                 dispose();
             } else {
-                JOptionPane.showMessageDialog(this, "Please select a note!", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Select at least one note.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         };
     }
