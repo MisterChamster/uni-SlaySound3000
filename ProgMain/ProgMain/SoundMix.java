@@ -1,0 +1,3 @@
+class SoundMix extends Sound{
+
+}
