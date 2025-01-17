@@ -124,6 +124,16 @@ public class CreateChord extends JFrame {
                 JOptionPane.showMessageDialog(this, "You must add at least two notes to create a chord.", 
                                         "Error", JOptionPane.ERROR_MESSAGE);
                 return;
+            } else {
+                String[] tempArr = getNotesUsedArr();
+                for (int i = 0; i < tempArr.length; i++) {
+                    String tempName, tempFreq;
+                    String[] divider = tempArr[i].split(" ");
+                    tempFreq = divider[divider.length - 1];
+                    divider[divider.length - 1] = "";
+                    tempName = String.join(" ", divider);
+                    createdChord.addNote(new SoundNote(tempName, Float.parseFloat(tempFreq)));
+                }
             }
 
             dispose();

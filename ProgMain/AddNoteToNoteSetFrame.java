@@ -95,7 +95,7 @@ public class AddNoteToNoteSetFrame extends JFrame {
             String selectedUserNote = (String) userNotesDropdown.getSelectedItem();
             String currentNotes = notesUsedField.getText();
             String[] evilArr = new String[] {"  --empty--  ", "  --used--  "};
-            System.out.println(!Arrays.asList(evilArr).contains(selectedBasicNote));
+            
             if (!Arrays.asList(evilArr).contains(selectedBasicNote) || 
                 !Arrays.asList(evilArr).contains(selectedUserNote)) {
 

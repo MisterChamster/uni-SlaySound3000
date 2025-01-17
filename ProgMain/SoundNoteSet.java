@@ -5,26 +5,17 @@ import javax.sound.sampled.*;     //FOR TESTING
 class SoundNoteSet extends Sound{
     SoundNote[] noteArray;
 
-    //constructor for adding note sets
+    // Constructor for adding note sets
     SoundNoteSet(String soundName){
         super();
         this.noteArray = new SoundNote[0];
     }
 
+    // Testing constructor
     SoundNoteSet(float sampleRate, int sampleSize, double durationInSeconds, String soundName){
         super(sampleRate, sampleSize, durationInSeconds, soundName);
         this.noteArray = new SoundNote[0];
     }
-
-    //testing function
-    // SoundNoteSet(SoundNote[] noteArray){
-    //     super();
-    //     for (int i=0; i<noteArray.length; i++){
-    //         stripNote(noteArray[i]);
-    //     }
-    //     this.noteArray = noteArray;
-    //     this.noteArrayCLen = noteArray.length;
-    // }
 
 
     // This class needs just note frequency and name,

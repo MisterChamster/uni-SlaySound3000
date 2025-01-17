@@ -145,6 +145,7 @@ public class UserInterface extends JFrame{
         createChordWindow.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
+                System.out.println(createChordWindow.createdChord.soundName);
                 setEnabled(true); // Włącz ponownie główne okno po zamknięciu okna CreateChord
             }
         });

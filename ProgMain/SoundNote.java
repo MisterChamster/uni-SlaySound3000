@@ -8,10 +8,10 @@ class SoundNote extends Sound{
     //constructor for adding notes
     SoundNote(){}
 
-    // SoundNote(float frequency, String soundName){
-    //     super();
-    //     this.frequency = frequency;
-    // }
+    SoundNote(String soundName, float frequency){
+        super();
+        this.frequency = frequency;
+    }
 
     SoundNote(float sampleRate, int sampleSize, double durationInSec, float frequency, String soundName){
         super(sampleRate, sampleSize, durationInSec, soundName);
