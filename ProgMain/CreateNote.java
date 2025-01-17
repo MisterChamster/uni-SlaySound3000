@@ -38,17 +38,15 @@ public class CreateNote extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(400, 200);
         setLayout(new BorderLayout(10, 10)); 
-        setLocationRelativeTo(null); 
+        setLocationRelativeTo(getOwner()); 
 
-        inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); 
+        inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         inputPanel.add(new JLabel("Note name:"));
         noteNameField = new JTextField(15);
         inputPanel.add(noteNameField);
-
         inputPanel.add(new JLabel("Frequency (Hz):"));
         frequencyField = new JTextField(15); 
         inputPanel.add(frequencyField);
-
         add(inputPanel, BorderLayout.CENTER);
 
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10)); 
@@ -56,7 +54,6 @@ public class CreateNote extends JFrame {
         createButton.setPreferredSize(new Dimension(100, 30));
         buttonPanel.add(discardButton);
         buttonPanel.add(createButton);
-
         add(buttonPanel, BorderLayout.SOUTH);
 
         parentFrame.updateBasicNoteArray();

@@ -38,12 +38,10 @@ class SoundNoteSet extends Sound{
         note.line = null;
     }
 
-    public boolean isNoteInNoteArray(SoundNote note){
-        if (noteArray != null) {
-            for (int i=0; i<noteArray.length-1; i++){
-                if (noteArray[i].frequency == note.frequency) {
-                    return true;
-                }
+    public boolean isNoteInNoteArray(SoundNote note) {
+        for (int i = 0; i < noteArray.length - 1; i++) {
+            if (noteArray[i].frequency == note.frequency) {
+                return true;
             }
         }
         return false;

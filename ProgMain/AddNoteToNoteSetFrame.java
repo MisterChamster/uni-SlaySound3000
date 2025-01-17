@@ -1,9 +1,9 @@
 import java.awt.*;     //FOR TESTING
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import javax.swing.*;     //FOR TESTING
+import javax.swing.plaf.basic.BasicComboBoxUI;
+import javax.swing.plaf.basic.BasicComboPopup;
+import javax.swing.plaf.basic.ComboPopup;
 
 
 public class AddNoteToNoteSetFrame extends JFrame {
@@ -12,8 +12,8 @@ public class AddNoteToNoteSetFrame extends JFrame {
     private JComboBox<String> userNotesDropdown;
     private JPanel inputPanel = new JPanel(new GridLayout(2,2,5,5));
     private JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-    JButton cancelButton;
-    JButton addButton;
+    private JButton cancelButton = new JButton("Cancel");
+    private JButton addButton = new JButton("Add");
 
     JTextField notesUsedField;
 
@@ -30,24 +30,31 @@ public class AddNoteToNoteSetFrame extends JFrame {
         setLayout(new BorderLayout(10, 10));
         setLocationRelativeTo(getOwner());
 
-        String[] notes = {"C4", "D4", "E4", "F4", "G4", "A4", "B4"};
-        JComboBox<String> notesComboBox = new JComboBox<>(notes);
-        inputPanel.add(new JLabel("Note:"));
-        inputPanel.add(notesComboBox);
+        inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        inputPanel.add(new JLabel("Basic Notes:"));
+        basicNotesDropdown = new JComboBox<>(parentFrame.basicUnusedNotesArr);
+        inputPanel.add(basicNotesDropdown);
+        inputPanel.add(new JLabel("User Notes:"));
+        userNotesDropdown = new JComboBox<>(parentFrame.userUnusedNotesArr);
+        inputPanel.add(userNotesDropdown);
+        add(inputPanel, BorderLayout.CENTER);
+
+        // String[] notes = {"C4", "D4", "E4", "F4", "G4", "A4", "B4"};
+        // JComboBox<String> notesComboBox = new JComboBox<>(notes);
+        // inputPanel.add(new JLabel("Note:"));
+        // inputPanel.add(notesComboBox);
 
         add(inputPanel, BorderLayout.CENTER);
 
-        cancelButton = new JButton("Cancel");
-        addButton = new JButton("Add");
         buttonPanel.add(cancelButton);
         buttonPanel.add(addButton);
         add(buttonPanel, BorderLayout.SOUTH);
 
         cancelButton.addActionListener(e -> dispose());
-        addButton.addActionListener(confirmAction(notesComboBox));
+        addButton.addActionListener(confirmAction(basicNotesDropdown, userNotesDropdown));
     }
 
-    private ActionListener confirmAction(JComboBox<String> notesComboBox) {
+    private ActionListener confirmAction(JComboBox<String> notesComboBox, JComboBox<String> userNotesComboBox) {
         return e -> {
             String selectedNote = (String) notesComboBox.getSelectedItem();
             if (selectedNote != null) {
