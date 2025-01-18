@@ -58,16 +58,7 @@ public class CreateNote extends JFrame {
     }
 
     private void addListeners() {
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e) {parentFrame.setEnabled(true);}
-        });
-
-        discardButton.addActionListener(e -> {
-            dispose(); 
-            parentFrame.setEnabled(true); 
-        });
-
+        discardButton.addActionListener(e -> {dispose();});
         createButton.addActionListener(e -> {createFunction();});
 
         noteNameField.addFocusListener(new FocusListener() {
@@ -165,7 +156,6 @@ public class CreateNote extends JFrame {
                 createdNote.setNamee(noteName);
                 createdNote.setFrequency(frequency);
                 dispose();
-                parentFrame.setEnabled(true);
             } else {
                 JOptionPane.showMessageDialog(this,
                         "Frequency must be between 0 and 22000.", 

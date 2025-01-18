@@ -122,7 +122,6 @@ public class UserInterface extends JFrame{
             public void windowClosed(WindowEvent e) {
                 if (createNoteWindow.getCreatedNote().soundName != null) {
                     String noteToFile = createNoteWindow.getCreatedNote().soundName + " " + createNoteWindow.getCreatedNote().frequency;
-                    System.out.println(noteToFile);
 
                     try (FileWriter writer = new FileWriter(userNotesPath, true)) {
                         writer.write(noteToFile + "\n");
@@ -131,6 +130,7 @@ public class UserInterface extends JFrame{
                         JOptionPane.showMessageDialog(createNoteWindow, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
+                setEnabled(true);
             }
         });
     }
@@ -157,24 +157,57 @@ public class UserInterface extends JFrame{
                         JOptionPane.showMessageDialog(createChordWindow, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
+                setEnabled(true);
             }
         });
     }
 
     private void exportToWavListenFunction() {
-        System.out.println("Button 'Export To Wav' clicked");
-    }
-
-    private void deleteNoteListenFunction() {
-        System.out.println("Button 'Delete Note' clicked");
-    }
-
-    private void deleteChordListenFunction() {
-        System.out.println("Button 'Delete Chord' clicked");
+        this.setEnabled(false);
+        SaveWAV saveWAVWindow = new SaveWAV(this);
+        saveWAVWindow.setVisible(true);
+        saveWAVWindow.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                setEnabled(true);
+            }
+        });
     }
 
     private void playSoundListenFunction() {
-        System.out.println("Button 'Play Sound' clicked");
+        this.setEnabled(false);
+        PlaySound playSoundWindow = new PlaySound(this);
+        playSoundWindow.setVisible(true);
+        playSoundWindow.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                setEnabled(true);
+            }
+        });
+    }
+
+    private void deleteNoteListenFunction() {
+        this.setEnabled(false);
+        DeleteNote delNoteWindow = new DeleteNote(this);
+        delNoteWindow.setVisible(true);
+        delNoteWindow.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                setEnabled(true);
+            }
+        });
+    }
+
+    private void deleteChordListenFunction() {
+        this.setEnabled(false);
+        DeleteNoteset delNotesetWindow = new DeleteNoteset(this);
+        delNotesetWindow.setVisible(true);
+        delNotesetWindow.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                setEnabled(true);
+            }
+        });
     }
 
     private void addSampleRateListeners() {
@@ -350,7 +383,6 @@ public class UserInterface extends JFrame{
                 setOfNotes[i-1] = splitNode[i];
             }
             Arrays.sort(setOfNotes);
-            // System.out.println("Notes: " + Arrays.toString(notes) + ", Set of Notes: " + Arrays.toString(setOfNotes));
 
             if (Arrays.equals(notes, setOfNotes)) return true;
         }

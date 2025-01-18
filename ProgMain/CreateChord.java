@@ -90,22 +90,7 @@ public class CreateChord extends JFrame {
     }
 
     private void addListeners() {
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (parentFrame != null) {
-                    parentFrame.setEnabled(true);
-                }
-            }
-        });
-
-        discardButton.addActionListener(e -> {
-            dispose();
-            if (parentFrame != null) {
-                parentFrame.setEnabled(true);
-            }
-        });
-
+        discardButton.addActionListener(e -> {dispose();});
         createButton.addActionListener(e -> {createFunction();});
         addNoteButton.addActionListener(e -> openAddNoteToNoteSetFrame());
         deleteNoteButton.addActionListener(e -> openDeleteNoteToNoteSetFrame());

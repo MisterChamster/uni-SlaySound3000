@@ -35,8 +35,6 @@ public class AddNoteToNoteSetFrame extends JFrame {
         setLayout(new BorderLayout(10, 10));
         setLocationRelativeTo(getOwner());
 
-        
-
         setupInputPanel();
 
         buttonPanel.add(cancelButton);
