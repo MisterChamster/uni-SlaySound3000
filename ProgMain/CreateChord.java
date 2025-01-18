@@ -22,7 +22,7 @@ public class CreateChord extends JFrame {
     public CreateChord(UserInterface parentFrame) {
         super("Create Chord");
         this.parentFrame = parentFrame;
-        this.createdNoteset = new SoundNoteSet(" ");
+        this.createdNoteset = new SoundNoteSet();
         initialize();
         addListeners();
     }
@@ -271,5 +271,9 @@ public class CreateChord extends JFrame {
                 setEnabled(true);
             }
         });
+    }
+
+    public SoundNoteSet getCreatedNoteset() {
+        return createdNoteset;
     }
 }

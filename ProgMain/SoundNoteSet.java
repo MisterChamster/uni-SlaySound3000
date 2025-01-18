@@ -5,6 +5,9 @@ import javax.sound.sampled.*;     //FOR TESTING
 class SoundNoteSet extends Sound{
     SoundNote[] noteArray;
 
+    SoundNoteSet() {
+        this.noteArray = new SoundNote[0];}
+
     // Constructor for adding note sets
     SoundNoteSet(String soundName){
         super();

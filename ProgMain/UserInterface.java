@@ -143,8 +143,20 @@ public class UserInterface extends JFrame{
         createChordWindow.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
-                System.out.println(createChordWindow.createdNoteset.soundName);
-                setEnabled(true);
+                if (createChordWindow.getCreatedNoteset().soundName != null) {
+                    String notesetToFile = createChordWindow.getCreatedNoteset().soundName;
+                    for (SoundNote note : createChordWindow.getCreatedNoteset().noteArray) {
+                        notesetToFile += ", " + note.soundName;
+                    }
+                    System.out.println(notesetToFile);
+
+                    try (FileWriter writer = new FileWriter(userNotesetPath, true)) {
+                        writer.write(notesetToFile + "\n");
+                    } catch (IOException ex) {
+                        // I don't know how to test this, but should be alright I guess(?)
+                        JOptionPane.showMessageDialog(createChordWindow, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
             }
         });
     }
@@ -338,14 +350,10 @@ public class UserInterface extends JFrame{
                 setOfNotes[i-1] = splitNode[i];
             }
             Arrays.sort(setOfNotes);
-            System.out.println("Notes: " + Arrays.toString(notes) + ", Set of Notes: " + Arrays.toString(setOfNotes));
+            // System.out.println("Notes: " + Arrays.toString(notes) + ", Set of Notes: " + Arrays.toString(setOfNotes));
 
-            if (Arrays.equals(notes, setOfNotes)) {
-                System.out.println("They are the same");
-                return true;
-            }
+            if (Arrays.equals(notes, setOfNotes)) return true;
         }
-        System.out.println("They are different");
         return false;
     }
 }
