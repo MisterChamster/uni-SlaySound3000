@@ -23,10 +23,8 @@ public class CreateChord extends JFrame {
         super("Create Chord");
         this.parentFrame = parentFrame;
         this.createdChord = new SoundNoteSet(" ");
-        parentFrame.updateBasicNoteArray();
-        parentFrame.updateUserNoteArray();
-        // this.basicUsedNotesArr = new String[0];
-        // this.userUsedNotesArr = new String[0];
+        // parentFrame.updateBasicNoteArray();
+        // parentFrame.updateUserNoteArray();
         initialize();
         addListeners();
     }
@@ -91,6 +89,9 @@ public class CreateChord extends JFrame {
         buttonPanel.add(createButton);
 
         add(buttonPanel, BorderLayout.SOUTH);
+
+        parentFrame.updateBasicNotesetArray();
+        parentFrame.updateUserNotesetArray();
     }
 
     private void addListeners() {

@@ -33,10 +33,11 @@ public class UserInterface extends JFrame{
     //Backend variables
     int mainSampleSize = 8;
     float mainSampleRate = 44100;
-    String[] basicNoteArray, userNoteArray;
-    String[][] basicNotesetArray, userNotesetArray;
+    String[] basicNotesetArray, userNotesetArray;
     String basicNotesPath = "notes/basicNotes.txt";
     String userNotesPath = "notes/userNotes.txt";
+    String basicNotesetPath = "noteSets/basicNotesets.txt";
+    String userNotesetPath = "noteSets/userNotesets.txt";
 
     public UserInterface() {
         super("SlaySound 3000");
@@ -85,9 +86,6 @@ public class UserInterface extends JFrame{
         gbc.gridy = 1;
         mainPanel.add(actionsPanel, gbc);
         add(mainPanel, BorderLayout.CENTER);
-
-        updateBasicNoteArray();
-        updateUserNoteArray();
     }
 
     private void addListeners() {
@@ -128,7 +126,6 @@ public class UserInterface extends JFrame{
 
                     try (FileWriter writer = new FileWriter(userNotesPath, true)) {
                         writer.write(noteToFile + "\n");
-                        updateUserNoteArray();
                     } catch (IOException ex) {
                         // I don't know how to test this, but should be alright I guess(?)
                         JOptionPane.showMessageDialog(createNoteWindow, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
@@ -213,7 +210,9 @@ public class UserInterface extends JFrame{
         });
     }
 
-    public void updateBasicNoteArray() {
+    public String[] getBasicNoteArray() {
+        String[] basicNoteArray = new String[0];
+
         if (!(new File(basicNotesPath).isFile())) {
             JOptionPane.showMessageDialog(this, "Error: Could not find file: " + basicNotesPath, "Error", JOptionPane.ERROR_MESSAGE);
             this.dispose();
@@ -227,9 +226,13 @@ public class UserInterface extends JFrame{
                 System.exit(0);
             }
         }
+
+        return basicNoteArray;
     }
 
-    public void updateUserNoteArray() {
+    public String[] getUserNoteArray() {
+        String[] userNoteArray = new String[0];
+
         if (!(new File(userNotesPath).isFile())) {
             JOptionPane.showMessageDialog(this, "Error: Could not find file: " + userNotesPath, "Error", JOptionPane.ERROR_MESSAGE);
             this.dispose();
@@ -243,11 +246,42 @@ public class UserInterface extends JFrame{
                 System.exit(0);
             }
         }
+
+        return userNoteArray;
     }
 
-    public void updateBasicNotesetArray() {}
 
-    public void updateUserNotesetArray() {}
+    public void updateBasicNotesetArray() {
+        if (!(new File(basicNotesetPath).isFile())) {
+            JOptionPane.showMessageDialog(this, "Error: Could not find file: " + basicNotesetPath, "Error", JOptionPane.ERROR_MESSAGE);
+            this.dispose();
+            System.exit(0);
+        } else {
+            try {
+                basicNotesetArray = loadNotesFromFile(basicNotesetPath);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Could not load basic noteset. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                this.dispose();
+                System.exit(0);
+            }
+        }
+    }
+
+    public void updateUserNotesetArray() {
+        if (!(new File(userNotesetPath).isFile())) {
+            JOptionPane.showMessageDialog(this, "Error: Could not find file: " + userNotesetPath, "Error", JOptionPane.ERROR_MESSAGE);
+            this.dispose();
+            System.exit(0);
+        } else {
+            try {
+                userNotesetArray = loadNotesFromFile(userNotesetPath);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Could not load user noteset. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                this.dispose();
+                System.exit(0);
+            }
+        }
+    }
 
     private String[] loadNotesFromFile(String filePath) {
         List<String> notesList = new ArrayList<>();
@@ -263,28 +297,28 @@ public class UserInterface extends JFrame{
         return notesList.toArray(new String[0]);
     }
 
-    public Boolean isNoteNameInBasicNoteArray(String noteName) {
+    public Boolean isNoteNameInBasicNoteArray(String noteName, String[] basicNoteArray) {
         for(String name : basicNoteArray) {
             if(noteName.equals(name.split(" ")[0])) return true;
         }
         return false;
     }
 
-    public Boolean isNoteFrequencyInBasicNoteArray(float noteFrequency) {
+    public Boolean isNoteFrequencyInBasicNoteArray(float noteFrequency, String[] basicNoteArray) {
         for(String freq : basicNoteArray) {
             if(noteFrequency == Float.parseFloat(freq.split(" ")[1])) return true;
         }
         return false;
     }
 
-    public Boolean isNoteNameInUserNoteArray(String noteName) {
+    public Boolean isNoteNameInUserNoteArray(String noteName, String[] userNoteArray) {
         for(String name : userNoteArray) {
             if(noteName.equals(name.split(" ")[0])) return true;
         }
         return false;
     }
 
-    public Boolean isNoteFrequencyInUserNoteArray(float noteFrequency) {
+    public Boolean isNoteFrequencyInUserNoteArray(float noteFrequency, String[] userNoteArray) {
         for(String freq : userNoteArray) {
             if(noteFrequency == Float.parseFloat(freq.split(" ")[1])) return true;
         }

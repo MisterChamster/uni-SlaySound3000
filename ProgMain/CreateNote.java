@@ -26,6 +26,7 @@ public class CreateNote extends JFrame {
 
     // Sound variables
     SoundNote createdNote = new SoundNote();
+    String[] basicNoteArray, userNoteArray;
 
     public CreateNote(UserInterface parentFrame) {
         super("Create Note");
@@ -56,8 +57,10 @@ public class CreateNote extends JFrame {
         buttonPanel.add(createButton);
         add(buttonPanel, BorderLayout.SOUTH);
 
-        parentFrame.updateBasicNoteArray();
-        parentFrame.updateUserNoteArray();
+        // parentFrame.updateBasicNoteArray();
+        // parentFrame.updateUserNoteArray();
+        basicNoteArray = parentFrame.getBasicNoteArray();
+        userNoteArray = parentFrame.getUserNoteArray();
     }
 
     private void addListeners() {
@@ -141,19 +144,19 @@ public class CreateNote extends JFrame {
         try {
             float frequency = Float.parseFloat(frequencyText);
             if (frequency > 0 && frequency <= 22000) {
-                if (parentFrame.isNoteNameInBasicNoteArray(noteName)){
+                if (parentFrame.isNoteNameInBasicNoteArray(noteName, basicNoteArray)) {
                     JOptionPane.showMessageDialog(this, "Note named " + noteName + " already exists in basicNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
-                else if (parentFrame.isNoteNameInUserNoteArray(noteName)){
+                else if (parentFrame.isNoteNameInUserNoteArray(noteName, userNoteArray)) {
                     JOptionPane.showMessageDialog(this, "Note named " + noteName + " already exists in userNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
-                else if (parentFrame.isNoteFrequencyInBasicNoteArray(frequency)){
+                else if (parentFrame.isNoteFrequencyInBasicNoteArray(frequency, basicNoteArray)) {
                     JOptionPane.showMessageDialog(this, "Note with frequency " + frequency + " exists in basicNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
-                else if (parentFrame.isNoteFrequencyInUserNoteArray(frequency)){
+                else if (parentFrame.isNoteFrequencyInUserNoteArray(frequency, basicNoteArray)){
                     JOptionPane.showMessageDialog(this, "Note with frequency " + frequency + " exists in userNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 

@@ -17,11 +17,14 @@ public class AddNoteToNoteSetFrame extends JFrame {
     private JButton addButton = new JButton("Add");
 
     JTextField notesUsedField;
+    String[] basicNoteArray, userNoteArray;
 
     public AddNoteToNoteSetFrame(CreateChord parentFrame) {
         super("Add Note");
         this.parentFrame = parentFrame;
         this.notesUsedField = parentFrame.notesUsedField;
+        this.basicNoteArray = parentFrame.parentFrame.getBasicNoteArray();
+        this.userNoteArray = parentFrame.parentFrame.getUserNoteArray();
         initialize();
     }
 
@@ -48,35 +51,35 @@ public class AddNoteToNoteSetFrame extends JFrame {
         Boolean wasNoteUsedFlag;
         inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        String[] tempStringArr = new String[1 + parentFrame.parentFrame.basicNoteArray.length];
+        String[] tempStringArr = new String[1 + basicNoteArray.length];
         tempStringArr[0] = "  --empty--  ";
         
-        for (int i = 0; i < parentFrame.parentFrame.basicNoteArray.length; i++) {
+        for (int i = 0; i < basicNoteArray.length; i++) {
             wasNoteUsedFlag = false;
             if (parentFrame.getNotesUsedArr() != null) {
                 for (String note : parentFrame.getNotesUsedArr()) {
-                    if (note.equals(parentFrame.parentFrame.basicNoteArray[i])) {
+                    if (note.equals(basicNoteArray[i])) {
                         wasNoteUsedFlag = true;
                     }
                 }
             }
-            if (!wasNoteUsedFlag) tempStringArr[i + 1] = parentFrame.parentFrame.basicNoteArray[i];
+            if (!wasNoteUsedFlag) tempStringArr[i + 1] = basicNoteArray[i];
             else tempStringArr[i + 1] = "  --used--  ";
         }
         basicNotesDropdown = new JComboBox<>(tempStringArr);
 
-        tempStringArr = new String[1 + parentFrame.parentFrame.userNoteArray.length];
+        tempStringArr = new String[1 + userNoteArray.length];
         tempStringArr[0] = "  --empty--  ";
-        for (int i = 0; i < parentFrame.parentFrame.userNoteArray.length; i++) {
+        for (int i = 0; i < userNoteArray.length; i++) {
             wasNoteUsedFlag = false;
             if (parentFrame.getNotesUsedArr() != null) {
                 for (String note : parentFrame.getNotesUsedArr()) {
-                    if (note.equals(parentFrame.parentFrame.userNoteArray[i])) {
+                    if (note.equals(userNoteArray[i])) {
                         wasNoteUsedFlag = true;
                     }
                 }
             }
-            if (!wasNoteUsedFlag) tempStringArr[i + 1] = parentFrame.parentFrame.userNoteArray[i];
+            if (!wasNoteUsedFlag) tempStringArr[i + 1] = userNoteArray[i];
             else tempStringArr[i + 1] = "  --used--  ";
         }
         userNotesDropdown = new JComboBox<>(tempStringArr);
