@@ -338,8 +338,14 @@ public class UserInterface extends JFrame{
                 setOfNotes[i-1] = splitNode[i];
             }
             Arrays.sort(setOfNotes);
-            if (Arrays.equals(notes, setOfNotes)) return true;
+            System.out.println("Notes: " + Arrays.toString(notes) + ", Set of Notes: " + Arrays.toString(setOfNotes));
+
+            if (Arrays.equals(notes, setOfNotes)) {
+                System.out.println("They are the same");
+                return true;
+            }
         }
+        System.out.println("They are different");
         return false;
     }
 }

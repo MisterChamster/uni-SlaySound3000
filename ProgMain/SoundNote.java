@@ -10,6 +10,7 @@ class SoundNote extends Sound{
 
     SoundNote(String soundName, float frequency){
         super();
+        this.soundName = soundName;
         this.frequency = frequency;
     }
 

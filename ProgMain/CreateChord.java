@@ -142,7 +142,7 @@ public class CreateChord extends JFrame {
                 String tempName, tempFreq;
                 String[] divider = tempArr[i].split(" ");
                 tempFreq = divider[divider.length - 1];
-                divider[divider.length - 1] = "";
+                divider = Arrays.copyOf(divider, divider.length-1);
                 tempName = String.join(" ", divider);
                 createdNoteset.addNote(new SoundNote(tempName, Float.parseFloat(tempFreq)));
             }
@@ -164,9 +164,22 @@ public class CreateChord extends JFrame {
             return;
         }
 
-        // if (isNotesetNameInNotesetArray(createdNotesetName, userNotesetArray)) {
-            
-        // }
+        String[] notesInCreatedNoteset = new String[createdNoteset.noteArray.length];
+        for (int i=0; i<createdNoteset.noteArray.length; i++) {
+            notesInCreatedNoteset[i] = createdNoteset.noteArray[i].soundName;
+        }
+
+        if (parentFrame.doesNotesetWithTheseNotesExist(notesInCreatedNoteset, basicNotesetArray)) {
+            JOptionPane.showMessageDialog(this, "Chord with notes " + Arrays.toString(notesInCreatedNoteset) + " already exists in basicNotesets.txt",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (parentFrame.doesNotesetWithTheseNotesExist(notesInCreatedNoteset, userNotesetArray)) {
+            JOptionPane.showMessageDialog(this, "Chord with notes " + Arrays.toString(notesInCreatedNoteset) + " already exists in userNotesets.txt",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
         createdNoteset.soundName = createdNotesetName;
         dispose();
