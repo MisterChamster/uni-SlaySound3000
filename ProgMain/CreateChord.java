@@ -110,41 +110,58 @@ public class CreateChord extends JFrame {
             }
         });
 
-        createButton.addActionListener(e -> {
-            String createdChordName = chordNameField.getText();
-
-            if (createdChordName.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Chord name cannot be empty.", 
-                                        "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            } else {
-                createdChord.soundName = createdChordName;
-            }
-
-            if (getNotesUsedArr().length < 2) {
-                JOptionPane.showMessageDialog(this, "You must add at least two notes to create a chord.", 
-                                        "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            } else {
-                String[] tempArr = getNotesUsedArr();
-                for (int i = 0; i < tempArr.length; i++) {
-                    String tempName, tempFreq;
-                    String[] divider = tempArr[i].split(" ");
-                    tempFreq = divider[divider.length - 1];
-                    divider[divider.length - 1] = "";
-                    tempName = String.join(" ", divider);
-                    createdChord.addNote(new SoundNote(tempName, Float.parseFloat(tempFreq)));
-                }
-            }
-
-            dispose();
-            if (parentFrame != null) {
-                parentFrame.setEnabled(true);
-            }
-        });
-
+        createButton.addActionListener(e -> {createFunction();});
         addNoteButton.addActionListener(e -> openAddNoteToNoteSetFrame());
         deleteNoteButton.addActionListener(e -> openDeleteNoteToNoteSetFrame());
+    }
+
+    public void createFunction() {
+        String createdChordName = chordNameField.getText();
+
+        if (createdChordName.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Chord name cannot be empty.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        } else {
+            createdChord.soundName = createdChordName;
+        }
+
+        if (createdChordName.equals(" --empty-- ") || createdChordName.equals(" --used-- ")) {
+            JOptionPane.showMessageDialog(this, "Chord name cannot be --empty-- or --used--.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (createdChordName.contains(",")) {
+            JOptionPane.showMessageDialog(this, "Chord name cannot contain commas.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (getNotesUsedArr().length < 2) {
+            JOptionPane.showMessageDialog(this, "You must add at least two notes to create a chord.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        } else {
+            String[] tempArr = getNotesUsedArr();
+            for (int i = 0; i < tempArr.length; i++) {
+                String tempName, tempFreq;
+                String[] divider = tempArr[i].split(" ");
+                tempFreq = divider[divider.length - 1];
+                divider[divider.length - 1] = "";
+                tempName = String.join(" ", divider);
+                createdChord.addNote(new SoundNote(tempName, Float.parseFloat(tempFreq)));
+            }
+        }
+
+        //START HERE
+
+
+
+        dispose();
+        if (parentFrame != null) {
+            parentFrame.setEnabled(true);
+        }
     }
 
     public String[] getNotesUsedArr() {
@@ -154,7 +171,6 @@ public class CreateChord extends JFrame {
     public void sortNotesUsedArr() {
         String[] tempArr = getNotesUsedArr();
         if (tempArr.length <= 1) return;
-        // String[] noteNames = new String[tempArr.length];
         Float[] noteFrequencies = new Float[tempArr.length];
 
         for (int i = 0; i < tempArr.length; i++) {

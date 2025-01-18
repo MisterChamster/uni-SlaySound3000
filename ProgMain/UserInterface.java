@@ -34,6 +34,7 @@ public class UserInterface extends JFrame{
     int mainSampleSize = 8;
     float mainSampleRate = 44100;
     String[] basicNoteArray, userNoteArray;
+    String[][]basicNotesetArray, userNotesetArray;
     String basicNotesPath = "notes/basicNotes.txt";
     String userNotesPath = "notes/userNotes.txt";
 
@@ -243,6 +244,10 @@ public class UserInterface extends JFrame{
             }
         }
     }
+
+    public void updateBasicNotesetArray() {}
+
+    public void updateUserNotesetArray() {}
 
     private String[] loadNotesFromFile(String filePath) {
         List<String> notesList = new ArrayList<>();
