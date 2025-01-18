@@ -34,7 +34,7 @@ public class UserInterface extends JFrame{
     int mainSampleSize = 8;
     float mainSampleRate = 44100;
     String[] basicNoteArray, userNoteArray;
-    String[][]basicNotesetArray, userNotesetArray;
+    String[][] basicNotesetArray, userNotesetArray;
     String basicNotesPath = "notes/basicNotes.txt";
     String userNotesPath = "notes/userNotes.txt";
 
