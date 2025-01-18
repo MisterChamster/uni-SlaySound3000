@@ -47,7 +47,6 @@ public class DeleteNoteToNoteSetFrame extends JFrame {
             String selectedNote = notesList.getSelectedValue();
             if (selectedNote != null) {
                 parentFrame.deleteNote(selectedNote);
-
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Please select a note!", "Error", JOptionPane.ERROR_MESSAGE);

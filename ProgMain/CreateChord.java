@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Arrays;
 
 public class CreateChord extends JFrame {
     // UI Components
@@ -150,6 +151,34 @@ public class CreateChord extends JFrame {
         return notesUsedField.getText().split(", ");
     }
 
+    public void sortNotesUsedArr() {
+        String[] tempArr = getNotesUsedArr();
+        if (tempArr.length <= 1) return;
+        // String[] noteNames = new String[tempArr.length];
+        Float[] noteFrequencies = new Float[tempArr.length];
+
+        for (int i = 0; i < tempArr.length; i++) {
+            String[] divider = tempArr[i].split(" ");
+            noteFrequencies[i] = Float.parseFloat(divider[divider.length - 1]);
+        }
+
+        for (int i=0; i<noteFrequencies.length-1; i++) {
+            float minF;
+            for (int j=i+1; j<noteFrequencies.length; j++) {
+                if (noteFrequencies[j] < noteFrequencies[i]) {
+                    minF = noteFrequencies[j];
+                    noteFrequencies[j] = noteFrequencies[i];
+                    noteFrequencies[i] = minF;
+
+                    String temp = tempArr[j];
+                    tempArr[j] = tempArr[i];
+                    tempArr[i] = temp;
+                }
+            }
+            notesUsedField.setText(String.join(", ", tempArr));
+        }
+    }
+
     public void deleteNote(String inputNote) {
         String[] tempArr = notesUsedField.getText().split(", ");
         String[] retArr = new String[tempArr.length - 1];
@@ -166,10 +195,14 @@ public class CreateChord extends JFrame {
         }
 
         String text = "";
-        for (int i = 0; i < retArr.length - 1; i++) {
-            text += retArr[i] + ", ";
+        if (retArr.length > 1) {
+            for (int i = 0; i < retArr.length - 1; i++) {
+                text += retArr[i] + ", ";
+            }
         }
-        text += retArr[retArr.length - 1];
+        if (retArr.length > 0) {
+            text += retArr[retArr.length - 1];
+        }
         notesUsedField.setText(text);
     }
 
@@ -181,7 +214,7 @@ public class CreateChord extends JFrame {
         addFrame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
-
+                sortNotesUsedArr();
                 setEnabled(true);
             }
         });
