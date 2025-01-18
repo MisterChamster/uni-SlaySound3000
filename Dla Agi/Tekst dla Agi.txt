@@ -1,16 +1,5 @@
 Joł
 
-Ostatnimi dwoma okienkami o które proszę to Play i Del
-Play to okienko z 4 dropdownami i nazwami przed nimi. Zobacz jak wygląda teraz okienko AddNote i zrób 
-coś takiego samego, tylko z 4 dropdownami. Pod nimi dodaj textfielda, a przed nim tekst "duration"
-
-Del to okienko praktycznie takie jak AddNote - dwa dropdowny
-
-Przed dropdownami daj jakieś textfieldy z przykładowymi napisami
-
-Nie testuj w UserInterface tylko w tych samych plikach, w których napiszesz klasy
-
-
 
 Proszę rób częściej commity UwU
 
