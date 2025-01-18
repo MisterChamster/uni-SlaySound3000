@@ -26,7 +26,6 @@ public class CreateNote extends JFrame {
 
     // Sound variables
     SoundNote createdNote = new SoundNote();
-    String[] basicNoteArray, userNoteArray;
 
     public CreateNote(UserInterface parentFrame) {
         super("Create Note");
@@ -56,11 +55,6 @@ public class CreateNote extends JFrame {
         buttonPanel.add(discardButton);
         buttonPanel.add(createButton);
         add(buttonPanel, BorderLayout.SOUTH);
-
-        // parentFrame.updateBasicNoteArray();
-        // parentFrame.updateUserNoteArray();
-        basicNoteArray = parentFrame.getBasicNoteArray();
-        userNoteArray = parentFrame.getUserNoteArray();
     }
 
     private void addListeners() {
@@ -144,6 +138,10 @@ public class CreateNote extends JFrame {
         try {
             float frequency = Float.parseFloat(frequencyText);
             if (frequency > 0 && frequency <= 22000) {
+                String[] basicNoteArray, userNoteArray;
+                basicNoteArray = parentFrame.getBasicNoteArray();
+                userNoteArray = parentFrame.getUserNoteArray();
+
                 if (parentFrame.isNoteNameInBasicNoteArray(noteName, basicNoteArray)) {
                     JOptionPane.showMessageDialog(this, "Note named " + noteName + " already exists in basicNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
                 }

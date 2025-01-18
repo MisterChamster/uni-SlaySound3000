@@ -33,7 +33,6 @@ public class UserInterface extends JFrame{
     //Backend variables
     int mainSampleSize = 8;
     float mainSampleRate = 44100;
-    String[] basicNotesetArray, userNotesetArray;
     String basicNotesPath = "notes/basicNotes.txt";
     String userNotesPath = "notes/userNotes.txt";
     String basicNotesetPath = "noteSets/basicNotesets.txt";
@@ -250,8 +249,9 @@ public class UserInterface extends JFrame{
         return userNoteArray;
     }
 
+    public String[] getBasicNotesetArray() {
+        String[] basicNotesetArray = new String[0];
 
-    public void updateBasicNotesetArray() {
         if (!(new File(basicNotesetPath).isFile())) {
             JOptionPane.showMessageDialog(this, "Error: Could not find file: " + basicNotesetPath, "Error", JOptionPane.ERROR_MESSAGE);
             this.dispose();
@@ -265,9 +265,13 @@ public class UserInterface extends JFrame{
                 System.exit(0);
             }
         }
+
+        return basicNotesetArray;
     }
 
-    public void updateUserNotesetArray() {
+    public String[] getUserNotesetArray() {
+        String[] userNotesetArray = new String[0];
+
         if (!(new File(userNotesetPath).isFile())) {
             JOptionPane.showMessageDialog(this, "Error: Could not find file: " + userNotesetPath, "Error", JOptionPane.ERROR_MESSAGE);
             this.dispose();
@@ -281,6 +285,8 @@ public class UserInterface extends JFrame{
                 System.exit(0);
             }
         }
+
+        return userNotesetArray;
     }
 
     private String[] loadNotesFromFile(String filePath) {
