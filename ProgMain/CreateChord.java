@@ -17,12 +17,12 @@ public class CreateChord extends JFrame {
     private JButton deleteNoteButton;
 
     // Backend variables
-    SoundNoteSet createdChord;
+    SoundNoteSet createdNoteset;
 
     public CreateChord(UserInterface parentFrame) {
         super("Create Chord");
         this.parentFrame = parentFrame;
-        this.createdChord = new SoundNoteSet(" ");
+        this.createdNoteset = new SoundNoteSet(" ");
         initialize();
         addListeners();
     }
@@ -112,23 +112,21 @@ public class CreateChord extends JFrame {
     }
 
     public void createFunction() {
-        String createdChordName = chordNameField.getText();
+        String createdNotesetName = chordNameField.getText();
 
-        if (createdChordName.isEmpty()) {
+        if (createdNotesetName.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Chord name cannot be empty.",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
-        } else {
-            createdChord.soundName = createdChordName;
         }
 
-        if (createdChordName.equals(" --empty-- ") || createdChordName.equals(" --used-- ")) {
+        if (createdNotesetName.equals(" --empty-- ") || createdNotesetName.equals(" --used-- ")) {
             JOptionPane.showMessageDialog(this, "Chord name cannot be --empty-- or --used--.",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        if (createdChordName.contains(",")) {
+        if (createdNotesetName.contains(",")) {
             JOptionPane.showMessageDialog(this, "Chord name cannot contain commas.",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -146,7 +144,7 @@ public class CreateChord extends JFrame {
                 tempFreq = divider[divider.length - 1];
                 divider[divider.length - 1] = "";
                 tempName = String.join(" ", divider);
-                createdChord.addNote(new SoundNote(tempName, Float.parseFloat(tempFreq)));
+                createdNoteset.addNote(new SoundNote(tempName, Float.parseFloat(tempFreq)));
             }
         }
 
@@ -154,8 +152,23 @@ public class CreateChord extends JFrame {
         String[] basicNotesetArray = parentFrame.getBasicNotesetArray();
         String[] userNotesetArray = parentFrame.getUserNotesetArray();
 
+        if (parentFrame.isNotesetNameInNotesetArray(createdNotesetName, basicNotesetArray)) {
+            JOptionPane.showMessageDialog(this, "Chord named " + createdNotesetName + " already exists in basicNotesets.txt",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
+        if (parentFrame.isNotesetNameInNotesetArray(createdNotesetName, userNotesetArray)) {
+            JOptionPane.showMessageDialog(this, "Chord named " + createdNotesetName + " already exists in userNotesets.txt",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
+        // if (isNotesetNameInNotesetArray(createdNotesetName, userNotesetArray)) {
+            
+        // }
+
+        createdNoteset.soundName = createdNotesetName;
         dispose();
         if (parentFrame != null) {
             parentFrame.setEnabled(true);

@@ -1,6 +1,7 @@
 import javax.swing.*;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
+import java.util.ArrayList;
 import java.awt.event.WindowListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -142,8 +143,8 @@ public class UserInterface extends JFrame{
         createChordWindow.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
-                System.out.println(createChordWindow.createdChord.soundName);
-                setEnabled(true); // Włącz ponownie główne okno po zamknięciu okna CreateChord
+                System.out.println(createChordWindow.createdNoteset.soundName);
+                setEnabled(true);
             }
         });
     }
@@ -303,32 +304,42 @@ public class UserInterface extends JFrame{
         return notesList.toArray(new String[0]);
     }
 
-    public Boolean isNoteNameInBasicNoteArray(String noteName, String[] basicNoteArray) {
+    public Boolean isNoteNameInNoteArray(String noteName, String[] basicNoteArray) {
         for(String name : basicNoteArray) {
             if(noteName.equals(name.split(" ")[0])) return true;
         }
         return false;
     }
 
-    public Boolean isNoteFrequencyInBasicNoteArray(float noteFrequency, String[] basicNoteArray) {
+    public Boolean isNoteFrequencyInNoteArray(float noteFrequency, String[] basicNoteArray) {
         for(String freq : basicNoteArray) {
             if(noteFrequency == Float.parseFloat(freq.split(" ")[1])) return true;
         }
         return false;
     }
 
-    public Boolean isNoteNameInUserNoteArray(String noteName, String[] userNoteArray) {
-        for(String name : userNoteArray) {
-            if(noteName.equals(name.split(" ")[0])) return true;
+    public Boolean isNotesetNameInNotesetArray(String notesetName, String[] notesetArray) {
+        String[] names = new String[notesetArray.length];
+        for(int i = 0; i < notesetArray.length; i++) {
+            names[i] = notesetArray[i].split(", ")[0];
+        }
+        for (String name : names) {
+            if(name.equals(notesetName)) return true;
         }
         return false;
     }
 
-    public Boolean isNoteFrequencyInUserNoteArray(float noteFrequency, String[] userNoteArray) {
-        for(String freq : userNoteArray) {
-            if(noteFrequency == Float.parseFloat(freq.split(" ")[1])) return true;
+    public Boolean doesNotesetWithTheseNotesExist(String[] notes, String[] notesetArray) {
+        Arrays.sort(notes);
+        for(String node : notesetArray) {
+            String[] splitNode = node.split(", ");
+            String[] setOfNotes = new String[splitNode.length-1];
+            for (int i=1; i<splitNode.length; i++) {
+                setOfNotes[i-1] = splitNode[i];
+            }
+            Arrays.sort(setOfNotes);
+            if (Arrays.equals(notes, setOfNotes)) return true;
         }
         return false;
     }
-
 }

@@ -142,28 +142,30 @@ public class CreateNote extends JFrame {
                 basicNoteArray = parentFrame.getBasicNoteArray();
                 userNoteArray = parentFrame.getUserNoteArray();
 
-                if (parentFrame.isNoteNameInBasicNoteArray(noteName, basicNoteArray)) {
+                if (parentFrame.isNoteNameInNoteArray(noteName, basicNoteArray)) {
                     JOptionPane.showMessageDialog(this, "Note named " + noteName + " already exists in basicNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
 
-                else if (parentFrame.isNoteNameInUserNoteArray(noteName, userNoteArray)) {
+                if (parentFrame.isNoteNameInNoteArray(noteName, userNoteArray)) {
                     JOptionPane.showMessageDialog(this, "Note named " + noteName + " already exists in userNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
 
-                else if (parentFrame.isNoteFrequencyInBasicNoteArray(frequency, basicNoteArray)) {
-                    JOptionPane.showMessageDialog(this, "Note with frequency " + frequency + " exists in basicNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
+                if (parentFrame.isNoteFrequencyInNoteArray(frequency, basicNoteArray)) {
+                    JOptionPane.showMessageDialog(this, "Note with frequency " + frequency + " already exists in basicNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
 
-                else if (parentFrame.isNoteFrequencyInUserNoteArray(frequency, basicNoteArray)){
-                    JOptionPane.showMessageDialog(this, "Note with frequency " + frequency + " exists in userNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
+                if (parentFrame.isNoteFrequencyInNoteArray(frequency, userNoteArray)){
+                    JOptionPane.showMessageDialog(this, "Note with frequency " + frequency + " already exists in userNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
 
-                else {
-                    createdNote.setNamee(noteName);
-                    createdNote.setFrequency(frequency);
-                    dispose();
-                    parentFrame.setEnabled(true);
-                }
+                createdNote.setNamee(noteName);
+                createdNote.setFrequency(frequency);
+                dispose();
+                parentFrame.setEnabled(true);
             } else {
                 JOptionPane.showMessageDialog(this,
                         "Frequency must be between 0 and 22000.", 
