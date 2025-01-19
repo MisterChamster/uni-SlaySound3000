@@ -1,14 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class PlaySound extends JFrame {
+public class ExportWAV extends JFrame {
     JTextField durationField;
     JComboBox<String> dropdown1, dropdown2, dropdown3, dropdown4;
-    JButton cancelButton, playButton;
+    JButton cancelButton, exportButton;
     UserInterface parentFrame;
 
-    public PlaySound(UserInterface parentFrame) {
-        super("Play");
+    public ExportWAV(UserInterface parentFrame) {
+        super("Export to WAV");
         this.parentFrame = parentFrame;
         initialize();
         addListeners();
@@ -79,18 +79,18 @@ public class PlaySound extends JFrame {
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 15, 10));
         cancelButton = new JButton("Cancel");
-        playButton = new JButton("Play");
+        exportButton = new JButton("Export");
         cancelButton.setPreferredSize(new Dimension(100, 40));
-        playButton.setPreferredSize(new Dimension(100, 40));
+        exportButton.setPreferredSize(new Dimension(100, 40));
         buttonPanel.add(cancelButton);
-        buttonPanel.add(playButton);
+        buttonPanel.add(exportButton);
 
         add(buttonPanel, BorderLayout.SOUTH);
     }
 
     private void addListeners() {
         cancelButton.addActionListener(e -> dispose());
-        playButton.addActionListener(e -> {playButtonListenFunction();});
+        exportButton.addActionListener(e -> {exportButtonListenFunction();});
         dropdown1.addActionListener(e -> {
             if (dropdown2.getSelectedItem() != " --empty-- ") dropdown2.setSelectedIndex(0); 
             if (dropdown3.getSelectedItem() != " --empty-- ") dropdown3.setSelectedIndex(0); 
@@ -109,7 +109,7 @@ public class PlaySound extends JFrame {
             if (dropdown3.getSelectedItem() != " --empty-- ") dropdown3.setSelectedIndex(0);});
     }
 
-    private void playButtonListenFunction() {
+    private void exportButtonListenFunction() {
         String basicNote = (String) dropdown1.getSelectedItem();
         String userNote = (String) dropdown2.getSelectedItem();
         String basicChord = (String) dropdown3.getSelectedItem();
@@ -132,7 +132,7 @@ public class PlaySound extends JFrame {
 
 
 
-        JOptionPane.showMessageDialog(null, "Playing sound with selected options!", "Play", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Exporting sound with selected options!", "Export", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private String[] getArrWithEmpty(String[] loadArr) {

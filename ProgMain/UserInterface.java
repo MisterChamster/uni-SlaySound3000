@@ -72,10 +72,10 @@ public class UserInterface extends JFrame{
         actionsPanel.setBorder(BorderFactory.createTitledBorder("Actions"));
         actionsPanel.add(createNoteButton);
         actionsPanel.add(createChordButton);
-        actionsPanel.add(exportToWavButton);
+        actionsPanel.add(playSoundButton);
         actionsPanel.add(deleteNoteButton);
         actionsPanel.add(deleteChordButton);
-        actionsPanel.add(playSoundButton);
+        actionsPanel.add(exportToWavButton);
 
         actionsPanel.setPreferredSize(new Dimension(400, 150)); 
 
@@ -102,7 +102,7 @@ public class UserInterface extends JFrame{
             String selectedSize = (String) sampleSizeDropdown.getSelectedItem();
             if(selectedSize.equals("8-bit")) mainSampleSize = 8;
             else mainSampleSize = 16;
-            System.out.println("Program sample size: " + mainSampleSize);
+            // System.out.println("Program sample size: " + mainSampleSize);
         });
 
         addSampleRateListeners();
@@ -160,9 +160,9 @@ public class UserInterface extends JFrame{
 
     private void exportToWavListenFunction() {
         this.setEnabled(false);
-        SaveWAV saveWAVWindow = new SaveWAV(this);
-        saveWAVWindow.setVisible(true);
-        saveWAVWindow.addWindowListener(new WindowAdapter() {
+        ExportWAV exportWAVWindow = new ExportWAV(this);
+        exportWAVWindow.setVisible(true);
+        exportWAVWindow.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
                 setEnabled(true);
