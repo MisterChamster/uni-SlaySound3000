@@ -386,4 +386,21 @@ public class UserInterface extends JFrame{
         }
         return false;
     }
+
+    public float getNoteFreqFromFile(String noteName, String arg) {
+        String[] loadArr = new String[0];
+        if (arg.equals("basic")) loadArr = getBasicNoteArray();
+        if (arg.equals("user")) loadArr = getUserNoteArray();
+
+        for (String noteLine : loadArr) {
+            String[] splitNote = noteLine.split(" ");
+            String strFreq = splitNote[splitNote.length-1];
+            float freq = Float.parseFloat(strFreq);
+
+            splitNote = Arrays.copyOf(splitNote, splitNote.length-1);
+            if (noteName.equals(String.join(" ", splitNote))) return freq;
+        }
+    throw new RuntimeException("Note not found: " + noteName);
+
+    }
 }

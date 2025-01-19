@@ -121,36 +121,52 @@ public class ExportWAV extends JFrame {
         }
         String durationText = durationField.getText();
 
+        double duration;
         try {
-            double duration = Double.parseDouble(durationText);
+            duration = Double.parseDouble(durationText);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Duration must be a number!", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
 
-        String basicNote = (String) dropdown1.getSelectedItem();
-        if (!basicNote.equals(" --empty-- ")) {
+        String soundName = (String) dropdown1.getSelectedItem();
+        if (!soundName.equals(" --empty-- ")) {
+            SoundNote dd1note = new SoundNote(
+                                              parentFrame.mainSampleRate,
+                                              parentFrame.mainSampleSize,
+                                              duration,
+                                              parentFrame.getNoteFreqFromFile(soundName, "basic"),
+                                              soundName);
+            dd1note.prepareToPlay();
+            WavFileSaver.saveWavFile(dd1note);
             return;
         }
-        String userNote = (String) dropdown2.getSelectedItem();
-        if (!userNote.equals(" --empty-- ")) {
+        soundName = (String) dropdown2.getSelectedItem();
+        if (!soundName.equals(" --empty-- ")) {
+            SoundNote dd2note = new SoundNote(parentFrame.mainSampleRate,
+                                              parentFrame.mainSampleSize,
+                                              duration,
+                                              parentFrame.getNoteFreqFromFile(soundName, "user"),
+                                              soundName);
+            dd2note.prepareToPlay();
+            WavFileSaver.saveWavFile(dd2note);
             return;
         }
 
 
-        String basicChord = (String) dropdown3.getSelectedItem();
-        if (!basicChord.equals(" --empty-- ")) {
+        soundName = (String) dropdown3.getSelectedItem();
+        if (!soundName.equals(" --empty-- ")) {
             return;
         }
-        String userChord = (String) dropdown4.getSelectedItem();
-        if (!userChord.equals(" --empty-- ")) {
+        soundName = (String) dropdown4.getSelectedItem();
+        if (!soundName.equals(" --empty-- ")) {
             return;
         }
 
 
 
-        JOptionPane.showMessageDialog(null, "Exporting sound with selected options!", "Export", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Choose a sound to export it.", "Error", JOptionPane.ERROR_MESSAGE);
     }
 
     private String[] getNoteNamesArrWithEmpty(String arg) {
