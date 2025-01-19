@@ -14,6 +14,11 @@ class SoundNoteSet extends Sound{
         this.noteArray = new SoundNote[0];
     }
 
+    SoundNoteSet(float sampleRate, int sampleSize, double durationInSeconds, SoundNote[] noteArray, String soundName){
+        super(sampleRate, sampleSize, durationInSeconds, soundName);
+        this.noteArray = noteArray;
+    }
+
     // Testing constructor
     SoundNoteSet(float sampleRate, int sampleSize, double durationInSeconds, String soundName){
         super(sampleRate, sampleSize, durationInSeconds, soundName);

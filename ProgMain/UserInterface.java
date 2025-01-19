@@ -400,7 +400,25 @@ public class UserInterface extends JFrame{
             splitNote = Arrays.copyOf(splitNote, splitNote.length-1);
             if (noteName.equals(String.join(" ", splitNote))) return freq;
         }
-    throw new RuntimeException("Note not found: " + noteName);
+        return 0.0f;
+    }
 
+    public String[] getNotesetNoteNamesFromFile(String notesetName, String arg) {
+        String[] loadArr = new String[0];
+        if (arg.equals("basic")) loadArr = getBasicNotesetArray();
+        if (arg.equals("user")) loadArr = getUserNotesetArray();
+
+        for (String notesetLine : loadArr) {
+            String[] splitNoteset = notesetLine.split(", ");
+
+            if (notesetName.equals(splitNoteset[0])) {
+                String[] noteNames = new String[splitNoteset.length-1];
+                for (int i=1; i<splitNoteset.length; i++) {
+                    noteNames[i-1] = splitNoteset[i];
+                }
+                return noteNames;
+            }
+        }
+        throw new RuntimeException("Noteset not found: " + notesetName);
     }
 }

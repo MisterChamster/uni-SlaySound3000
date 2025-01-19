@@ -157,15 +157,46 @@ public class ExportWAV extends JFrame {
 
         soundName = (String) dropdown3.getSelectedItem();
         if (!soundName.equals(" --empty-- ")) {
+            String[] noteNames = parentFrame.getNotesetNoteNamesFromFile(soundName, "basic");
+            SoundNote[] noteArray = new SoundNote[noteNames.length];
+            for (int i=0; i<noteArray.length; i++){
+                noteArray[i] = new SoundNote(parentFrame.mainSampleRate,
+                                             parentFrame.mainSampleSize,
+                                             duration,
+                                             parentFrame.getNoteFreqFromFile(noteNames[i], "basic"),
+                                             soundName);
+            }
+            SoundNoteSet dd1noteset = new SoundNoteSet(parentFrame.mainSampleRate,
+                                                       parentFrame.mainSampleSize,
+                                                       duration,
+                                                       noteArray,
+                                                       soundName);
+            dd1noteset.prepareToPlay();
+            WavFileSaver.saveWavFile(dd1noteset);
             return;
         }
         soundName = (String) dropdown4.getSelectedItem();
         if (!soundName.equals(" --empty-- ")) {
+            String[] noteNames = parentFrame.getNotesetNoteNamesFromFile(soundName, "user");
+            SoundNote[] noteArray = new SoundNote[noteNames.length];
+            for (int i=0; i<noteArray.length; i++){
+                float freq = parentFrame.getNoteFreqFromFile(noteNames[i], "user");
+                if (freq == 0) freq = parentFrame.getNoteFreqFromFile(noteNames[i], "basic");
+                noteArray[i] = new SoundNote(parentFrame.mainSampleRate,
+                                             parentFrame.mainSampleSize,
+                                             duration,
+                                             freq,
+                                             soundName);
+            }
+            SoundNoteSet dd2noteset = new SoundNoteSet(parentFrame.mainSampleRate,
+                                                       parentFrame.mainSampleSize,
+                                                       duration,
+                                                       noteArray,
+                                                       soundName);
+            dd2noteset.prepareToPlay();
+            WavFileSaver.saveWavFile(dd2noteset);
             return;
         }
-
-
-
         JOptionPane.showMessageDialog(null, "Choose a sound to export it.", "Error", JOptionPane.ERROR_MESSAGE);
     }
 
