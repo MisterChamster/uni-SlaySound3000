@@ -2,21 +2,31 @@ import javax.swing.*;
 import java.awt.*;
 
 public class DeleteNoteset extends JFrame {
-    JTextField field1, field2;
-    JComboBox<String> dropdown1, dropdown2;
+    JComboBox<String> dropdown1;
     JButton cancelButton, deleteButton;
+    UserInterface parentFrame;
+    String[] userNotesetArray;
 
-    public DeleteNoteset(JFrame parentFrame) {
+    String delString = "";
+
+    public DeleteNoteset(UserInterface parentFrame) {
         super("Delete user chord");
-        initialize(parentFrame);
+        this.parentFrame = parentFrame;
+        this.userNotesetArray = parentFrame.getUserNotesetArray();
+        initialize();
         addListeners();
     }
 
-    private void initialize(JFrame parentFrame) {
+    private void initialize() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(350, 170); 
         setLayout(new BorderLayout(15, 15));
         setLocationRelativeTo(parentFrame);
+
+        for (int i=0; i<userNotesetArray.length; i++) {
+            String[] temp = userNotesetArray[i].split(", ");
+            userNotesetArray[i] = temp[0];
+        }
 
         JPanel mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setBorder(BorderFactory.createEmptyBorder(25, 15, 15, 12)); 
@@ -32,7 +42,7 @@ public class DeleteNoteset extends JFrame {
 
         gbc.weightx = 1.5;
         gbc.gridx = 1;
-        dropdown1 = new JComboBox<>(new String[]{"A", "B", "C"});
+        dropdown1 = new JComboBox<>(userNotesetArray);
         mainPanel.add(dropdown1, gbc);
 
         add(mainPanel, BorderLayout.CENTER);
@@ -44,14 +54,15 @@ public class DeleteNoteset extends JFrame {
         deleteButton.setPreferredSize(new Dimension(100, 40));
         buttonPanel.add(cancelButton);
         buttonPanel.add(deleteButton);
-
         add(buttonPanel, BorderLayout.SOUTH);
     }
 
     private void addListeners() {
         cancelButton.addActionListener(e -> dispose());
         deleteButton.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Deleted selected item!", "Delete", JOptionPane.INFORMATION_MESSAGE);
+            String selectedNotesetName = (String) dropdown1.getSelectedItem();
+            delString = selectedNotesetName;
+            dispose();
         });
     }
 }

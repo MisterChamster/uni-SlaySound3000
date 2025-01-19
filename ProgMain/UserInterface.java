@@ -8,12 +8,9 @@ import java.awt.event.WindowEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.FocusEvent;
 import java.awt.*;
-import java.io.FileNotFoundException;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.FileWriter;
-import java.io.FileReader;
-import java.io.File;
+import java.io.*;
+import java.io.File.*;
+import java.util.*;
 
 public class UserInterface extends JFrame{
     //UI variables
@@ -26,8 +23,7 @@ public class UserInterface extends JFrame{
     private JButton playSoundButton = new JButton("Play Sound");
     private JLabel sampleSizeLabel = new JLabel("Sample Size: ");
 
-    private String[] sampleSizes = {"8-bit", "16-bit"};
-    private JComboBox<String> sampleSizeDropdown = new JComboBox<>(sampleSizes);
+    private JComboBox<String> sampleSizeDropdown = new JComboBox<>(new String[]{"8-bit", "16-bit"});
     private JLabel sampleRateLabel = new JLabel("Sample Rate: ");
     private JTextField sampleRateField = new JTextField(10);
 
@@ -193,6 +189,9 @@ public class UserInterface extends JFrame{
         delNoteWindow.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
+                if (!delNoteWindow.delString.equals("")) {
+                    System.out.println("Deleted note: " + delNoteWindow.delString);
+                }
                 setEnabled(true);
             }
         });
@@ -205,6 +204,36 @@ public class UserInterface extends JFrame{
         delNotesetWindow.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
+                if (!delNotesetWindow.delString.equals("")) {
+                    String tempFile = "noteSets/temp.txt";
+                    Boolean delSuccesful = false;
+                    try (BufferedReader reader = new BufferedReader(new FileReader(userNotesetPath));
+                         BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+                        String line;
+                        while ((line = reader.readLine()) != null) {
+                            String notesetName = line.split(", ")[0];
+                            if (!notesetName.equals(delNotesetWindow.delString)) {
+                                writer.write(line + "\n");
+                            } else System.out.println("Deleted note: " + delNotesetWindow.delString);
+                        }
+                        delSuccesful = true;
+                    } catch (IOException ex) {
+                        // I don't know how to test this, but should be alright I guess(?)
+                        JOptionPane.showMessageDialog(delNotesetWindow, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    if (delSuccesful) {
+                        try {
+                            File OGfile = new File(userNotesetPath);
+                            File newFile = new File(tempFile);
+                            System.out.println("FUCK YOU ");
+                            OGfile.delete();
+                            newFile.renameTo(OGfile);
+                        } catch (Exception ex) {
+                            // I don't know how to test this, but should be alright I guess(?)
+                            JOptionPane.showMessageDialog(delNotesetWindow, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                }
                 setEnabled(true);
             }
         });

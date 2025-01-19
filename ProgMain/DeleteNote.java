@@ -2,17 +2,22 @@ import javax.swing.*;
 import java.awt.*;
 
 public class DeleteNote extends JFrame {
-    JTextField field1, field2;
-    JComboBox<String> dropdown1, dropdown2;
+    JComboBox<String> dropdown1;
     JButton cancelButton, deleteButton;
+    UserInterface parentFrame;
+    String[] userNoteArray;
 
-    public DeleteNote(JFrame parentFrame) {
+    String delString = "";
+
+    public DeleteNote(UserInterface parentFrame) {
         super("Delete user note");
-        initialize(parentFrame);
+        this.parentFrame = parentFrame;
+        this.userNoteArray = parentFrame.getUserNoteArray();
+        initialize();
         addListeners();
     }
 
-    private void initialize(JFrame parentFrame) {
+    private void initialize() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(350, 170); 
         setLayout(new BorderLayout(15, 15));
@@ -32,7 +37,7 @@ public class DeleteNote extends JFrame {
 
         gbc.weightx = 1.5;
         gbc.gridx = 1;
-        dropdown1 = new JComboBox<>(new String[]{"A", "B", "C"});
+        dropdown1 = new JComboBox<>(userNoteArray);
         mainPanel.add(dropdown1, gbc);
 
         add(mainPanel, BorderLayout.CENTER);
@@ -51,7 +56,9 @@ public class DeleteNote extends JFrame {
     private void addListeners() {
         cancelButton.addActionListener(e -> dispose());
         deleteButton.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Deleted selected item!", "Delete", JOptionPane.INFORMATION_MESSAGE);
+            String selectedNote = (String) dropdown1.getSelectedItem();
+            delString = selectedNote;
+            dispose();
         });
     }
 }

@@ -2,7 +2,6 @@ public class prog{
     public static void main(String[] args){
         UserInterface ui = new UserInterface();
         ui.setVisible(true);
-        
 
         // SoundNote note1 = new SoundNote(44100, 16, 2, 440, "A4");
         // SoundNote note2 = new SoundNote(44100, 16, 2, 659.25f, "E5");
