@@ -123,7 +123,7 @@ public class UserInterface extends JFrame{
                         writer.write(noteToFile + "\n");
                     } catch (IOException ex) {
                         // I don't know how to test this, but should be alright I guess(?)
-                        JOptionPane.showMessageDialog(createNoteWindow, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
                 setEnabled(true);
@@ -150,7 +150,7 @@ public class UserInterface extends JFrame{
                         writer.write(notesetToFile + "\n");
                     } catch (IOException ex) {
                         // I don't know how to test this, but should be alright I guess(?)
-                        JOptionPane.showMessageDialog(createChordWindow, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
                 setEnabled(true);
@@ -190,7 +190,45 @@ public class UserInterface extends JFrame{
             @Override
             public void windowClosed(WindowEvent e) {
                 if (!delNoteWindow.delString.equals("")) {
-                    System.out.println("Deleted note: " + delNoteWindow.delString);
+                    String delNoteName = String.join(" ", Arrays.copyOf(delNoteWindow.delString.split(" "), delNoteWindow.delString.split(" ").length - 1));
+                    // System.out.println(delNoteName);
+                    String tempNoteFile = "notes/temp.txt";
+                    String tempNotesetFile = "noteSets/temp.txt";
+                    Boolean delSuccesful = false;
+
+                    try (BufferedReader reader = new BufferedReader(new FileReader(userNotesPath));
+                         BufferedWriter writer = new BufferedWriter(new FileWriter(tempNoteFile))) {
+                        String line;
+                        while ((line = reader.readLine()) != null) {
+                            if (!line.equals(delNoteWindow.delString)) {
+                                writer.write(line + "\n");
+                            } else System.out.println("Deleted note: " + delNoteWindow.delString);
+                        }
+                        delSuccesful = true;
+                    } 
+                    catch (IOException ex) {
+                        // I don't know how to test this, but should be alright I guess(?)
+                        JOptionPane.showMessageDialog(null, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                    if (delSuccesful) {
+                        try {
+                            File OGfile = new File(userNotesPath);
+                            File newFile = new File(tempNoteFile);
+                            OGfile.delete();
+                            newFile.renameTo(OGfile);
+                        } catch (Exception ex) {
+                            // I don't know how to test this, but should be alright I guess(?)
+                            JOptionPane.showMessageDialog(null, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+
+
+
+
+
+
+
                 }
                 setEnabled(true);
             }
@@ -204,39 +242,43 @@ public class UserInterface extends JFrame{
         delNotesetWindow.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
-                if (!delNotesetWindow.delString.equals("")) {
-                    String tempFile = "noteSets/temp.txt";
-                    Boolean delSuccesful = false;
-                    try (BufferedReader reader = new BufferedReader(new FileReader(userNotesetPath));
-                         BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
-                        String line;
-                        while ((line = reader.readLine()) != null) {
-                            String notesetName = line.split(", ")[0];
-                            if (!notesetName.equals(delNotesetWindow.delString)) {
-                                writer.write(line + "\n");
-                            } else System.out.println("Deleted note: " + delNotesetWindow.delString);
-                        }
-                        delSuccesful = true;
-                    } catch (IOException ex) {
-                        // I don't know how to test this, but should be alright I guess(?)
-                        JOptionPane.showMessageDialog(delNotesetWindow, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-                    if (delSuccesful) {
-                        try {
-                            File OGfile = new File(userNotesetPath);
-                            File newFile = new File(tempFile);
-                            System.out.println("FUCK YOU ");
-                            OGfile.delete();
-                            newFile.renameTo(OGfile);
-                        } catch (Exception ex) {
-                            // I don't know how to test this, but should be alright I guess(?)
-                            JOptionPane.showMessageDialog(delNotesetWindow, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
-                        }
-                    }
+                String notesetNameToDelete = delNotesetWindow.delString;
+                if (!notesetNameToDelete.equals("")) {
+                    deleteNotesetByName(notesetNameToDelete);
                 }
                 setEnabled(true);
             }
         });
+    }
+
+    private void deleteNotesetByName(String notesetNameToDelete) {
+        String tempNoteFile = "noteSets/temp.txt";
+        Boolean delSuccesful = false;
+        try (BufferedReader reader = new BufferedReader(new FileReader(userNotesetPath));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(tempNoteFile))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String notesetName = line.split(", ")[0];
+                if (!notesetName.equals(notesetNameToDelete)) {
+                    writer.write(line + "\n");
+                } else System.out.println("Deleted note: " + notesetNameToDelete);
+            }
+            delSuccesful = true;
+        } catch (IOException ex) {
+            // I don't know how to test this, but should be alright I guess(?)
+            JOptionPane.showMessageDialog(null, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        if (delSuccesful) {
+            try {
+                File OGfile = new File(userNotesetPath);
+                File newFile = new File(tempNoteFile);
+                OGfile.delete();
+                newFile.renameTo(OGfile);
+            } catch (Exception ex) {
+                // I don't know how to test this, but should be alright I guess(?)
+                JOptionPane.showMessageDialog(null, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
 
     private void addSampleRateListeners() {
@@ -288,14 +330,14 @@ public class UserInterface extends JFrame{
         String[] basicNoteArray = new String[0];
 
         if (!(new File(basicNotesPath).isFile())) {
-            JOptionPane.showMessageDialog(this, "Error: Could not find file: " + basicNotesPath, "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error: Could not find file: " + basicNotesPath, "Error", JOptionPane.ERROR_MESSAGE);
             this.dispose();
             System.exit(0);
         } else {
             try {
                 basicNoteArray = loadNotesFromFile(basicNotesPath);
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Could not load basic notes. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Could not load basic notes. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 this.dispose();
                 System.exit(0);
             }
@@ -308,14 +350,14 @@ public class UserInterface extends JFrame{
         String[] userNoteArray = new String[0];
 
         if (!(new File(userNotesPath).isFile())) {
-            JOptionPane.showMessageDialog(this, "Error: Could not find file: " + userNotesPath, "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error: Could not find file: " + userNotesPath, "Error", JOptionPane.ERROR_MESSAGE);
             this.dispose();
             System.exit(0);
         } else {
             try {
                 userNoteArray = loadNotesFromFile(userNotesPath);
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Could not load user notes. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Could not load user notes. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 this.dispose();
                 System.exit(0);
             }
@@ -328,14 +370,14 @@ public class UserInterface extends JFrame{
         String[] basicNotesetArray = new String[0];
 
         if (!(new File(basicNotesetPath).isFile())) {
-            JOptionPane.showMessageDialog(this, "Error: Could not find file: " + basicNotesetPath, "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error: Could not find file: " + basicNotesetPath, "Error", JOptionPane.ERROR_MESSAGE);
             this.dispose();
             System.exit(0);
         } else {
             try {
                 basicNotesetArray = loadNotesFromFile(basicNotesetPath);
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Could not load basic noteset. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Could not load basic noteset. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 this.dispose();
                 System.exit(0);
             }
@@ -348,14 +390,14 @@ public class UserInterface extends JFrame{
         String[] userNotesetArray = new String[0];
 
         if (!(new File(userNotesetPath).isFile())) {
-            JOptionPane.showMessageDialog(this, "Error: Could not find file: " + userNotesetPath, "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error: Could not find file: " + userNotesetPath, "Error", JOptionPane.ERROR_MESSAGE);
             this.dispose();
             System.exit(0);
         } else {
             try {
                 userNotesetArray = loadNotesFromFile(userNotesetPath);
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Could not load user noteset. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Could not load user noteset. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 this.dispose();
                 System.exit(0);
             }

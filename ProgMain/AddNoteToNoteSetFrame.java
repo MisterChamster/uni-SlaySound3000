@@ -112,7 +112,7 @@ public class AddNoteToNoteSetFrame extends JFrame {
                 notesUsedField.setText(currentNotes);
                 dispose();
             } else {
-                JOptionPane.showMessageDialog(this, "Select at least one note.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Select at least one note.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         };
     }

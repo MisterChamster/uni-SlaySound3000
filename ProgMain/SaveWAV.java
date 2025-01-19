@@ -84,7 +84,7 @@ public class SaveWAV extends JFrame {
     private void addListeners() {
         cancelButton.addActionListener(e -> dispose());
         playButton.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Playing sound with selected options!", "Play", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Playing sound with selected options!", "Play", JOptionPane.INFORMATION_MESSAGE);
         });
     }
 }

@@ -87,7 +87,7 @@ public class CreateNote extends JFrame {
         String frequencyText = frequencyField.getText();
 
         if (noteName.isEmpty()) {
-            JOptionPane.showMessageDialog(this,
+            JOptionPane.showMessageDialog(null,
                     "Note name cannot be empty.",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
@@ -95,7 +95,7 @@ public class CreateNote extends JFrame {
         }
 
         else if (noteName.length() > 20) {
-            JOptionPane.showMessageDialog(this,
+            JOptionPane.showMessageDialog(null,
                     "Note name must be 20 characters or less.",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
@@ -103,7 +103,7 @@ public class CreateNote extends JFrame {
         }
 
         else if (noteName.contains(",")) {
-            JOptionPane.showMessageDialog(this,
+            JOptionPane.showMessageDialog(null,
                     "Note name cannot contain commas.",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
@@ -111,7 +111,7 @@ public class CreateNote extends JFrame {
         }
 
         else if (noteName == " --empty-- " || noteName == " --used-- ") {
-            JOptionPane.showMessageDialog(this,
+            JOptionPane.showMessageDialog(null,
                     "Note name cannot be --empty-- or --used--.",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
@@ -119,7 +119,7 @@ public class CreateNote extends JFrame {
         }
 
         else if (frequencyText.isEmpty()) {
-            JOptionPane.showMessageDialog(this,
+            JOptionPane.showMessageDialog(null,
                     "Frequency cannot be empty.",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
@@ -134,22 +134,22 @@ public class CreateNote extends JFrame {
                 userNoteArray = parentFrame.getUserNoteArray();
 
                 if (parentFrame.isNoteNameInNoteArray(noteName, basicNoteArray)) {
-                    JOptionPane.showMessageDialog(this, "Note named " + noteName + " already exists in basicNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Note named " + noteName + " already exists in basicNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
                 if (parentFrame.isNoteNameInNoteArray(noteName, userNoteArray)) {
-                    JOptionPane.showMessageDialog(this, "Note named " + noteName + " already exists in userNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Note named " + noteName + " already exists in userNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
                 if (parentFrame.isNoteFrequencyInNoteArray(frequency, basicNoteArray)) {
-                    JOptionPane.showMessageDialog(this, "Note with frequency " + frequency + " already exists in basicNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Note with frequency " + frequency + " already exists in basicNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
                 if (parentFrame.isNoteFrequencyInNoteArray(frequency, userNoteArray)){
-                    JOptionPane.showMessageDialog(this, "Note with frequency " + frequency + " already exists in userNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Note with frequency " + frequency + " already exists in userNotes.txt", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
@@ -157,13 +157,13 @@ public class CreateNote extends JFrame {
                 createdNote.setFrequency(frequency);
                 dispose();
             } else {
-                JOptionPane.showMessageDialog(this,
+                JOptionPane.showMessageDialog(null,
                         "Frequency must be between 0 and 22000.", 
                         "Error", 
                         JOptionPane.ERROR_MESSAGE);
             }
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this,
+            JOptionPane.showMessageDialog(null,
                     "Frequency must be a valid number and cannot be empty.", 
                     "Error", 
                     JOptionPane.ERROR_MESSAGE);

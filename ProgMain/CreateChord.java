@@ -100,25 +100,25 @@ public class CreateChord extends JFrame {
         String createdNotesetName = chordNameField.getText();
 
         if (createdNotesetName.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Chord name cannot be empty.",
+            JOptionPane.showMessageDialog(null, "Chord name cannot be empty.",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         if (createdNotesetName.equals(" --empty-- ") || createdNotesetName.equals(" --used-- ")) {
-            JOptionPane.showMessageDialog(this, "Chord name cannot be --empty-- or --used--.",
+            JOptionPane.showMessageDialog(null, "Chord name cannot be --empty-- or --used--.",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         if (createdNotesetName.contains(",")) {
-            JOptionPane.showMessageDialog(this, "Chord name cannot contain commas.",
+            JOptionPane.showMessageDialog(null, "Chord name cannot contain commas.",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         if (getNotesUsedArr().length < 2) {
-            JOptionPane.showMessageDialog(this, "You must add at least two notes to create a chord.",
+            JOptionPane.showMessageDialog(null, "You must add at least two notes to create a chord.",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         } else {
@@ -138,13 +138,13 @@ public class CreateChord extends JFrame {
         String[] userNotesetArray = parentFrame.getUserNotesetArray();
 
         if (parentFrame.isNotesetNameInNotesetArray(createdNotesetName, basicNotesetArray)) {
-            JOptionPane.showMessageDialog(this, "Chord named " + createdNotesetName + " already exists in basicNotesets.txt",
+            JOptionPane.showMessageDialog(null, "Chord named " + createdNotesetName + " already exists in basicNotesets.txt",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         if (parentFrame.isNotesetNameInNotesetArray(createdNotesetName, userNotesetArray)) {
-            JOptionPane.showMessageDialog(this, "Chord named " + createdNotesetName + " already exists in userNotesets.txt",
+            JOptionPane.showMessageDialog(null, "Chord named " + createdNotesetName + " already exists in userNotesets.txt",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -155,13 +155,13 @@ public class CreateChord extends JFrame {
         }
 
         if (parentFrame.doesNotesetWithTheseNotesExist(notesInCreatedNoteset, basicNotesetArray)) {
-            JOptionPane.showMessageDialog(this, "Chord with notes " + Arrays.toString(notesInCreatedNoteset) + " already exists in basicNotesets.txt",
+            JOptionPane.showMessageDialog(null, "Chord with notes " + Arrays.toString(notesInCreatedNoteset) + " already exists in basicNotesets.txt",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         if (parentFrame.doesNotesetWithTheseNotesExist(notesInCreatedNoteset, userNotesetArray)) {
-            JOptionPane.showMessageDialog(this, "Chord with notes " + Arrays.toString(notesInCreatedNoteset) + " already exists in userNotesets.txt",
+            JOptionPane.showMessageDialog(null, "Chord with notes " + Arrays.toString(notesInCreatedNoteset) + " already exists in userNotesets.txt",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }

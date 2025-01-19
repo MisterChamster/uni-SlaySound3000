@@ -49,7 +49,7 @@ public class DeleteNoteToNoteSetFrame extends JFrame {
                 parentFrame.deleteNote(selectedNote);
                 dispose();
             } else {
-                JOptionPane.showMessageDialog(this, "Please select a note!", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please select a note!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         };
     }
