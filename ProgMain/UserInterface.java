@@ -189,50 +189,84 @@ public class UserInterface extends JFrame{
         delNoteWindow.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
+                String noteToDelete = delNoteWindow.delString;
                 if (!delNoteWindow.delString.equals("")) {
-                    String delNoteName = String.join(" ", Arrays.copyOf(delNoteWindow.delString.split(" "), delNoteWindow.delString.split(" ").length - 1));
-                    // System.out.println(delNoteName);
-                    String tempNoteFile = "notes/temp.txt";
-                    String tempNotesetFile = "noteSets/temp.txt";
-                    Boolean delSuccesful = false;
-
-                    try (BufferedReader reader = new BufferedReader(new FileReader(userNotesPath));
-                         BufferedWriter writer = new BufferedWriter(new FileWriter(tempNoteFile))) {
-                        String line;
-                        while ((line = reader.readLine()) != null) {
-                            if (!line.equals(delNoteWindow.delString)) {
-                                writer.write(line + "\n");
-                            } else System.out.println("Deleted note: " + delNoteWindow.delString);
-                        }
-                        delSuccesful = true;
-                    } 
-                    catch (IOException ex) {
-                        // I don't know how to test this, but should be alright I guess(?)
-                        JOptionPane.showMessageDialog(null, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-
-                    if (delSuccesful) {
-                        try {
-                            File OGfile = new File(userNotesPath);
-                            File newFile = new File(tempNoteFile);
-                            OGfile.delete();
-                            newFile.renameTo(OGfile);
-                        } catch (Exception ex) {
-                            // I don't know how to test this, but should be alright I guess(?)
-                            JOptionPane.showMessageDialog(null, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
-                        }
-                    }
-
-
-
-
-
-
-
+                    String delNoteName = String.join(" ", Arrays.copyOf(noteToDelete.split(" "), noteToDelete.split(" ").length - 1));
+                    deleteNoteLineFromFile(noteToDelete);
+                    deleteNotesetLineWithNoteFromFile(delNoteName);
                 }
                 setEnabled(true);
             }
         });
+    }
+
+    private void deleteNoteLineFromFile(String noteToDelete) {
+        String tempNoteFile = "notes/temp.txt";
+        Boolean delSuccesful = false;
+        try (BufferedReader reader = new BufferedReader(new FileReader(userNotesPath));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(tempNoteFile))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (!line.equals(noteToDelete)) {
+                    writer.write(line + "\n");
+                } else System.out.println("Deleted note: " + noteToDelete);
+            }
+            delSuccesful = true;
+        } catch (IOException ex) {
+            // I don't know how to test this, but should be alright I guess(?)
+            JOptionPane.showMessageDialog(null, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        if (delSuccesful) {
+            try {
+                File OGfile = new File(userNotesPath);
+                File newFile = new File(tempNoteFile);
+                OGfile.delete();
+                newFile.renameTo(OGfile);
+            } catch (Exception ex) {
+                // I don't know how to test this, but should be alright I guess(?)
+                JOptionPane.showMessageDialog(null, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    private void deleteNotesetLineWithNoteFromFile(String noteToDelete) {
+        String tempNotesetFile = "noteSets/temp.txt";
+        Boolean delSuccesful = false;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(userNotesetPath));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(tempNotesetFile))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                Boolean delLine = false;
+                String[] notesInNoteset = line.split(", ");
+                for (int i=1; i<notesInNoteset.length; i++) {
+                    if (notesInNoteset[i].equals(noteToDelete)) {
+                        delLine = true;
+                    }
+                }
+                if (!delLine) {
+                    writer.write(line + "\n");
+                } else System.out.println("Deleted stuff: " + noteToDelete);
+            }
+
+
+            delSuccesful = true;
+        } catch (IOException ex) {
+            // I don't know how to test this, but should be alright I guess(?)
+            JOptionPane.showMessageDialog(null, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        if (delSuccesful) {
+            try {
+                File OGfile = new File(userNotesetPath);
+                File newFile = new File(tempNotesetFile);
+                OGfile.delete();
+                newFile.renameTo(OGfile);
+            } catch (Exception ex) {
+                // I don't know how to test this, but should be alright I guess(?)
+                JOptionPane.showMessageDialog(null, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
 
     private void deleteChordListenFunction() {
@@ -244,14 +278,14 @@ public class UserInterface extends JFrame{
             public void windowClosed(WindowEvent e) {
                 String notesetNameToDelete = delNotesetWindow.delString;
                 if (!notesetNameToDelete.equals("")) {
-                    deleteNotesetByName(notesetNameToDelete);
+                    deleteNotesetLineFromFileByName(notesetNameToDelete);
                 }
                 setEnabled(true);
             }
         });
     }
 
-    private void deleteNotesetByName(String notesetNameToDelete) {
+    private void deleteNotesetLineFromFileByName(String notesetNameToDelete) {
         String tempNoteFile = "noteSets/temp.txt";
         Boolean delSuccesful = false;
         try (BufferedReader reader = new BufferedReader(new FileReader(userNotesetPath));
