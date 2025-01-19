@@ -1,5 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Arrays;
 
 public class DeleteNote extends JFrame {
     JComboBox<String> dropdown1;
@@ -55,10 +62,87 @@ public class DeleteNote extends JFrame {
 
     private void addListeners() {
         cancelButton.addActionListener(e -> dispose());
-        deleteButton.addActionListener(e -> {
-            String selectedNote = (String) dropdown1.getSelectedItem();
-            delString = selectedNote;
-            dispose();
+        deleteButton.addActionListener(e -> {deleteButtonListenFunction();
         });
+    }
+
+    private void deleteButtonListenFunction() {
+        String delString = (String) dropdown1.getSelectedItem();
+        if (!delString.equals("")) {
+            deleteNoteLineFromFile(delString);
+            deleteNotesetLineWithNoteFromFile(delString);
+        }
+        dispose();
+    }
+
+    private void deleteNoteLineFromFile(String delString) {
+        String tempNoteFile = "notes/temp.txt";
+        Boolean delSuccesful = false;
+        try (BufferedReader reader = new BufferedReader(new FileReader(parentFrame.userNotesPath));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(tempNoteFile))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (!line.equals(delString)) {
+                    writer.write(line + "\n");
+                } else System.out.println("Deleted note: " + delString);
+            }
+            delSuccesful = true;
+        } catch (IOException ex) {
+            // I don't know how to test this, but should be alright I guess(?)
+            JOptionPane.showMessageDialog(null, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        if (delSuccesful) {
+            try {
+                File OGfile = new File(parentFrame.userNotesPath);
+                File newFile = new File(tempNoteFile);
+                OGfile.delete();
+                newFile.renameTo(OGfile);
+            } catch (Exception ex) {
+                // I don't know how to test this, but should be alright I guess(?)
+                JOptionPane.showMessageDialog(null, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+
+    private void deleteNotesetLineWithNoteFromFile(String delString) {
+        String delNoteName = String.join(" ", Arrays.copyOf(delString.split(" "), delString.split(" ").length - 1));
+        String tempNotesetFile = "noteSets/temp.txt";
+        Boolean delSuccesful = false;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(parentFrame.userNotesetPath));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(tempNotesetFile))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                Boolean delLine = false;
+                String[] notesInNoteset = line.split(", ");
+                for (int i=1; i<notesInNoteset.length; i++) {
+                    if (notesInNoteset[i].equals(delNoteName)) {
+                        delLine = true;
+                    }
+                }
+                if (!delLine) {
+                    writer.write(line + "\n");
+                } else System.out.println("Deleted stuff: " + delNoteName);
+            }
+
+
+            delSuccesful = true;
+        } catch (IOException ex) {
+            // I don't know how to test this, but should be alright I guess(?)
+            JOptionPane.showMessageDialog(null, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        if (delSuccesful) {
+            try {
+                File OGfile = new File(parentFrame.userNotesetPath);
+                File newFile = new File(tempNotesetFile);
+                OGfile.delete();
+                newFile.renameTo(OGfile);
+            } catch (Exception ex) {
+                // I don't know how to test this, but should be alright I guess(?)
+                JOptionPane.showMessageDialog(null, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
 }

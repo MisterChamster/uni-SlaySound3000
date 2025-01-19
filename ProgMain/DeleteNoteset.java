@@ -1,5 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class DeleteNoteset extends JFrame {
     JComboBox<String> dropdown1;
@@ -7,7 +13,7 @@ public class DeleteNoteset extends JFrame {
     UserInterface parentFrame;
     String[] userNotesetArray;
 
-    String delString = "";
+    // String delString = "";
 
     public DeleteNoteset(UserInterface parentFrame) {
         super("Delete user chord");
@@ -59,10 +65,44 @@ public class DeleteNoteset extends JFrame {
 
     private void addListeners() {
         cancelButton.addActionListener(e -> dispose());
-        deleteButton.addActionListener(e -> {
-            String selectedNotesetName = (String) dropdown1.getSelectedItem();
-            delString = selectedNotesetName;
-            dispose();
-        });
+        deleteButton.addActionListener(e -> {deleteButtonListenFunction();});
+    }
+
+    private void deleteButtonListenFunction() {
+        String delString = (String) dropdown1.getSelectedItem();
+        if (!delString.equals("")) {
+            deleteNotesetLineFromFileByName(delString);
+        }
+        dispose();
+    }
+
+    private void deleteNotesetLineFromFileByName(String notesetNameToDelete) {
+        String tempNoteFile = "noteSets/temp.txt";
+        Boolean delSuccesful = false;
+        try (BufferedReader reader = new BufferedReader(new FileReader(parentFrame.userNotesetPath));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(tempNoteFile))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String notesetName = line.split(", ")[0];
+                if (!notesetName.equals(notesetNameToDelete)) {
+                    writer.write(line + "\n");
+                } else System.out.println("Deleted note: " + notesetNameToDelete);
+            }
+            delSuccesful = true;
+        } catch (IOException ex) {
+            // I don't know how to test this, but should be alright I guess(?)
+            JOptionPane.showMessageDialog(null, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        if (delSuccesful) {
+            try {
+                File OGfile = new File(parentFrame.userNotesetPath);
+                File newFile = new File(tempNoteFile);
+                OGfile.delete();
+                newFile.renameTo(OGfile);
+            } catch (Exception ex) {
+                // I don't know how to test this, but should be alright I guess(?)
+                JOptionPane.showMessageDialog(null, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
 }
