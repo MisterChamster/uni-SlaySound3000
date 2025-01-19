@@ -18,5 +18,6 @@ public class prog{
         // // chord1.printNoteArray();
 
         // chord1.playSound();
+        // WavFileSaver.saveWavFile(chord1.sampleArray, 44100, 8);
     }
 }
