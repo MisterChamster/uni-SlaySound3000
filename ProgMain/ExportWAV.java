@@ -20,7 +20,7 @@ public class ExportWAV extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(500, 350);
         setLayout(new BorderLayout(15, 15));
-        setLocationRelativeTo(parentFrame); 
+        setLocationRelativeTo(parentFrame);
 
         JPanel mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 10, 15));
@@ -29,7 +29,7 @@ public class ExportWAV extends JFrame {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.weightx = 1.0;
 
-        gbc.insets = new Insets(9, 10, 9, 10); 
+        gbc.insets = new Insets(9, 10, 9, 10);
         gbc.gridx = 0;
         gbc.gridy = 0;
         mainPanel.add(new JLabel("Basic notes:"), gbc);
@@ -39,7 +39,7 @@ public class ExportWAV extends JFrame {
         dropdown1 = new JComboBox<>(tempArray);
         mainPanel.add(dropdown1, gbc);
 
-        gbc.insets = new Insets(9, 10, 9, 10); 
+        gbc.insets = new Insets(9, 10, 9, 10);
         gbc.gridx = 0;
         gbc.gridy = 1;
         mainPanel.add(new JLabel("User notes:"), gbc);
@@ -67,7 +67,7 @@ public class ExportWAV extends JFrame {
         dropdown4 = new JComboBox<>(tempArray);
         mainPanel.add(dropdown4, gbc);
 
-        gbc.insets = new Insets(9, 10, 3, 10); 
+        gbc.insets = new Insets(9, 10, 3, 10);
         gbc.gridx = 0;
         gbc.gridy = 4;
         mainPanel.add(new JLabel("Duration:"), gbc);
@@ -91,32 +91,58 @@ public class ExportWAV extends JFrame {
 
     private void addListeners() {
         cancelButton.addActionListener(e -> dispose());
-        exportButton.addActionListener(e -> {exportButtonListenFunction();});
+        exportButton.addActionListener(e -> {
+            exportButtonListenFunction();
+        });
         dropdown1.addActionListener(e -> {
             if (dropdown1.getSelectedItem() != " --empty-- ") {
-                if (dropdown2.getSelectedItem() != " --empty-- ") dropdown2.setSelectedIndex(0); 
-                if (dropdown3.getSelectedItem() != " --empty-- ") dropdown3.setSelectedIndex(0); 
-                if (dropdown4.getSelectedItem() != " --empty-- ") dropdown4.setSelectedIndex(0);};});
+                if (dropdown2.getSelectedItem() != " --empty-- ")
+                    dropdown2.setSelectedIndex(0);
+                if (dropdown3.getSelectedItem() != " --empty-- ")
+                    dropdown3.setSelectedIndex(0);
+                if (dropdown4.getSelectedItem() != " --empty-- ")
+                    dropdown4.setSelectedIndex(0);
+            }
+            ;
+        });
         dropdown2.addActionListener(e -> {
             if (dropdown2.getSelectedItem() != " --empty-- ") {
-                if (dropdown1.getSelectedItem() != " --empty-- ") dropdown1.setSelectedIndex(0); 
-                if (dropdown3.getSelectedItem() != " --empty-- ") dropdown3.setSelectedIndex(0); 
-                if (dropdown4.getSelectedItem() != " --empty-- ") dropdown4.setSelectedIndex(0);};});
+                if (dropdown1.getSelectedItem() != " --empty-- ")
+                    dropdown1.setSelectedIndex(0);
+                if (dropdown3.getSelectedItem() != " --empty-- ")
+                    dropdown3.setSelectedIndex(0);
+                if (dropdown4.getSelectedItem() != " --empty-- ")
+                    dropdown4.setSelectedIndex(0);
+            }
+            ;
+        });
         dropdown3.addActionListener(e -> {
             if (dropdown3.getSelectedItem() != " --empty-- ") {
-                if (dropdown1.getSelectedItem() != " --empty-- ") dropdown1.setSelectedIndex(0); 
-                if (dropdown2.getSelectedItem() != " --empty-- ") dropdown2.setSelectedIndex(0); 
-                if (dropdown4.getSelectedItem() != " --empty-- ") dropdown4.setSelectedIndex(0);};});
+                if (dropdown1.getSelectedItem() != " --empty-- ")
+                    dropdown1.setSelectedIndex(0);
+                if (dropdown2.getSelectedItem() != " --empty-- ")
+                    dropdown2.setSelectedIndex(0);
+                if (dropdown4.getSelectedItem() != " --empty-- ")
+                    dropdown4.setSelectedIndex(0);
+            }
+            ;
+        });
         dropdown4.addActionListener(e -> {
             if (dropdown4.getSelectedItem() != " --empty-- ") {
-                if (dropdown1.getSelectedItem() != " --empty-- ") dropdown1.setSelectedIndex(0); 
-                if (dropdown2.getSelectedItem() != " --empty-- ") dropdown2.setSelectedIndex(0); 
-                if (dropdown3.getSelectedItem() != " --empty-- ") dropdown3.setSelectedIndex(0);};});
+                if (dropdown1.getSelectedItem() != " --empty-- ")
+                    dropdown1.setSelectedIndex(0);
+                if (dropdown2.getSelectedItem() != " --empty-- ")
+                    dropdown2.setSelectedIndex(0);
+                if (dropdown3.getSelectedItem() != " --empty-- ")
+                    dropdown3.setSelectedIndex(0);
+            }
+            ;
+        });
     }
 
     private void exportButtonListenFunction() {
-        if(durationField.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Duration field is empty!", "Error", JOptionPane.ERROR_MESSAGE);
+        if (durationField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(parentFrame, "Duration field is empty!", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         String durationText = durationField.getText();
@@ -125,19 +151,19 @@ public class ExportWAV extends JFrame {
         try {
             duration = Double.parseDouble(durationText);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Duration must be a number!", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(parentFrame, "Duration must be a number!", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
-
 
         String soundName = (String) dropdown1.getSelectedItem();
         if (!soundName.equals(" --empty-- ")) {
             SoundNote dd1note = new SoundNote(
-                                              parentFrame.mainSampleRate,
-                                              parentFrame.mainSampleSize,
-                                              duration,
-                                              parentFrame.getNoteFreqFromFile(soundName, "basic"),
-                                              soundName);
+                    parentFrame.mainSampleRate,
+                    parentFrame.mainSampleSize,
+                    duration,
+                    parentFrame.getNoteFreqFromFile(soundName, "basic"),
+                    soundName);
             dd1note.prepareToPlay();
             WavFileSaver.saveWavFile(dd1note);
             return;
@@ -145,32 +171,31 @@ public class ExportWAV extends JFrame {
         soundName = (String) dropdown2.getSelectedItem();
         if (!soundName.equals(" --empty-- ")) {
             SoundNote dd2note = new SoundNote(parentFrame.mainSampleRate,
-                                              parentFrame.mainSampleSize,
-                                              duration,
-                                              parentFrame.getNoteFreqFromFile(soundName, "user"),
-                                              soundName);
+                    parentFrame.mainSampleSize,
+                    duration,
+                    parentFrame.getNoteFreqFromFile(soundName, "user"),
+                    soundName);
             dd2note.prepareToPlay();
             WavFileSaver.saveWavFile(dd2note);
             return;
         }
 
-
         soundName = (String) dropdown3.getSelectedItem();
         if (!soundName.equals(" --empty-- ")) {
             String[] noteNames = parentFrame.getNotesetNoteNamesFromFile(soundName, "basic");
             SoundNote[] noteArray = new SoundNote[noteNames.length];
-            for (int i=0; i<noteArray.length; i++){
+            for (int i = 0; i < noteArray.length; i++) {
                 noteArray[i] = new SoundNote(parentFrame.mainSampleRate,
-                                             parentFrame.mainSampleSize,
-                                             duration,
-                                             parentFrame.getNoteFreqFromFile(noteNames[i], "basic"),
-                                             soundName);
+                        parentFrame.mainSampleSize,
+                        duration,
+                        parentFrame.getNoteFreqFromFile(noteNames[i], "basic"),
+                        soundName);
             }
             SoundNoteSet dd1noteset = new SoundNoteSet(parentFrame.mainSampleRate,
-                                                       parentFrame.mainSampleSize,
-                                                       duration,
-                                                       noteArray,
-                                                       soundName);
+                    parentFrame.mainSampleSize,
+                    duration,
+                    noteArray,
+                    soundName);
             dd1noteset.prepareToPlay();
             WavFileSaver.saveWavFile(dd1noteset);
             return;
@@ -179,44 +204,49 @@ public class ExportWAV extends JFrame {
         if (!soundName.equals(" --empty-- ")) {
             String[] noteNames = parentFrame.getNotesetNoteNamesFromFile(soundName, "user");
             SoundNote[] noteArray = new SoundNote[noteNames.length];
-            for (int i=0; i<noteArray.length; i++){
+            for (int i = 0; i < noteArray.length; i++) {
                 float freq = parentFrame.getNoteFreqFromFile(noteNames[i], "user");
-                if (freq == 0) freq = parentFrame.getNoteFreqFromFile(noteNames[i], "basic");
+                if (freq == 0)
+                    freq = parentFrame.getNoteFreqFromFile(noteNames[i], "basic");
                 noteArray[i] = new SoundNote(parentFrame.mainSampleRate,
-                                             parentFrame.mainSampleSize,
-                                             duration,
-                                             freq,
-                                             soundName);
+                        parentFrame.mainSampleSize,
+                        duration,
+                        freq,
+                        soundName);
             }
             SoundNoteSet dd2noteset = new SoundNoteSet(parentFrame.mainSampleRate,
-                                                       parentFrame.mainSampleSize,
-                                                       duration,
-                                                       noteArray,
-                                                       soundName);
+                    parentFrame.mainSampleSize,
+                    duration,
+                    noteArray,
+                    soundName);
             dd2noteset.prepareToPlay();
             WavFileSaver.saveWavFile(dd2noteset);
             return;
         }
-        JOptionPane.showMessageDialog(null, "Choose a sound to export it.", "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(parentFrame, "Choose a sound to export.", "Error", JOptionPane.ERROR_MESSAGE);
     }
 
     private String[] getNoteNamesArrWithEmpty(String arg) {
         String[] loadArr = new String[0];
-        if (arg.equals("basic")) loadArr = parentFrame.getBasicNoteArray();
-        if (arg.equals("user")) loadArr = parentFrame.getUserNoteArray();
+        if (arg.equals("basic"))
+            loadArr = parentFrame.getBasicNoteArray();
+        if (arg.equals("user"))
+            loadArr = parentFrame.getUserNoteArray();
 
         String[] tempArr = new String[loadArr.length + 1];
         tempArr[0] = " --empty-- ";
         for (int i = 0; i < loadArr.length; i++) {
-            tempArr[i + 1] = String.join(" ", Arrays.copyOf(loadArr[i].split(" "), loadArr[i].split(" ").length-1));
+            tempArr[i + 1] = String.join(" ", Arrays.copyOf(loadArr[i].split(" "), loadArr[i].split(" ").length - 1));
         }
         return tempArr;
     }
 
     private String[] getNotesetNamesArrWithEmpty(String arg) {
         String[] loadArr = new String[0];
-        if (arg.equals("basic")) loadArr = parentFrame.getBasicNotesetArray();
-        if (arg.equals("user")) loadArr = parentFrame.getUserNotesetArray();
+        if (arg.equals("basic"))
+            loadArr = parentFrame.getBasicNotesetArray();
+        if (arg.equals("user"))
+            loadArr = parentFrame.getUserNotesetArray();
 
         String[] tempArr = new String[loadArr.length + 1];
         tempArr[0] = " --empty-- ";

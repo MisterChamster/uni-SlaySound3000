@@ -26,15 +26,15 @@ public class DeleteNote extends JFrame {
 
     private void initialize() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(350, 170); 
+        setSize(350, 170);
         setLayout(new BorderLayout(15, 15));
         setLocationRelativeTo(parentFrame);
 
         JPanel mainPanel = new JPanel(new GridBagLayout());
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(25, 15, 15, 12)); 
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(25, 15, 15, 12));
 
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10); 
+        gbc.insets = new Insets(10, 10, 10, 10);
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.weightx = 1.0;
 
@@ -62,7 +62,8 @@ public class DeleteNote extends JFrame {
 
     private void addListeners() {
         cancelButton.addActionListener(e -> dispose());
-        deleteButton.addActionListener(e -> {deleteButtonListenFunction();
+        deleteButton.addActionListener(e -> {
+            deleteButtonListenFunction();
         });
     }
 
@@ -79,17 +80,18 @@ public class DeleteNote extends JFrame {
         String tempNoteFile = "notes/temp.txt";
         Boolean delSuccesful = false;
         try (BufferedReader reader = new BufferedReader(new FileReader(parentFrame.userNotesPath));
-             BufferedWriter writer = new BufferedWriter(new FileWriter(tempNoteFile))) {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(tempNoteFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 if (!line.equals(delString)) {
                     writer.write(line + "\n");
-                } else System.out.println("Deleted note: " + delString);
+                } else
+                    System.out.println("Deleted note: " + delString);
             }
             delSuccesful = true;
         } catch (IOException ex) {
             // I don't know how to test this, but should be alright I guess(?)
-            JOptionPane.showMessageDialog(null, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(parentFrame, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         if (delSuccesful) {
@@ -100,11 +102,10 @@ public class DeleteNote extends JFrame {
                 newFile.renameTo(OGfile);
             } catch (Exception ex) {
                 // I don't know how to test this, but should be alright I guess(?)
-                JOptionPane.showMessageDialog(null, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(parentFrame, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
-
 
     private void deleteNotesetLineWithNoteFromFile(String delString) {
         String delNoteName = String.join(" ", Arrays.copyOf(delString.split(" "), delString.split(" ").length - 1));
@@ -112,26 +113,26 @@ public class DeleteNote extends JFrame {
         Boolean delSuccesful = false;
 
         try (BufferedReader reader = new BufferedReader(new FileReader(parentFrame.userNotesetPath));
-             BufferedWriter writer = new BufferedWriter(new FileWriter(tempNotesetFile))) {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(tempNotesetFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 Boolean delLine = false;
                 String[] notesInNoteset = line.split(", ");
-                for (int i=1; i<notesInNoteset.length; i++) {
+                for (int i = 1; i < notesInNoteset.length; i++) {
                     if (notesInNoteset[i].equals(delNoteName)) {
                         delLine = true;
                     }
                 }
                 if (!delLine) {
                     writer.write(line + "\n");
-                } else System.out.println("Deleted stuff: " + delNoteName);
+                } else
+                    System.out.println("Deleted stuff: " + delNoteName);
             }
-
 
             delSuccesful = true;
         } catch (IOException ex) {
             // I don't know how to test this, but should be alright I guess(?)
-            JOptionPane.showMessageDialog(null, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(parentFrame, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
         }
         if (delSuccesful) {
             try {
@@ -141,7 +142,7 @@ public class DeleteNote extends JFrame {
                 newFile.renameTo(OGfile);
             } catch (Exception ex) {
                 // I don't know how to test this, but should be alright I guess(?)
-                JOptionPane.showMessageDialog(null, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(parentFrame, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

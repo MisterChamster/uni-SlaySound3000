@@ -25,20 +25,20 @@ public class DeleteNoteset extends JFrame {
 
     private void initialize() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(350, 170); 
+        setSize(350, 170);
         setLayout(new BorderLayout(15, 15));
         setLocationRelativeTo(parentFrame);
 
-        for (int i=0; i<userNotesetArray.length; i++) {
+        for (int i = 0; i < userNotesetArray.length; i++) {
             String[] temp = userNotesetArray[i].split(", ");
             userNotesetArray[i] = temp[0];
         }
 
         JPanel mainPanel = new JPanel(new GridBagLayout());
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(25, 15, 15, 12)); 
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(25, 15, 15, 12));
 
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10); 
+        gbc.insets = new Insets(10, 10, 10, 10);
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.weightx = 1.0;
 
@@ -65,7 +65,9 @@ public class DeleteNoteset extends JFrame {
 
     private void addListeners() {
         cancelButton.addActionListener(e -> dispose());
-        deleteButton.addActionListener(e -> {deleteButtonListenFunction();});
+        deleteButton.addActionListener(e -> {
+            deleteButtonListenFunction();
+        });
     }
 
     private void deleteButtonListenFunction() {
@@ -80,18 +82,19 @@ public class DeleteNoteset extends JFrame {
         String tempNoteFile = "noteSets/temp.txt";
         Boolean delSuccesful = false;
         try (BufferedReader reader = new BufferedReader(new FileReader(parentFrame.userNotesetPath));
-             BufferedWriter writer = new BufferedWriter(new FileWriter(tempNoteFile))) {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(tempNoteFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String notesetName = line.split(", ")[0];
                 if (!notesetName.equals(notesetNameToDelete)) {
                     writer.write(line + "\n");
-                } else System.out.println("Deleted note: " + notesetNameToDelete);
+                } else
+                    System.out.println("Deleted note: " + notesetNameToDelete);
             }
             delSuccesful = true;
         } catch (IOException ex) {
             // I don't know how to test this, but should be alright I guess(?)
-            JOptionPane.showMessageDialog(null, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(parentFrame, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
         }
         if (delSuccesful) {
             try {
@@ -101,7 +104,7 @@ public class DeleteNoteset extends JFrame {
                 newFile.renameTo(OGfile);
             } catch (Exception ex) {
                 // I don't know how to test this, but should be alright I guess(?)
-                JOptionPane.showMessageDialog(null, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(parentFrame, "Exception " + ex, "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

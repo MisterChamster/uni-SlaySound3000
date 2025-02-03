@@ -29,22 +29,22 @@ public class CreateChord extends JFrame {
 
     private void initialize() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(600, 400); 
-        setLayout(new BorderLayout(15, 15)); 
-        setLocationRelativeTo(null); 
+        setSize(600, 400);
+        setLayout(new BorderLayout(15, 15));
+        setLocationRelativeTo(parentFrame);
 
-        inputPanel = new JPanel(new GridBagLayout()); 
-        inputPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15)); 
+        inputPanel = new JPanel(new GridBagLayout());
+        inputPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
-        gbc.fill = GridBagConstraints.HORIZONTAL; 
+        gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.weightx = 1.0;
 
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 1;
-        inputPanel.add(new JLabel("Name:", SwingConstants.CENTER), gbc); 
+        inputPanel.add(new JLabel("Name:", SwingConstants.CENTER), gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 0;
@@ -90,8 +90,12 @@ public class CreateChord extends JFrame {
     }
 
     private void addListeners() {
-        discardButton.addActionListener(e -> {dispose();});
-        createButton.addActionListener(e -> {createFunction();});
+        discardButton.addActionListener(e -> {
+            dispose();
+        });
+        createButton.addActionListener(e -> {
+            createFunction();
+        });
         addNoteButton.addActionListener(e -> openAddNoteToNoteSetFrame());
         deleteNoteButton.addActionListener(e -> openDeleteNoteToNoteSetFrame());
     }
@@ -100,25 +104,25 @@ public class CreateChord extends JFrame {
         String createdNotesetName = chordNameField.getText();
 
         if (createdNotesetName.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Chord name cannot be empty.",
+            JOptionPane.showMessageDialog(parentFrame, "Chord name cannot be empty.",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         if (createdNotesetName.equals(" --empty-- ") || createdNotesetName.equals(" --used-- ")) {
-            JOptionPane.showMessageDialog(null, "Chord name cannot be --empty-- or --used--.",
+            JOptionPane.showMessageDialog(parentFrame, "Chord name cannot be --empty-- or --used--.",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         if (createdNotesetName.contains(",")) {
-            JOptionPane.showMessageDialog(null, "Chord name cannot contain commas.",
+            JOptionPane.showMessageDialog(parentFrame, "Chord name cannot contain commas.",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         if (getNotesUsedArr().length < 2) {
-            JOptionPane.showMessageDialog(null, "You must add at least two notes to create a chord.",
+            JOptionPane.showMessageDialog(parentFrame, "You must add at least two notes to create a chord.",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         } else {
@@ -127,41 +131,47 @@ public class CreateChord extends JFrame {
                 String tempName, tempFreq;
                 String[] divider = tempArr[i].split(" ");
                 tempFreq = divider[divider.length - 1];
-                divider = Arrays.copyOf(divider, divider.length-1);
+                divider = Arrays.copyOf(divider, divider.length - 1);
                 tempName = String.join(" ", divider);
                 createdNoteset.addNote(new SoundNote(tempName, Float.parseFloat(tempFreq)));
             }
         }
 
-        //START HERE
+        // START HERE
         String[] basicNotesetArray = parentFrame.getBasicNotesetArray();
         String[] userNotesetArray = parentFrame.getUserNotesetArray();
 
         if (parentFrame.isNotesetNameInNotesetArray(createdNotesetName, basicNotesetArray)) {
-            JOptionPane.showMessageDialog(null, "Chord named " + createdNotesetName + " already exists in basicNotesets.txt",
+            JOptionPane.showMessageDialog(parentFrame,
+                    "Chord named " + createdNotesetName + " already exists in basicNotesets.txt",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         if (parentFrame.isNotesetNameInNotesetArray(createdNotesetName, userNotesetArray)) {
-            JOptionPane.showMessageDialog(null, "Chord named " + createdNotesetName + " already exists in userNotesets.txt",
+            JOptionPane.showMessageDialog(parentFrame,
+                    "Chord named " + createdNotesetName + " already exists in userNotesets.txt",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         String[] notesInCreatedNoteset = new String[createdNoteset.noteArray.length];
-        for (int i=0; i<createdNoteset.noteArray.length; i++) {
+        for (int i = 0; i < createdNoteset.noteArray.length; i++) {
             notesInCreatedNoteset[i] = createdNoteset.noteArray[i].soundName;
         }
 
         if (parentFrame.doesNotesetWithTheseNotesExist(notesInCreatedNoteset, basicNotesetArray)) {
-            JOptionPane.showMessageDialog(null, "Chord with notes " + Arrays.toString(notesInCreatedNoteset) + " already exists in basicNotesets.txt",
+            JOptionPane.showMessageDialog(parentFrame,
+                    "Chord with notes " + Arrays.toString(notesInCreatedNoteset)
+                            + " already exists in basicNotesets.txt",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         if (parentFrame.doesNotesetWithTheseNotesExist(notesInCreatedNoteset, userNotesetArray)) {
-            JOptionPane.showMessageDialog(null, "Chord with notes " + Arrays.toString(notesInCreatedNoteset) + " already exists in userNotesets.txt",
+            JOptionPane.showMessageDialog(parentFrame,
+                    "Chord with notes " + Arrays.toString(notesInCreatedNoteset)
+                            + " already exists in userNotesets.txt",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -179,7 +189,8 @@ public class CreateChord extends JFrame {
 
     public void sortNotesUsedArr() {
         String[] tempArr = getNotesUsedArr();
-        if (tempArr.length <= 1) return;
+        if (tempArr.length <= 1)
+            return;
         Float[] noteFrequencies = new Float[tempArr.length];
 
         for (int i = 0; i < tempArr.length; i++) {
@@ -187,9 +198,9 @@ public class CreateChord extends JFrame {
             noteFrequencies[i] = Float.parseFloat(divider[divider.length - 1]);
         }
 
-        for (int i=0; i<noteFrequencies.length-1; i++) {
+        for (int i = 0; i < noteFrequencies.length - 1; i++) {
             float minF;
-            for (int j=i+1; j<noteFrequencies.length; j++) {
+            for (int j = i + 1; j < noteFrequencies.length; j++) {
                 if (noteFrequencies[j] < noteFrequencies[i]) {
                     minF = noteFrequencies[j];
                     noteFrequencies[j] = noteFrequencies[i];
@@ -209,8 +220,10 @@ public class CreateChord extends JFrame {
         String[] retArr = new String[tempArr.length - 1];
         int index = 0;
         while (index < tempArr.length) {
-            if (!tempArr[index].equals(inputNote)) {retArr[index] = tempArr[index];}
-            else break;
+            if (!tempArr[index].equals(inputNote)) {
+                retArr[index] = tempArr[index];
+            } else
+                break;
             index++;
         }
         index++;
