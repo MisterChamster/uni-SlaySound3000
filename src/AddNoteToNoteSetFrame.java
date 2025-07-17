@@ -1,17 +1,16 @@
-import java.awt.*;     //FOR TESTING
+import java.awt.*; //FOR TESTING
 import java.awt.event.ActionListener;
-import javax.swing.*;     //FOR TESTING
+import javax.swing.*; //FOR TESTING
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
 import java.util.Arrays;
 
-
 public class AddNoteToNoteSetFrame extends JFrame {
     private CreateChord parentFrame;
     private JComboBox<String> basicNotesDropdown;
     private JComboBox<String> userNotesDropdown;
-    private JPanel inputPanel = new JPanel(new GridLayout(2,2,5,5));
+    private JPanel inputPanel = new JPanel(new GridLayout(2, 2, 5, 5));
     private JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
     private JButton cancelButton = new JButton("Cancel");
     private JButton addButton = new JButton("Add");
@@ -27,7 +26,6 @@ public class AddNoteToNoteSetFrame extends JFrame {
         this.userNoteArray = parentFrame.parentFrame.getUserNoteArray();
         initialize();
     }
-
 
     private void initialize() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -51,7 +49,7 @@ public class AddNoteToNoteSetFrame extends JFrame {
 
         String[] tempStringArr = new String[1 + basicNoteArray.length];
         tempStringArr[0] = "  --empty--  ";
-        
+
         for (int i = 0; i < basicNoteArray.length; i++) {
             wasNoteUsedFlag = false;
             if (parentFrame.getNotesUsedArr() != null) {
@@ -61,8 +59,10 @@ public class AddNoteToNoteSetFrame extends JFrame {
                     }
                 }
             }
-            if (!wasNoteUsedFlag) tempStringArr[i + 1] = basicNoteArray[i];
-            else tempStringArr[i + 1] = "  --used--  ";
+            if (!wasNoteUsedFlag)
+                tempStringArr[i + 1] = basicNoteArray[i];
+            else
+                tempStringArr[i + 1] = "  --used--  ";
         }
         basicNotesDropdown = new JComboBox<>(tempStringArr);
 
@@ -77,11 +77,12 @@ public class AddNoteToNoteSetFrame extends JFrame {
                     }
                 }
             }
-            if (!wasNoteUsedFlag) tempStringArr[i + 1] = userNoteArray[i];
-            else tempStringArr[i + 1] = "  --used--  ";
+            if (!wasNoteUsedFlag)
+                tempStringArr[i + 1] = userNoteArray[i];
+            else
+                tempStringArr[i + 1] = "  --used--  ";
         }
         userNotesDropdown = new JComboBox<>(tempStringArr);
-
 
         inputPanel.add(new JLabel("Basic Notes:"));
         inputPanel.add(basicNotesDropdown);
@@ -95,17 +96,21 @@ public class AddNoteToNoteSetFrame extends JFrame {
             String selectedBasicNote = (String) basicNotesDropdown.getSelectedItem();
             String selectedUserNote = (String) userNotesDropdown.getSelectedItem();
             String currentNotes = notesUsedField.getText();
-            String[] evilArr = new String[] {"  --empty--  ", "  --used--  "};
-            
-            if (!Arrays.asList(evilArr).contains(selectedBasicNote) || 
-                !Arrays.asList(evilArr).contains(selectedUserNote)) {
+            String[] evilArr = new String[] { "  --empty--  ", "  --used--  " };
+
+            if (!Arrays.asList(evilArr).contains(selectedBasicNote) ||
+                    !Arrays.asList(evilArr).contains(selectedUserNote)) {
 
                 if (!selectedBasicNote.equals("  --empty--  ") && !selectedBasicNote.equals("  --used--  ")) {
-                    if (currentNotes.length() > 0) {currentNotes += ", ";}
+                    if (currentNotes.length() > 0) {
+                        currentNotes += ", ";
+                    }
                     currentNotes += selectedBasicNote;
                 }
                 if (!selectedUserNote.equals("  --empty--  ") && !selectedUserNote.equals("  --used--  ")) {
-                    if (currentNotes.length() > 0) {currentNotes += ", ";}
+                    if (currentNotes.length() > 0) {
+                        currentNotes += ", ";
+                    }
                     currentNotes += selectedUserNote;
                 }
 

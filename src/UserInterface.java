@@ -12,8 +12,8 @@ import java.io.*;
 import java.io.File.*;
 import java.util.*;
 
-public class UserInterface extends JFrame{
-    //UI variables
+public class UserInterface extends JFrame {
+    // UI variables
     private JButton createNoteButton = new JButton("Create Note");
     private JButton createChordButton = new JButton("Create Chord");
     private JButton exportToWavButton = new JButton("Export to .wav");
@@ -23,11 +23,11 @@ public class UserInterface extends JFrame{
     private JButton playSoundButton = new JButton("Play Sound");
     private JLabel sampleSizeLabel = new JLabel("Sample Size: ");
 
-    private JComboBox<String> sampleSizeDropdown = new JComboBox<>(new String[]{"8-bit", "16-bit"});
+    private JComboBox<String> sampleSizeDropdown = new JComboBox<>(new String[] { "8-bit", "16-bit" });
     private JLabel sampleRateLabel = new JLabel("Sample Rate: ");
     private JTextField sampleRateField = new JTextField(10);
 
-    //Backend variables
+    // Backend variables
     int mainSampleSize = 8;
     float mainSampleRate = 44100;
     String basicNotesPath = "notes/basicNotes.txt";
@@ -41,28 +41,28 @@ public class UserInterface extends JFrame{
         addListeners();
     }
 
-    private void initialize(){
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+    private void initialize() {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
-        setLayout(new BorderLayout()); 
+        setLayout(new BorderLayout());
         setLocationRelativeTo(null);
-        
+
         JPanel mainPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
-        gbc.anchor = GridBagConstraints.CENTER; 
-        
-        JPanel settingsPanel = new JPanel(new GridLayout(3, 2, 10, 10)); 
+        gbc.anchor = GridBagConstraints.CENTER;
+
+        JPanel settingsPanel = new JPanel(new GridLayout(3, 2, 10, 10));
         settingsPanel.setBorder(BorderFactory.createTitledBorder("Settings"));
         settingsPanel.add(sampleSizeLabel);
         settingsPanel.add(sampleSizeDropdown);
         settingsPanel.add(sampleRateLabel);
         sampleRateField.setText(String.valueOf(mainSampleRate));
         settingsPanel.add(sampleRateField);
-        settingsPanel.add(new JLabel()); 
+        settingsPanel.add(new JLabel());
         settingsPanel.add(setBasicSampleRateButton);
 
-        settingsPanel.setPreferredSize(new Dimension(400, 150)); 
+        settingsPanel.setPreferredSize(new Dimension(400, 150));
 
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -77,7 +77,7 @@ public class UserInterface extends JFrame{
         actionsPanel.add(deleteChordButton);
         actionsPanel.add(exportToWavButton);
 
-        actionsPanel.setPreferredSize(new Dimension(400, 150)); 
+        actionsPanel.setPreferredSize(new Dimension(400, 150));
 
         gbc.gridy = 1;
         mainPanel.add(actionsPanel, gbc);
@@ -85,23 +85,37 @@ public class UserInterface extends JFrame{
     }
 
     private void addListeners() {
-        createNoteButton.addActionListener(e -> {createNoteListenFunction();});
+        createNoteButton.addActionListener(e -> {
+            createNoteListenFunction();
+        });
 
-        createChordButton.addActionListener(e -> {createChordListenFunction();});
+        createChordButton.addActionListener(e -> {
+            createChordListenFunction();
+        });
 
-        exportToWavButton.addActionListener(e -> {exportToWavListenFunction();});
+        exportToWavButton.addActionListener(e -> {
+            exportToWavListenFunction();
+        });
 
-        deleteNoteButton.addActionListener(e -> {deleteNoteListenFunction();});
+        deleteNoteButton.addActionListener(e -> {
+            deleteNoteListenFunction();
+        });
 
-        deleteChordButton.addActionListener(e -> {deleteChordListenFunction();});
+        deleteChordButton.addActionListener(e -> {
+            deleteChordListenFunction();
+        });
 
-        playSoundButton.addActionListener(e -> {playSoundListenFunction();});
+        playSoundButton.addActionListener(e -> {
+            playSoundListenFunction();
+        });
 
-        //should recompute all notes and chords
+        // should recompute all notes and chords
         sampleSizeDropdown.addActionListener(e -> {
             String selectedSize = (String) sampleSizeDropdown.getSelectedItem();
-            if(selectedSize.equals("8-bit")) mainSampleSize = 8;
-            else mainSampleSize = 16;
+            if (selectedSize.equals("8-bit"))
+                mainSampleSize = 8;
+            else
+                mainSampleSize = 16;
             // System.out.println("Program sample size: " + mainSampleSize);
         });
 
@@ -117,7 +131,8 @@ public class UserInterface extends JFrame{
             @Override
             public void windowClosed(WindowEvent e) {
                 if (createNoteWindow.getCreatedNote().soundName != null) {
-                    String noteToFile = createNoteWindow.getCreatedNote().soundName + " " + createNoteWindow.getCreatedNote().frequency;
+                    String noteToFile = createNoteWindow.getCreatedNote().soundName + " "
+                            + createNoteWindow.getCreatedNote().frequency;
 
                     try (FileWriter writer = new FileWriter(userNotesPath, true)) {
                         writer.write(noteToFile + "\n");
@@ -194,8 +209,6 @@ public class UserInterface extends JFrame{
         });
     }
 
-
-
     private void deleteChordListenFunction() {
         this.setEnabled(false);
         DeleteNoteset delNotesetWindow = new DeleteNoteset(this);
@@ -257,14 +270,16 @@ public class UserInterface extends JFrame{
         String[] basicNoteArray = new String[0];
 
         if (!(new File(basicNotesPath).isFile())) {
-            JOptionPane.showMessageDialog(null, "Error: Could not find file: " + basicNotesPath, "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error: Could not find file: " + basicNotesPath, "Error",
+                    JOptionPane.ERROR_MESSAGE);
             this.dispose();
             System.exit(0);
         } else {
             try {
                 basicNoteArray = loadNotesFromFile(basicNotesPath);
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Could not load basic notes. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Could not load basic notes. Error: " + e.getMessage(), "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 this.dispose();
                 System.exit(0);
             }
@@ -277,14 +292,16 @@ public class UserInterface extends JFrame{
         String[] userNoteArray = new String[0];
 
         if (!(new File(userNotesPath).isFile())) {
-            JOptionPane.showMessageDialog(null, "Error: Could not find file: " + userNotesPath, "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error: Could not find file: " + userNotesPath, "Error",
+                    JOptionPane.ERROR_MESSAGE);
             this.dispose();
             System.exit(0);
         } else {
             try {
                 userNoteArray = loadNotesFromFile(userNotesPath);
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Could not load user notes. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Could not load user notes. Error: " + e.getMessage(), "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 this.dispose();
                 System.exit(0);
             }
@@ -297,14 +314,16 @@ public class UserInterface extends JFrame{
         String[] basicNotesetArray = new String[0];
 
         if (!(new File(basicNotesetPath).isFile())) {
-            JOptionPane.showMessageDialog(null, "Error: Could not find file: " + basicNotesetPath, "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error: Could not find file: " + basicNotesetPath, "Error",
+                    JOptionPane.ERROR_MESSAGE);
             this.dispose();
             System.exit(0);
         } else {
             try {
                 basicNotesetArray = loadNotesFromFile(basicNotesetPath);
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Could not load basic noteset. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Could not load basic noteset. Error: " + e.getMessage(), "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 this.dispose();
                 System.exit(0);
             }
@@ -317,14 +336,16 @@ public class UserInterface extends JFrame{
         String[] userNotesetArray = new String[0];
 
         if (!(new File(userNotesetPath).isFile())) {
-            JOptionPane.showMessageDialog(null, "Error: Could not find file: " + userNotesetPath, "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error: Could not find file: " + userNotesetPath, "Error",
+                    JOptionPane.ERROR_MESSAGE);
             this.dispose();
             System.exit(0);
         } else {
             try {
                 userNotesetArray = loadNotesFromFile(userNotesetPath);
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Could not load user noteset. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Could not load user noteset. Error: " + e.getMessage(), "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 this.dispose();
                 System.exit(0);
             }
@@ -348,73 +369,82 @@ public class UserInterface extends JFrame{
     }
 
     public Boolean isNoteNameInNoteArray(String noteName, String[] basicNoteArray) {
-        for(String name : basicNoteArray) {
-            if(noteName.equals(name.split(" ")[0])) return true;
+        for (String name : basicNoteArray) {
+            if (noteName.equals(name.split(" ")[0]))
+                return true;
         }
         return false;
     }
 
     public Boolean isNoteFrequencyInNoteArray(float noteFrequency, String[] basicNoteArray) {
-        for(String freq : basicNoteArray) {
-            if(noteFrequency == Float.parseFloat(freq.split(" ")[1])) return true;
+        for (String freq : basicNoteArray) {
+            if (noteFrequency == Float.parseFloat(freq.split(" ")[1]))
+                return true;
         }
         return false;
     }
 
     public Boolean isNotesetNameInNotesetArray(String notesetName, String[] notesetArray) {
         String[] names = new String[notesetArray.length];
-        for(int i = 0; i < notesetArray.length; i++) {
+        for (int i = 0; i < notesetArray.length; i++) {
             names[i] = notesetArray[i].split(", ")[0];
         }
         for (String name : names) {
-            if(name.equals(notesetName)) return true;
+            if (name.equals(notesetName))
+                return true;
         }
         return false;
     }
 
     public Boolean doesNotesetWithTheseNotesExist(String[] notes, String[] notesetArray) {
         Arrays.sort(notes);
-        for(String node : notesetArray) {
+        for (String node : notesetArray) {
             String[] splitNode = node.split(", ");
-            String[] setOfNotes = new String[splitNode.length-1];
-            for (int i=1; i<splitNode.length; i++) {
-                setOfNotes[i-1] = splitNode[i];
+            String[] setOfNotes = new String[splitNode.length - 1];
+            for (int i = 1; i < splitNode.length; i++) {
+                setOfNotes[i - 1] = splitNode[i];
             }
             Arrays.sort(setOfNotes);
 
-            if (Arrays.equals(notes, setOfNotes)) return true;
+            if (Arrays.equals(notes, setOfNotes))
+                return true;
         }
         return false;
     }
 
     public float getNoteFreqFromFile(String noteName, String arg) {
         String[] loadArr = new String[0];
-        if (arg.equals("basic")) loadArr = getBasicNoteArray();
-        if (arg.equals("user")) loadArr = getUserNoteArray();
+        if (arg.equals("basic"))
+            loadArr = getBasicNoteArray();
+        if (arg.equals("user"))
+            loadArr = getUserNoteArray();
 
         for (String noteLine : loadArr) {
             String[] splitNote = noteLine.split(" ");
-            String strFreq = splitNote[splitNote.length-1];
+            String strFreq = splitNote[splitNote.length - 1];
             float freq = Float.parseFloat(strFreq);
 
-            splitNote = Arrays.copyOf(splitNote, splitNote.length-1);
-            if (noteName.equals(String.join(" ", splitNote))) return freq;
+            splitNote = Arrays.copyOf(splitNote, splitNote.length - 1);
+            if (noteName.equals(String.join(" ", splitNote)))
+                return freq;
         }
         return 0.0f;
     }
 
     public String[] getNotesetNoteNamesFromFile(String notesetName, String arg) {
         String[] loadArr = new String[0];
-        if (arg.equals("basic")) loadArr = getBasicNotesetArray();
-        if (arg.equals("user")) loadArr = getUserNotesetArray();
+        if (arg.equals("basic"))
+            loadArr = getBasicNotesetArray();
+        if (arg.equals("user"))
+            loadArr = getUserNotesetArray();
 
         for (String notesetLine : loadArr) {
             String[] splitNoteset = notesetLine.split(", ");
 
             if (notesetName.equals(splitNoteset[0])) {
-                String[] noteNames = new String[splitNoteset.length-1];
-                for (int i=1; i<splitNoteset.length; i++) {
-                    noteNames[i-1] = splitNoteset[i];
+                String[] noteNames = new String[splitNoteset.length - 1];
+                for (int i = 1; i < splitNoteset.length; i++) {
+                    noteNames[i - 1] = splitNoteset[i];
                 }
                 return noteNames;
             }
