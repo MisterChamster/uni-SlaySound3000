@@ -1,6 +1,6 @@
-import java.awt.*; //FOR TESTING
+import java.awt.*;
 import java.awt.event.ActionListener;
-import javax.swing.*; //FOR TESTING
+import javax.swing.*;
 import java.util.Arrays;
 
 public class AddNoteToNoteSetFrame extends JFrame {
