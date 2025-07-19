@@ -5,6 +5,7 @@ import java.awt.event.WindowEvent;
 import java.util.Arrays;
 
 public class CreateChord extends JFrame {
+    // ======================= Fields =======================
     // UI Components
     UserInterface parentFrame;
     private JTextField chordNameField;
@@ -19,6 +20,8 @@ public class CreateChord extends JFrame {
     // Backend variables
     SoundNoteSet createdNoteset;
 
+
+    // ===================== Constructors =====================
     public CreateChord(UserInterface parentFrame) {
         super("Create Chord");
         this.parentFrame = parentFrame;
@@ -27,6 +30,8 @@ public class CreateChord extends JFrame {
         addListeners();
     }
 
+
+    // ======================= Methods =======================
     private void initialize() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(600, 400);

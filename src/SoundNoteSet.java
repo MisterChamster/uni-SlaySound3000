@@ -3,8 +3,11 @@ import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.*; //FOR TESTING
 
 class SoundNoteSet extends Sound {
+    // ======================= Fields =======================
     SoundNote[] noteArray;
 
+
+    // ===================== Constructors =====================
     SoundNoteSet() {
         this.noteArray = new SoundNote[0];
     }
@@ -26,6 +29,8 @@ class SoundNoteSet extends Sound {
         this.noteArray = new SoundNote[0];
     }
 
+
+    // ======================= Methods =======================
     // This class needs just note frequency and name,
     // the rest can be erased with that function
     private void stripNote(SoundNote note) {

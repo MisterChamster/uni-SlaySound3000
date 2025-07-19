@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class DeleteNoteset extends JFrame {
+    // ======================= Fields =======================
     JComboBox<String> dropdown1;
     JButton cancelButton, deleteButton;
     UserInterface parentFrame;
@@ -15,6 +16,8 @@ public class DeleteNoteset extends JFrame {
 
     // String delString = "";
 
+
+    // ===================== Constructors =====================
     public DeleteNoteset(UserInterface parentFrame) {
         super("Delete user chord");
         this.parentFrame = parentFrame;
@@ -23,6 +26,8 @@ public class DeleteNoteset extends JFrame {
         addListeners();
     }
 
+
+    // ======================= Methods =======================
     private void initialize() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(350, 170);

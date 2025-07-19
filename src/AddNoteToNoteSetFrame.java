@@ -7,7 +7,7 @@ import javax.swing.plaf.basic.ComboPopup;
 import java.util.Arrays;
 
 public class AddNoteToNoteSetFrame extends JFrame {
-    // Fields
+    // ======================= Fields =======================
     private CreateChord parentFrame;
     private JComboBox<String> basicNotesDropdown;
     private JComboBox<String> userNotesDropdown;
@@ -20,7 +20,7 @@ public class AddNoteToNoteSetFrame extends JFrame {
     String[] basicNoteArray, userNoteArray;
 
 
-    // Constructor
+    // ===================== Constructors =====================
     public AddNoteToNoteSetFrame(CreateChord parentFrame) {
         super("Add Note");
         this.parentFrame = parentFrame;
@@ -31,7 +31,7 @@ public class AddNoteToNoteSetFrame extends JFrame {
     }
 
 
-    // Methods
+    // ======================= Methods =======================
     private void initialize() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(400, 200);

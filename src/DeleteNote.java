@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class DeleteNote extends JFrame {
+    // ======================= Fields =======================
     JComboBox<String> dropdown1;
     JButton cancelButton, deleteButton;
     UserInterface parentFrame;
@@ -16,6 +17,8 @@ public class DeleteNote extends JFrame {
 
     String delString = "";
 
+
+    // ===================== Constructors =====================
     public DeleteNote(UserInterface parentFrame) {
         super("Delete user note");
         this.parentFrame = parentFrame;
@@ -24,6 +27,8 @@ public class DeleteNote extends JFrame {
         addListeners();
     }
 
+
+    // ======================= Methods =======================
     private void initialize() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(350, 170);

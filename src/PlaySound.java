@@ -3,11 +3,14 @@ import java.awt.*;
 import java.util.Arrays;
 
 public class PlaySound extends JFrame {
+    // ======================= Fields =======================
     JTextField durationField;
     JComboBox<String> dropdown1, dropdown2, dropdown3, dropdown4;
     JButton cancelButton, playButton;
     UserInterface parentFrame;
 
+
+    // ===================== Constructors =====================
     public PlaySound(UserInterface parentFrame) {
         super("Play");
         this.parentFrame = parentFrame;
@@ -15,6 +18,8 @@ public class PlaySound extends JFrame {
         addListeners();
     }
 
+
+    // ======================= Methods =======================
     private void initialize() {
         String[] tempArray = new String[0];
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

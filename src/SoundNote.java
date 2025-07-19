@@ -3,8 +3,11 @@ import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.*; //FOR TESTING
 
 class SoundNote extends Sound {
+    // ======================= Fields =======================
     float frequency;
 
+
+    // ===================== Constructors =====================
     // constructor for adding notes
     SoundNote() {
     }
@@ -20,6 +23,8 @@ class SoundNote extends Sound {
         this.frequency = frequency;
     }
 
+
+    // ======================= Methods =======================
     void setFrequency(float input) {
         this.frequency = input;
     }

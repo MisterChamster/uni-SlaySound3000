@@ -15,6 +15,7 @@ import java.util.ArrayList;
 //createButton.addActionListener to addListeners, not separate functions
 
 public class CreateNote extends JFrame {
+    // ======================= Fields =======================
     // UI variables
     private UserInterface parentFrame;
     private JTextField noteNameField;
@@ -27,6 +28,8 @@ public class CreateNote extends JFrame {
     // Sound variables
     SoundNote createdNote = new SoundNote();
 
+
+    // ===================== Constructors =====================
     public CreateNote(UserInterface parentFrame) {
         super("Create Note");
         this.parentFrame = parentFrame;
@@ -34,6 +37,8 @@ public class CreateNote extends JFrame {
         addListeners();
     }
 
+
+    // ======================= Methods =======================
     private void initialize() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(400, 200);

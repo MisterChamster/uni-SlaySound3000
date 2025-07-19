@@ -5,6 +5,7 @@ import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.*;     //FOR TESTING
 
 public abstract class Sound extends Thread{
+    // ======================= Fields =======================
     String          soundName;
     float           sampleRate;
     int             sampleSize;
@@ -13,6 +14,8 @@ public abstract class Sound extends Thread{
     AudioFormat     format;
     SourceDataLine  line;
 
+
+    // ===================== Constructors =====================
     Sound(){
         this.soundName = null;
         this.sampleRate = 0;
@@ -54,6 +57,7 @@ public abstract class Sound extends Thread{
     }
 
 
+    // ======================= Methods =======================
     void setSampleRate(float input){
         this.sampleRate = input;
     }

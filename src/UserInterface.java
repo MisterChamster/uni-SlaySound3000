@@ -13,6 +13,7 @@ import java.io.File.*;
 import java.util.*;
 
 public class UserInterface extends JFrame {
+    // ======================= Fields =======================
     // UI variables
     private JButton createNoteButton = new JButton("Create Note");
     private JButton createChordButton = new JButton("Create Chord");
@@ -35,12 +36,16 @@ public class UserInterface extends JFrame {
     String basicNotesetPath = "noteSets/basicNotesets.txt";
     String userNotesetPath = "noteSets/userNotesets.txt";
 
+
+    // ===================== Constructors =====================
     public UserInterface() {
         super("SlaySound 3000");
         initialize();
         addListeners();
     }
 
+
+    // ======================= Methods =======================
     private void initialize() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);

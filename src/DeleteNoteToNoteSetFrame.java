@@ -3,10 +3,13 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class DeleteNoteToNoteSetFrame extends JFrame {
+    // ======================= Fields =======================
     private CreateChord parentFrame;
     JTextField notesUsedField;
     JList<String> notesList;
 
+
+    // ===================== Constructors =====================
     public DeleteNoteToNoteSetFrame(CreateChord parentFrame) {
         super("Delete Note");
         this.parentFrame = parentFrame;
@@ -14,6 +17,8 @@ public class DeleteNoteToNoteSetFrame extends JFrame {
         initialize();
     }
 
+
+    // ======================= Methods =======================
     private void initialize() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(350, 250);
