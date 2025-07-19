@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+
+
 public class DeleteNoteToNoteSetFrame extends JFrame {
     // ======================= Fields =======================
     private CreateChord parentFrame;
