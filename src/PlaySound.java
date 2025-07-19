@@ -6,10 +6,10 @@ import java.util.Arrays;
 
 public class PlaySound extends JFrame {
     // ======================= Fields =======================
-    JTextField durationField;
+    JTextField        durationField;
     JComboBox<String> dropdown1, dropdown2, dropdown3, dropdown4;
-    JButton cancelButton, playButton;
-    UserInterface parentFrame;
+    JButton           cancelButton, playButton;
+    UserInterface     parentFrame;
 
 
     // ===================== Constructors =====================

@@ -13,11 +13,10 @@ import java.util.Arrays;
 public class DeleteNote extends JFrame {
     // ======================= Fields =======================
     JComboBox<String> dropdown1;
-    JButton cancelButton, deleteButton;
-    UserInterface parentFrame;
-    String[] userNoteArray;
-
-    String delString = "";
+    JButton           cancelButton, deleteButton;
+    UserInterface     parentFrame;
+    String[]          userNoteArray;
+    String            delString = "";
 
 
     // ===================== Constructors =====================

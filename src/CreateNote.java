@@ -11,12 +11,12 @@ public class CreateNote extends JFrame {
     // ======================= Fields =======================
     // UI variables
     private UserInterface parentFrame;
-    private JTextField noteNameField;
-    private JTextField frequencyField;
-    private JPanel inputPanel = new JPanel(new GridLayout(2, 2, 5, 5));
-    private JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-    private JButton discardButton = new JButton("Discard");
-    private JButton createButton = new JButton("Create");
+    private JTextField    noteNameField;
+    private JTextField    frequencyField;
+    private JPanel        inputPanel = new JPanel(new GridLayout(2, 2, 5, 5));
+    private JPanel        buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+    private JButton       discardButton = new JButton("Discard");
+    private JButton       createButton = new JButton("Create");
 
     // Sound variables
     SoundNote createdNote = new SoundNote();

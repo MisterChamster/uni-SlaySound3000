@@ -9,18 +9,18 @@ import java.util.Arrays;
 public class CreateChord extends JFrame {
     // ======================= Fields =======================
     // UI Components
-    UserInterface parentFrame;
-    private JTextField chordNameField;
-    JTextField notesUsedField;
-    private JPanel inputPanel;
-    private JPanel buttonPanel;
-    private JButton discardButton;
-    private JButton createButton;
-    private JButton addNoteButton;
-    private JButton deleteNoteButton;
+    public  UserInterface parentFrame;
+    public  JTextField    notesUsedField;
+    private JTextField    chordNameField;
+    private JPanel        inputPanel;
+    private JPanel        buttonPanel;
+    private JButton       discardButton;
+    private JButton       createButton;
+    private JButton       addNoteButton;
+    private JButton       deleteNoteButton;
 
     // Backend variables
-    SoundNoteSet createdNoteset;
+    public SoundNoteSet createdNoteset;
 
 
     // ===================== Constructors =====================

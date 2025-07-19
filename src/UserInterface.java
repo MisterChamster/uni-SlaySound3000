@@ -14,26 +14,26 @@ import java.io.*;
 public class UserInterface extends JFrame {
     // ======================= Fields =======================
     // UI variables
-    private JButton createNoteButton = new JButton("Create Note");
-    private JButton createChordButton = new JButton("Create Chord");
-    private JButton exportToWavButton = new JButton("Export to .wav");
-    private JButton deleteNoteButton = new JButton("Delete Note");
-    private JButton deleteChordButton = new JButton("Delete Chord");
+    private JButton createNoteButton         = new JButton("Create Note");
+    private JButton createChordButton        = new JButton("Create Chord");
+    private JButton exportToWavButton        = new JButton("Export to .wav");
+    private JButton deleteNoteButton         = new JButton("Delete Note");
+    private JButton deleteChordButton        = new JButton("Delete Chord");
     private JButton setBasicSampleRateButton = new JButton("Set Basic");
-    private JButton playSoundButton = new JButton("Play Sound");
-    private JLabel sampleSizeLabel = new JLabel("Sample Size: ");
+    private JButton playSoundButton          = new JButton("Play Sound");
+    private JLabel  sampleSizeLabel          = new JLabel("Sample Size: ");
 
     private JComboBox<String> sampleSizeDropdown = new JComboBox<>(new String[] { "8-bit", "16-bit" });
-    private JLabel sampleRateLabel = new JLabel("Sample Rate: ");
-    private JTextField sampleRateField = new JTextField(10);
+    private JLabel            sampleRateLabel    = new JLabel("Sample Rate: ");
+    private JTextField        sampleRateField    = new JTextField(10);
 
     // Backend variables
-    int mainSampleSize = 8;
-    float mainSampleRate = 44100;
-    String basicNotesPath = "notes/basicNotes.txt";
-    String userNotesPath = "notes/userNotes.txt";
+    int    mainSampleSize   = 8;
+    float  mainSampleRate   = 44100;
+    String basicNotesPath   = "notes/basicNotes.txt";
+    String userNotesPath    = "notes/userNotes.txt";
     String basicNotesetPath = "noteSets/basicNotesets.txt";
-    String userNotesetPath = "noteSets/userNotesets.txt";
+    String userNotesetPath  = "noteSets/userNotesets.txt";
 
 
     // ===================== Constructors =====================

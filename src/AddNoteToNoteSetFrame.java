@@ -7,16 +7,16 @@ import java.util.Arrays;
 
 public class AddNoteToNoteSetFrame extends JFrame {
     // ======================= Fields =======================
-    private CreateChord parentFrame;
+    private CreateChord       parentFrame;
     private JComboBox<String> basicNotesDropdown;
     private JComboBox<String> userNotesDropdown;
-    private JPanel inputPanel = new JPanel(new GridLayout(2, 2, 5, 5));
-    private JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-    private JButton cancelButton = new JButton("Cancel");
-    private JButton addButton = new JButton("Add");
+    private JPanel            inputPanel = new JPanel(new GridLayout(2, 2, 5, 5));
+    private JPanel            buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+    private JButton           cancelButton = new JButton("Cancel");
+    private JButton           addButton = new JButton("Add");
 
-    JTextField notesUsedField;
-    String[] basicNoteArray, userNoteArray;
+    public JTextField notesUsedField;
+    public String[]   basicNoteArray, userNoteArray;
 
 
     // ===================== Constructors =====================
