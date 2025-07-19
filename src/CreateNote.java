@@ -3,9 +3,10 @@ import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
+
+
 //listening to enter in text fields should work as createnote listener
 //createButton.addActionListener to addListeners, not separate functions
-
 public class CreateNote extends JFrame {
     // ======================= Fields =======================
     // UI variables
