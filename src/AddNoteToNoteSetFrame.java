@@ -1,9 +1,6 @@
 import java.awt.*; //FOR TESTING
 import java.awt.event.ActionListener;
 import javax.swing.*; //FOR TESTING
-import javax.swing.plaf.basic.BasicComboBoxUI;
-import javax.swing.plaf.basic.BasicComboPopup;
-import javax.swing.plaf.basic.ComboPopup;
 import java.util.Arrays;
 
 public class AddNoteToNoteSetFrame extends JFrame {

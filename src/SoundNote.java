@@ -1,7 +1,3 @@
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.SourceDataLine;
-import javax.sound.sampled.*; //FOR TESTING
-
 class SoundNote extends Sound {
     // ======================= Fields =======================
     float frequency;

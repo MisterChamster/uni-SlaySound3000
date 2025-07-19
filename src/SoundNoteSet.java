@@ -1,7 +1,3 @@
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.SourceDataLine;
-import javax.sound.sampled.*; //FOR TESTING
-
 class SoundNoteSet extends Sound {
     // ======================= Fields =======================
     SoundNote[] noteArray;

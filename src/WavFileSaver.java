@@ -3,6 +3,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import javax.swing.JFileChooser;
 
+
+
 public class WavFileSaver {
     static void saveWavFile(Sound soundChild) {
         int waveOffset = (int) Math.pow(2, soundChild.sampleSize - 1);

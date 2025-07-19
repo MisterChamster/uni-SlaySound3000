@@ -2,15 +2,14 @@ import javax.swing.*;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
-import java.awt.event.WindowListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.FocusEvent;
 import java.awt.*;
 import java.io.*;
-import java.io.File.*;
-import java.util.*;
+
+
 
 public class UserInterface extends JFrame {
     // ======================= Fields =======================

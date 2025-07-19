@@ -1,15 +1,7 @@
 import javax.swing.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.awt.*;
 import java.awt.event.FocusEvent;
-import java.awt.event.WindowEvent;
 import java.awt.event.FocusListener;
-import java.awt.event.WindowAdapter;
-import java.util.List;
-import java.util.ArrayList;
 
 //listening to enter in text fields should work as createnote listener
 //createButton.addActionListener to addListeners, not separate functions
