@@ -56,10 +56,10 @@ public class CreateNote extends JFrame {
     }
 
     private void addListeners() {
-        discardButton.addActionListener(e -> {
+        discardButton.addActionListener(_ -> {
             dispose();
         });
-        createButton.addActionListener(e -> {
+        createButton.addActionListener(_ -> {
             createFunction();
         });
 

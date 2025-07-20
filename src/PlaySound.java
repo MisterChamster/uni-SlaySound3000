@@ -97,11 +97,11 @@ public class PlaySound extends JFrame {
     }
 
     private void addListeners() {
-        cancelButton.addActionListener(e -> dispose());
-        playButton.addActionListener(e -> {
+        cancelButton.addActionListener(_ -> dispose());
+        playButton.addActionListener(_ -> {
             playButtonListenFunction();
         });
-        dropdown1.addActionListener(e -> {
+        dropdown1.addActionListener(_ -> {
             if (dropdown1.getSelectedItem() != " --empty-- ") {
                 if (dropdown2.getSelectedItem() != " --empty-- ")
                     dropdown2.setSelectedIndex(0);
@@ -112,7 +112,7 @@ public class PlaySound extends JFrame {
             }
             ;
         });
-        dropdown2.addActionListener(e -> {
+        dropdown2.addActionListener(_ -> {
             if (dropdown2.getSelectedItem() != " --empty-- ") {
                 if (dropdown1.getSelectedItem() != " --empty-- ")
                     dropdown1.setSelectedIndex(0);
@@ -123,7 +123,7 @@ public class PlaySound extends JFrame {
             }
             ;
         });
-        dropdown3.addActionListener(e -> {
+        dropdown3.addActionListener(_ -> {
             if (dropdown3.getSelectedItem() != " --empty-- ") {
                 if (dropdown1.getSelectedItem() != " --empty-- ")
                     dropdown1.setSelectedIndex(0);
@@ -134,7 +134,7 @@ public class PlaySound extends JFrame {
             }
             ;
         });
-        dropdown4.addActionListener(e -> {
+        dropdown4.addActionListener(_ -> {
             if (dropdown4.getSelectedItem() != " --empty-- ") {
                 if (dropdown1.getSelectedItem() != " --empty-- ")
                     dropdown1.setSelectedIndex(0);

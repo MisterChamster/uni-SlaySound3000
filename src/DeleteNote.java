@@ -66,8 +66,8 @@ public class DeleteNote extends JFrame {
     }
 
     private void addListeners() {
-        cancelButton.addActionListener(e -> dispose());
-        deleteButton.addActionListener(e -> {
+        cancelButton.addActionListener(_ -> dispose());
+        deleteButton.addActionListener(_ -> {
             deleteButtonListenFunction();
         });
     }

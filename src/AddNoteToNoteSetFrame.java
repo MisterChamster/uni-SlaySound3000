@@ -43,7 +43,7 @@ public class AddNoteToNoteSetFrame extends JFrame {
         buttonPanel.add(addButton);
         add(buttonPanel, BorderLayout.SOUTH);
 
-        cancelButton.addActionListener(e -> dispose());
+        cancelButton.addActionListener(_ -> dispose());
         addButton.addActionListener(confirmAction());
     }
 
@@ -98,7 +98,7 @@ public class AddNoteToNoteSetFrame extends JFrame {
 
 
     private ActionListener confirmAction() {
-        return e -> {
+        return _ -> {
             String selectedBasicNote = (String) basicNotesDropdown.getSelectedItem();
             String selectedUserNote = (String) userNotesDropdown.getSelectedItem();
             String currentNotes = notesUsedField.getText();

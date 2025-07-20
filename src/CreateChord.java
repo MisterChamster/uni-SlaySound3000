@@ -97,14 +97,14 @@ public class CreateChord extends JFrame {
     }
 
     private void addListeners() {
-        discardButton.addActionListener(e -> {
+        discardButton.addActionListener(_ -> {
             dispose();
         });
-        createButton.addActionListener(e -> {
+        createButton.addActionListener(_ -> {
             createFunction();
         });
-        addNoteButton.addActionListener(e -> openAddNoteToNoteSetFrame());
-        deleteNoteButton.addActionListener(e -> openDeleteNoteToNoteSetFrame());
+        addNoteButton.addActionListener(_ -> openAddNoteToNoteSetFrame());
+        deleteNoteButton.addActionListener(_ -> openDeleteNoteToNoteSetFrame());
     }
 
     public void createFunction() {

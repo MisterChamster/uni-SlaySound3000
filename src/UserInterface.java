@@ -89,32 +89,32 @@ public class UserInterface extends JFrame {
     }
 
     private void addListeners() {
-        createNoteButton.addActionListener(e -> {
+        createNoteButton.addActionListener(_ -> {
             createNoteListenFunction();
         });
 
-        createChordButton.addActionListener(e -> {
+        createChordButton.addActionListener(_ -> {
             createChordListenFunction();
         });
 
-        exportToWavButton.addActionListener(e -> {
+        exportToWavButton.addActionListener(_ -> {
             exportToWavListenFunction();
         });
 
-        deleteNoteButton.addActionListener(e -> {
+        deleteNoteButton.addActionListener(_ -> {
             deleteNoteListenFunction();
         });
 
-        deleteChordButton.addActionListener(e -> {
+        deleteChordButton.addActionListener(_ -> {
             deleteChordListenFunction();
         });
 
-        playSoundButton.addActionListener(e -> {
+        playSoundButton.addActionListener(_ -> {
             playSoundListenFunction();
         });
 
         // should recompute all notes and chords
-        sampleSizeDropdown.addActionListener(e -> {
+        sampleSizeDropdown.addActionListener(_ -> {
             String selectedSize = (String) sampleSizeDropdown.getSelectedItem();
             if (selectedSize.equals("8-bit"))
                 mainSampleSize = 8;
@@ -261,7 +261,7 @@ public class UserInterface extends JFrame {
             }
         });
 
-        setBasicSampleRateButton.addActionListener(e -> {
+        setBasicSampleRateButton.addActionListener(_ -> {
             if (mainSampleRate != 44100) {
                 mainSampleRate = 44100;
                 sampleRateField.setText(String.valueOf(mainSampleRate));
