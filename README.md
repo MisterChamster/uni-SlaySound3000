@@ -10,5 +10,5 @@ cd uni-SlaySound3000
 ## Compilation
 Windows
 ```bash
-compile\win.cmd
+compile_scripts\win.cmd
 ```
