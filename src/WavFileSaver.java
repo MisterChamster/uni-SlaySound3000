@@ -6,7 +6,7 @@ import javax.swing.JFileChooser;
 
 
 public class WavFileSaver {
-    static void saveWavFile(Sound soundChild) {
+    public static void saveWavFile(Sound soundChild) {
         int waveOffset = (int) Math.pow(2, soundChild.sampleSize - 1);
         for (int i = 0; i < soundChild.sampleArray.length; i++) {
             soundChild.sampleArray[i] = (byte) ((int) soundChild.sampleArray[i] + waveOffset);
