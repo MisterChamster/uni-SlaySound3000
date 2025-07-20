@@ -1,3 +1,1 @@
-cd src
-javac *java
-cd ..
+javac -d out src\*java
