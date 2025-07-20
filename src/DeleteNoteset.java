@@ -16,8 +16,6 @@ public class DeleteNoteset extends JFrame {
     private UserInterface     parentFrame;
     private String[]          userNotesetArray;
 
-    // String delString = "";
-
 
     // ===================== Constructors =====================
     public DeleteNoteset(UserInterface parentFrame) {

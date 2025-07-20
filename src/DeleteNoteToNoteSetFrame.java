@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 public class DeleteNoteToNoteSetFrame extends JFrame {
     // ======================= Fields =======================
     private CreateChord parentFrame;
-    private JTextField          notesUsedField;
     private JList<String>       notesList;
 
 
@@ -15,7 +14,6 @@ public class DeleteNoteToNoteSetFrame extends JFrame {
     public DeleteNoteToNoteSetFrame(CreateChord parentFrame) {
         super("Delete Note");
         this.parentFrame = parentFrame;
-        this.notesUsedField = parentFrame.notesUsedField;
         initialize();
     }
 

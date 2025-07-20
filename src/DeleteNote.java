@@ -16,7 +16,6 @@ public class DeleteNote extends JFrame {
     private JButton           cancelButton, deleteButton;
     private UserInterface     parentFrame;
     private String[]          userNoteArray;
-    String            delString = "";
 
 
     // ===================== Constructors =====================
