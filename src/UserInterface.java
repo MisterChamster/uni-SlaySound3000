@@ -229,7 +229,7 @@ public class UserInterface extends JFrame {
         sampleRateField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                sampleRateField.addActionListener(enter -> {
+                sampleRateField.addActionListener(_ -> {
                     sampleRateField.transferFocus();
                 });
             }

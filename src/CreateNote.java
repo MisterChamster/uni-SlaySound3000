@@ -66,7 +66,7 @@ public class CreateNote extends JFrame {
         noteNameField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                noteNameField.addActionListener(enter -> {
+                noteNameField.addActionListener(_ -> {
                     createFunction();
                 });
             }
@@ -78,7 +78,7 @@ public class CreateNote extends JFrame {
         frequencyField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                frequencyField.addActionListener(enter -> {
+                frequencyField.addActionListener(_ -> {
                     createFunction();
                 });
             }

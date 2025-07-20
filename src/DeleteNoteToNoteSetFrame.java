@@ -35,7 +35,7 @@ public class DeleteNoteToNoteSetFrame extends JFrame {
         frameButtonPanel.add(confirmButton);
         add(frameButtonPanel, BorderLayout.SOUTH);
 
-        cancelButton.addActionListener(e -> dispose());
+        cancelButton.addActionListener(_ -> dispose());
         confirmButton.addActionListener(confirmAction(notesList));
     }
 
@@ -48,7 +48,7 @@ public class DeleteNoteToNoteSetFrame extends JFrame {
     }
 
     private ActionListener confirmAction(JList<String> notesList) {
-        return e -> {
+        return _ -> {
             String selectedNote = notesList.getSelectedValue();
             if (selectedNote != null) {
                 parentFrame.deleteNote(selectedNote);
