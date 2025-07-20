@@ -23,7 +23,7 @@ public class UserInterface extends JFrame {
     private JButton playSoundButton          = new JButton("Play Sound");
     private JLabel  sampleSizeLabel          = new JLabel("Sample Size: ");
 
-    private JComboBox<String> sampleSizeDropdown = new JComboBox<>(new String[] { "8-bit", "16-bit" });
+    private JComboBox<String> sampleSizeDropdown = new JComboBox<>(new String[] {"8-bit", "16-bit"});
     private JLabel            sampleRateLabel    = new JLabel("Sample Rate: ");
     private JTextField        sampleRateField    = new JTextField(10);
 
