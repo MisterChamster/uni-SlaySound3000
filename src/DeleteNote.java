@@ -8,14 +8,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 
+
+
 public class DeleteNote extends JFrame {
-    JComboBox<String> dropdown1;
-    JButton cancelButton, deleteButton;
-    UserInterface parentFrame;
-    String[] userNoteArray;
+    // ======================= Fields =======================
+    private JComboBox<String> dropdown1;
+    private JButton           cancelButton, deleteButton;
+    private UserInterface     parentFrame;
+    private String[]          userNoteArray;
 
-    String delString = "";
 
+    // ===================== Constructors =====================
     public DeleteNote(UserInterface parentFrame) {
         super("Delete user note");
         this.parentFrame = parentFrame;
@@ -24,6 +27,8 @@ public class DeleteNote extends JFrame {
         addListeners();
     }
 
+
+    // ======================= Methods =======================
     private void initialize() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(350, 170);
@@ -61,8 +66,8 @@ public class DeleteNote extends JFrame {
     }
 
     private void addListeners() {
-        cancelButton.addActionListener(e -> dispose());
-        deleteButton.addActionListener(e -> {
+        cancelButton.addActionListener(_ -> dispose());
+        deleteButton.addActionListener(_ -> {
             deleteButtonListenFunction();
         });
     }

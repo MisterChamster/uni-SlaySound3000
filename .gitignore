@@ -1,1 +1,6 @@
 DS_store
+
+*.class
+
+userNotes.txt
+userNotesets.txt

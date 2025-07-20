@@ -2,18 +2,23 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class DeleteNoteToNoteSetFrame extends JFrame {
-    private CreateChord parentFrame;
-    JTextField notesUsedField;
-    JList<String> notesList;
 
+
+public class DeleteNoteToNoteSetFrame extends JFrame {
+    // ======================= Fields =======================
+    private CreateChord parentFrame;
+    private JList<String>       notesList;
+
+
+    // ===================== Constructors =====================
     public DeleteNoteToNoteSetFrame(CreateChord parentFrame) {
         super("Delete Note");
         this.parentFrame = parentFrame;
-        this.notesUsedField = parentFrame.notesUsedField;
         initialize();
     }
 
+
+    // ======================= Methods =======================
     private void initialize() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(350, 250);
@@ -30,7 +35,7 @@ public class DeleteNoteToNoteSetFrame extends JFrame {
         frameButtonPanel.add(confirmButton);
         add(frameButtonPanel, BorderLayout.SOUTH);
 
-        cancelButton.addActionListener(e -> dispose());
+        cancelButton.addActionListener(_ -> dispose());
         confirmButton.addActionListener(confirmAction(notesList));
     }
 
@@ -43,7 +48,7 @@ public class DeleteNoteToNoteSetFrame extends JFrame {
     }
 
     private ActionListener confirmAction(JList<String> notesList) {
-        return e -> {
+        return _ -> {
             String selectedNote = notesList.getSelectedValue();
             if (selectedNote != null) {
                 parentFrame.deleteNote(selectedNote);

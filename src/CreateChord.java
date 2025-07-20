@@ -4,21 +4,26 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Arrays;
 
+
+
 public class CreateChord extends JFrame {
+    // ======================= Fields =======================
     // UI Components
-    UserInterface parentFrame;
-    private JTextField chordNameField;
-    JTextField notesUsedField;
-    private JPanel inputPanel;
-    private JPanel buttonPanel;
-    private JButton discardButton;
-    private JButton createButton;
-    private JButton addNoteButton;
-    private JButton deleteNoteButton;
+    public  UserInterface parentFrame;
+    public  JTextField    notesUsedField;
+    private JTextField    chordNameField;
+    private JPanel        inputPanel;
+    private JPanel        buttonPanel;
+    private JButton       discardButton;
+    private JButton       createButton;
+    private JButton       addNoteButton;
+    private JButton       deleteNoteButton;
 
     // Backend variables
-    SoundNoteSet createdNoteset;
+    public SoundNoteSet createdNoteset;
 
+
+    // ===================== Constructors =====================
     public CreateChord(UserInterface parentFrame) {
         super("Create Chord");
         this.parentFrame = parentFrame;
@@ -27,6 +32,8 @@ public class CreateChord extends JFrame {
         addListeners();
     }
 
+
+    // ======================= Methods =======================
     private void initialize() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(600, 400);
@@ -90,14 +97,14 @@ public class CreateChord extends JFrame {
     }
 
     private void addListeners() {
-        discardButton.addActionListener(e -> {
+        discardButton.addActionListener(_ -> {
             dispose();
         });
-        createButton.addActionListener(e -> {
+        createButton.addActionListener(_ -> {
             createFunction();
         });
-        addNoteButton.addActionListener(e -> openAddNoteToNoteSetFrame());
-        deleteNoteButton.addActionListener(e -> openDeleteNoteToNoteSetFrame());
+        addNoteButton.addActionListener(_ -> openAddNoteToNoteSetFrame());
+        deleteNoteButton.addActionListener(_ -> openDeleteNoteToNoteSetFrame());
     }
 
     public void createFunction() {

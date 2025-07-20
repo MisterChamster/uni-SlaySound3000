@@ -7,14 +7,17 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+
+
 public class DeleteNoteset extends JFrame {
-    JComboBox<String> dropdown1;
-    JButton cancelButton, deleteButton;
-    UserInterface parentFrame;
-    String[] userNotesetArray;
+    // ======================= Fields =======================
+    private JComboBox<String> dropdown1;
+    private JButton           cancelButton, deleteButton;
+    private UserInterface     parentFrame;
+    private String[]          userNotesetArray;
 
-    // String delString = "";
 
+    // ===================== Constructors =====================
     public DeleteNoteset(UserInterface parentFrame) {
         super("Delete user chord");
         this.parentFrame = parentFrame;
@@ -23,6 +26,8 @@ public class DeleteNoteset extends JFrame {
         addListeners();
     }
 
+
+    // ======================= Methods =======================
     private void initialize() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(350, 170);
@@ -64,8 +69,8 @@ public class DeleteNoteset extends JFrame {
     }
 
     private void addListeners() {
-        cancelButton.addActionListener(e -> dispose());
-        deleteButton.addActionListener(e -> {
+        cancelButton.addActionListener(_ -> dispose());
+        deleteButton.addActionListener(_ -> {
             deleteButtonListenFunction();
         });
     }

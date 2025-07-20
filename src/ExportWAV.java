@@ -2,12 +2,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
 
-public class ExportWAV extends JFrame {
-    JTextField durationField;
-    JComboBox<String> dropdown1, dropdown2, dropdown3, dropdown4;
-    JButton cancelButton, exportButton;
-    UserInterface parentFrame;
 
+
+public class ExportWAV extends JFrame {
+    // ======================= Fields =======================
+    private JTextField        durationField;
+    private JComboBox<String> dropdown1, dropdown2, dropdown3, dropdown4;
+    private JButton           cancelButton, exportButton;
+    private UserInterface     parentFrame;
+
+
+    // ===================== Constructors =====================
     public ExportWAV(UserInterface parentFrame) {
         super("Export to WAV");
         this.parentFrame = parentFrame;
@@ -15,6 +20,8 @@ public class ExportWAV extends JFrame {
         addListeners();
     }
 
+
+    // ======================= Methods =======================
     private void initialize() {
         String[] tempArray = new String[0];
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -90,11 +97,11 @@ public class ExportWAV extends JFrame {
     }
 
     private void addListeners() {
-        cancelButton.addActionListener(e -> dispose());
-        exportButton.addActionListener(e -> {
+        cancelButton.addActionListener(_ -> dispose());
+        exportButton.addActionListener(_ -> {
             exportButtonListenFunction();
         });
-        dropdown1.addActionListener(e -> {
+        dropdown1.addActionListener(_ -> {
             if (dropdown1.getSelectedItem() != " --empty-- ") {
                 if (dropdown2.getSelectedItem() != " --empty-- ")
                     dropdown2.setSelectedIndex(0);
@@ -105,7 +112,7 @@ public class ExportWAV extends JFrame {
             }
             ;
         });
-        dropdown2.addActionListener(e -> {
+        dropdown2.addActionListener(_ -> {
             if (dropdown2.getSelectedItem() != " --empty-- ") {
                 if (dropdown1.getSelectedItem() != " --empty-- ")
                     dropdown1.setSelectedIndex(0);
@@ -116,7 +123,7 @@ public class ExportWAV extends JFrame {
             }
             ;
         });
-        dropdown3.addActionListener(e -> {
+        dropdown3.addActionListener(_ -> {
             if (dropdown3.getSelectedItem() != " --empty-- ") {
                 if (dropdown1.getSelectedItem() != " --empty-- ")
                     dropdown1.setSelectedIndex(0);
@@ -127,7 +134,7 @@ public class ExportWAV extends JFrame {
             }
             ;
         });
-        dropdown4.addActionListener(e -> {
+        dropdown4.addActionListener(_ -> {
             if (dropdown4.getSelectedItem() != " --empty-- ") {
                 if (dropdown1.getSelectedItem() != " --empty-- ")
                     dropdown1.setSelectedIndex(0);
