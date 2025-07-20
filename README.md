@@ -12,3 +12,9 @@ Windows
 ```bash
 compile_scripts\win.cmd
 ```
+
+## Usage
+Windows
+```bash
+java -cp out Main
+```
