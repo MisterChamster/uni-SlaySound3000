@@ -19,7 +19,7 @@ public class CreateNote extends JFrame {
     private JButton       createButton = new JButton("Create");
 
     // Sound variables
-    SoundNote createdNote = new SoundNote();
+    private SoundNote createdNote = new SoundNote();
 
 
     // ===================== Constructors =====================

@@ -28,12 +28,12 @@ public class UserInterface extends JFrame {
     private JTextField        sampleRateField    = new JTextField(10);
 
     // Backend variables
-    int    mainSampleSize   = 8;
-    float  mainSampleRate   = 44100;
-    String basicNotesPath   = "notes/basicNotes.txt";
-    String userNotesPath    = "notes/userNotes.txt";
-    String basicNotesetPath = "noteSets/basicNotesets.txt";
-    String userNotesetPath  = "noteSets/userNotesets.txt";
+    public  int    mainSampleSize   = 8;
+    public  float  mainSampleRate   = 44100;
+    private String basicNotesPath   = "notes/basicNotes.txt";
+    public  String userNotesPath    = "notes/userNotes.txt";
+    private String basicNotesetPath = "noteSets/basicNotesets.txt";
+    public  String userNotesetPath  = "noteSets/userNotesets.txt";
 
 
     // ===================== Constructors =====================

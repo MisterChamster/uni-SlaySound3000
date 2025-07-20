@@ -11,10 +11,10 @@ import java.io.IOException;
 
 public class DeleteNoteset extends JFrame {
     // ======================= Fields =======================
-    JComboBox<String> dropdown1;
-    JButton           cancelButton, deleteButton;
-    UserInterface     parentFrame;
-    String[]          userNotesetArray;
+    private JComboBox<String> dropdown1;
+    private JButton           cancelButton, deleteButton;
+    private UserInterface     parentFrame;
+    private String[]          userNotesetArray;
 
     // String delString = "";
 

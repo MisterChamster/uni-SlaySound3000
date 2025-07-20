@@ -15,8 +15,8 @@ public class AddNoteToNoteSetFrame extends JFrame {
     private JButton           cancelButton = new JButton("Cancel");
     private JButton           addButton = new JButton("Add");
 
-    public JTextField notesUsedField;
-    public String[]   basicNoteArray, userNoteArray;
+    private JTextField notesUsedField;
+    private String[]   basicNoteArray, userNoteArray;
 
 
     // ===================== Constructors =====================

@@ -6,10 +6,10 @@ import java.util.Arrays;
 
 public class ExportWAV extends JFrame {
     // ======================= Fields =======================
-    JTextField        durationField;
-    JComboBox<String> dropdown1, dropdown2, dropdown3, dropdown4;
-    JButton           cancelButton, exportButton;
-    UserInterface     parentFrame;
+    private JTextField        durationField;
+    private JComboBox<String> dropdown1, dropdown2, dropdown3, dropdown4;
+    private JButton           cancelButton, exportButton;
+    private UserInterface     parentFrame;
 
 
     // ===================== Constructors =====================
