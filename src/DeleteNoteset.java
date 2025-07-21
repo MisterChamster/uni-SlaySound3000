@@ -84,7 +84,7 @@ public class DeleteNoteset extends JFrame {
     }
 
     private void deleteNotesetLineFromFileByName(String notesetNameToDelete) {
-        String tempNoteFile = "data/noteSets/temp.txt";
+        String tempNoteFile = "src/data/noteSets/temp.txt";
         Boolean delSuccesful = false;
         try (BufferedReader reader = new BufferedReader(new FileReader(parentFrame.userNotesetPath));
                 BufferedWriter writer = new BufferedWriter(new FileWriter(tempNoteFile))) {

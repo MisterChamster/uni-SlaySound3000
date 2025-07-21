@@ -30,10 +30,10 @@ public class UserInterface extends JFrame {
     // Backend variables
     public  int    mainSampleSize   = 8;
     public  float  mainSampleRate   = 44100;
-    private String basicNotesPath   = "data/notes/basicNotes.txt";
-    public  String userNotesPath    = "data/notes/userNotes.txt";
-    private String basicNotesetPath = "data/noteSets/basicNotesets.txt";
-    public  String userNotesetPath  = "data/noteSets/userNotesets.txt";
+    private String basicNotesPath   = "src/data/notes/basicNotes.txt";
+    public  String userNotesPath    = "src/data/notes/userNotes.txt";
+    private String basicNotesetPath = "src/data/noteSets/basicNotesets.txt";
+    public  String userNotesetPath  = "src/data/noteSets/userNotesets.txt";
 
 
     // ===================== Constructors =====================
