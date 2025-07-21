@@ -82,7 +82,7 @@ public class DeleteNote extends JFrame {
     }
 
     private void deleteNoteLineFromFile(String delString) {
-        String tempNoteFile = "notes/temp.txt";
+        String tempNoteFile = "data/notes/temp.txt";
         Boolean delSuccesful = false;
         try (BufferedReader reader = new BufferedReader(new FileReader(parentFrame.userNotesPath));
                 BufferedWriter writer = new BufferedWriter(new FileWriter(tempNoteFile))) {
@@ -114,7 +114,7 @@ public class DeleteNote extends JFrame {
 
     private void deleteNotesetLineWithNoteFromFile(String delString) {
         String delNoteName = String.join(" ", Arrays.copyOf(delString.split(" "), delString.split(" ").length - 1));
-        String tempNotesetFile = "noteSets/temp.txt";
+        String tempNotesetFile = "data/noteSets/temp.txt";
         Boolean delSuccesful = false;
 
         try (BufferedReader reader = new BufferedReader(new FileReader(parentFrame.userNotesetPath));
