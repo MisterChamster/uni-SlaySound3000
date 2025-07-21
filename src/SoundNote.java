@@ -5,27 +5,26 @@ class SoundNote extends Sound {
 
     // ===================== Constructors =====================
     // constructor for adding notes
-    SoundNote() {
-    }
+    public SoundNote() {}
 
-    SoundNote(String soundName, float frequency) {
+    public SoundNote(String soundName, float frequency) {
         super();
         this.soundName = soundName;
         this.frequency = frequency;
     }
 
-    SoundNote(float sampleRate, int sampleSize, double durationInSec, float frequency, String soundName) {
+    public SoundNote(float sampleRate, int sampleSize, double durationInSec, float frequency, String soundName) {
         super(sampleRate, sampleSize, durationInSec, soundName);
         this.frequency = frequency;
     }
 
 
     // ======================= Methods =======================
-    void setFrequency(float input) {
+    public void setFrequency(float input) {
         this.frequency = input;
     }
 
-    void computeSampleArray() {
+    public void computeSampleArray() {
         double twoPIFreq = 2.0 * Math.PI * frequency;
         int sampleNumInArray = (int) (Math.ceil(sampleRate * durationInSeconds));
         sampleArray = new byte[sampleNumInArray * (sampleSize / 8)];
@@ -48,13 +47,13 @@ class SoundNote extends Sound {
     }
 
     @Override
-    void prepareToPlay() {
+    public void prepareToPlay() {
         computeSampleArray();
         super.prepareToPlay();
     }
 
     @Override
-    void playSound() {
+    public void playSound() {
         super.playSound();
     }
 

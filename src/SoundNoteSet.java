@@ -1,26 +1,26 @@
-class SoundNoteSet extends Sound {
+public class SoundNoteSet extends Sound {
     // ======================= Fields =======================
     SoundNote[] noteArray;
 
 
     // ===================== Constructors =====================
-    SoundNoteSet() {
+    public SoundNoteSet() {
         this.noteArray = new SoundNote[0];
     }
 
     // Constructor for adding note sets
-    SoundNoteSet(String soundName) {
+    public SoundNoteSet(String soundName) {
         super();
         this.noteArray = new SoundNote[0];
     }
 
-    SoundNoteSet(float sampleRate, int sampleSize, double durationInSeconds, SoundNote[] noteArray, String soundName) {
+    public SoundNoteSet(float sampleRate, int sampleSize, double durationInSeconds, SoundNote[] noteArray, String soundName) {
         super(sampleRate, sampleSize, durationInSeconds, soundName);
         this.noteArray = noteArray;
     }
 
     // Testing constructor
-    SoundNoteSet(float sampleRate, int sampleSize, double durationInSeconds, String soundName) {
+    public SoundNoteSet(float sampleRate, int sampleSize, double durationInSeconds, String soundName) {
         super(sampleRate, sampleSize, durationInSeconds, soundName);
         this.noteArray = new SoundNote[0];
     }
@@ -47,7 +47,7 @@ class SoundNoteSet extends Sound {
         return false;
     }
 
-    void addNote(SoundNote inputNote) {
+    public void addNote(SoundNote inputNote) {
         // cant have two same freq notes
         if (!isNoteInNoteArray(inputNote)) {
             stripNote(inputNote);
@@ -60,7 +60,7 @@ class SoundNoteSet extends Sound {
         }
     }
 
-    void delNote(int index) {
+    public void delNote(int index) {
         SoundNote[] tempArray = new SoundNote[noteArray.length - 1];
         for (int i = 0; i < index; i++) {
             tempArray[i] = noteArray[i];
@@ -71,7 +71,7 @@ class SoundNoteSet extends Sound {
         noteArray = tempArray;
     }
 
-    void computeSampleArray() {
+    public void computeSampleArray() {
         int sampleArrayLength = (int) (Math.ceil(sampleRate * durationInSeconds) * (sampleSize / 8));
         sampleArray = new byte[sampleArrayLength];
 
@@ -100,13 +100,13 @@ class SoundNoteSet extends Sound {
     }
 
     @Override
-    void prepareToPlay() {
+    public void prepareToPlay() {
         computeSampleArray();
         super.prepareToPlay();
     }
 
     @Override
-    void playSound() {
+    public void playSound() {
         // condition not necessary in final version
         if (noteArray.length < 2) {
             System.out.println("Noteset can be played if it has 2 or more different notes");
@@ -120,7 +120,7 @@ class SoundNoteSet extends Sound {
     }
 
     // debug function
-    void printNoteArray() {
+    public void printNoteArray() {
         for (int i = 0; i < noteArray.length; i++) {
             System.out.println((i + 1) + ". " + noteArray[i].frequency);
         }
