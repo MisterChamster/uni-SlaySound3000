@@ -3,10 +3,9 @@ Allows creation of notes, notesets and playing/saving them. It can be used for f
 
 ## Installation
 ```bash
-git clone https://github.com/MisterChamster/uni-SlaySound3000.git
-cd uni-SlaySound3000
+git clone https://github.com/MisterChamster/uni-SlaySound3000.git SlaySound3000
+cd SlaySound3000
 ```
-
 
 ## Compilation
 Windows
