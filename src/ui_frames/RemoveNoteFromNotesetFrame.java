@@ -6,14 +6,14 @@ import java.awt.event.ActionListener;
 
 
 
-public class DeleteNoteFromNotesetFrame extends JFrame {
+public class RemoveNoteFromNotesetFrame extends JFrame {
     // ======================= Fields =======================
     private CreateChordFrame parentFrame;
     private JList<String>       notesList;
 
 
     // ===================== Constructors =====================
-    public DeleteNoteFromNotesetFrame(CreateChordFrame parentFrame) {
+    public RemoveNoteFromNotesetFrame(CreateChordFrame parentFrame) {
         super("Delete Note");
         this.parentFrame = parentFrame;
         initialize();
