@@ -9,13 +9,13 @@ import javax.sound.sampled.SourceDataLine;
 
 public abstract class Sound extends Thread{
     // ======================= Fields =======================
-    String          soundName;
-    float           sampleRate;
-    int             sampleSize;
-    double          durationInSeconds;
-    byte[]          sampleArray;
-    AudioFormat     format;
-    SourceDataLine  line;
+    public String          soundName;
+    public float           sampleRate;
+    public int             sampleSize;
+    public double          durationInSeconds;
+    public byte[]          sampleArray;
+    public AudioFormat     format;
+    public SourceDataLine  line;
 
 
     // ===================== Constructors =====================
