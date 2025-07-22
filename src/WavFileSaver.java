@@ -3,6 +3,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import javax.swing.JFileChooser;
 
+import sound_classes.*;
+
 
 
 public class WavFileSaver {

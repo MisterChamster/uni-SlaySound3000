@@ -1,4 +1,4 @@
-// package sound_classes;
+package sound_classes;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;

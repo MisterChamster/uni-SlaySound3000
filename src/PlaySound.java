@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
 
+import sound_classes.*;
+
 
 
 public class PlaySound extends JFrame {

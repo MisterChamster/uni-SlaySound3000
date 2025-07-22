@@ -3,6 +3,8 @@ import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
+import sound_classes.*;
+
 
 
 //listening to enter in text fields should work as createnote listener

@@ -9,6 +9,8 @@ import java.awt.event.FocusEvent;
 import java.awt.*;
 import java.io.*;
 
+import sound_classes.*;
+
 
 
 public class UserInterface extends JFrame {
