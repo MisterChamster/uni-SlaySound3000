@@ -133,14 +133,11 @@ public class CreateNote extends JFrame {
         }
 
         try {
-            System.out.println("You are a massive a");
             float frequency = Float.parseFloat(frequencyText);
             if (frequency > 0 && frequency <= 22000) {
                 String[] basicNoteArray, userNoteArray;
-                System.out.println("You are a massive b");
                 basicNoteArray = parentFrame.getBasicNoteArray();
                 userNoteArray = parentFrame.getUserNoteArray();
-                System.out.println("You are a massive c");
 
                 if (parentFrame.isNoteNameInNoteArray(noteName, basicNoteArray)) {
                     JOptionPane.showMessageDialog(parentFrame,
@@ -148,7 +145,6 @@ public class CreateNote extends JFrame {
                             "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                System.out.println("You are a massive d");
 
                 if (parentFrame.isNoteNameInNoteArray(noteName, userNoteArray)) {
                     JOptionPane.showMessageDialog(parentFrame,
@@ -156,27 +152,24 @@ public class CreateNote extends JFrame {
                             "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                System.out.println("You are a massive e");
 
-                if (parentFrame.isNoteFrequencyInNoteArray(frequency, basicNoteArray)) {
+                boolean noteInBasic = parentFrame.isNoteFrequencyInNoteArray(frequency, basicNoteArray);
+                if (noteInBasic) {
                     JOptionPane.showMessageDialog(parentFrame,
                             "Note with frequency " + frequency + " already exists in basicNotes.txt", "Error",
                             JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                System.out.println("You are a massive f");
 
-                if (parentFrame.isNoteFrequencyInNoteArray(frequency, userNoteArray)) {
-                    System.out.println("You are a massive fb");
+                boolean noteInUser = parentFrame.isNoteFrequencyInNoteArray(frequency, userNoteArray);
+                if (noteInUser) {
                     JOptionPane.showMessageDialog(parentFrame,
                             "Note with frequency " + frequency + " already exists in userNotes.txt", "Error",
                             JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                System.out.println("You are a massive g");
                 createdNote.setNamee(noteName);
                 createdNote.setFrequency(frequency);
-                System.out.println("You are a massive h");
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(parentFrame,

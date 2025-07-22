@@ -381,19 +381,12 @@ public class UserInterface extends JFrame {
     }
 
     public Boolean isNoteFrequencyInNoteArray(float noteFrequency, String[] basicNoteArray) {
-        // System.out.println("Hello from isNoteFrequencyInNoteArray");
-        // System.out.println(noteFrequency);
         for (String freq : basicNoteArray) {
-            // System.out.println(Float.parseFloat(freq.split(" ")[1]));
-            boolean areEqual = noteFrequency == Float.parseFloat(freq.split(" ")[1]);
-            // System.out.println(areEqual);
-            if (areEqual) {
-                System.out.println("Returning True...");
+            String[] splitFreq = freq.split(" ");
+            boolean areEqual = (noteFrequency == Float.parseFloat(splitFreq[splitFreq.length-1]));
+            if (areEqual)
                 return true;
-            }
-            // System.out.println(areEqual);
         }
-        // System.out.println("Returning False...");
         return false;
     }
 
