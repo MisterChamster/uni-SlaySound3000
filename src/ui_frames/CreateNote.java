@@ -14,7 +14,7 @@ import sound_classes.*;
 public class CreateNote extends JFrame {
     // ======================= Fields =======================
     // UI variables
-    private UserInterface parentFrame;
+    private MainFrame parentFrame;
     private JTextField    noteNameField;
     private JTextField    frequencyField;
     private JPanel        inputPanel = new JPanel(new GridLayout(2, 2, 5, 5));
@@ -27,7 +27,7 @@ public class CreateNote extends JFrame {
 
 
     // ===================== Constructors =====================
-    public CreateNote(UserInterface parentFrame) {
+    public CreateNote(MainFrame parentFrame) {
         super("Create Note");
         this.parentFrame = parentFrame;
         initialize();

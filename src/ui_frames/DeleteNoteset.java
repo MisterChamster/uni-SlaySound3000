@@ -15,12 +15,12 @@ public class DeleteNoteset extends JFrame {
     // ======================= Fields =======================
     private JComboBox<String> dropdown1;
     private JButton           cancelButton, deleteButton;
-    private UserInterface     parentFrame;
+    private MainFrame     parentFrame;
     private String[]          userNotesetArray;
 
 
     // ===================== Constructors =====================
-    public DeleteNoteset(UserInterface parentFrame) {
+    public DeleteNoteset(MainFrame parentFrame) {
         super("Delete user chord");
         this.parentFrame = parentFrame;
         this.userNotesetArray = parentFrame.getUserNotesetArray();

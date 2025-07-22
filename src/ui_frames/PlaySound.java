@@ -13,11 +13,11 @@ public class PlaySound extends JFrame {
     private JTextField        durationField;
     private JComboBox<String> dropdown1, dropdown2, dropdown3, dropdown4;
     private JButton           cancelButton, playButton;
-    private UserInterface     parentFrame;
+    private MainFrame     parentFrame;
 
 
     // ===================== Constructors =====================
-    public PlaySound(UserInterface parentFrame) {
+    public PlaySound(MainFrame parentFrame) {
         super("Play");
         this.parentFrame = parentFrame;
         initialize();

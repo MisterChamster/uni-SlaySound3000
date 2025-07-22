@@ -14,11 +14,11 @@ public class ExportWAV extends JFrame {
     private JTextField        durationField;
     private JComboBox<String> dropdown1, dropdown2, dropdown3, dropdown4;
     private JButton           cancelButton, exportButton;
-    private UserInterface     parentFrame;
+    private MainFrame     parentFrame;
 
 
     // ===================== Constructors =====================
-    public ExportWAV(UserInterface parentFrame) {
+    public ExportWAV(MainFrame parentFrame) {
         super("Export to WAV");
         this.parentFrame = parentFrame;
         initialize();

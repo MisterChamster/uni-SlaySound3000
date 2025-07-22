@@ -15,7 +15,7 @@ import sound_classes.*;
 
 
 
-public class UserInterface extends JFrame {
+public class MainFrame extends JFrame {
     // ======================= Fields =======================
     // UI variables
     private JButton createNoteButton         = new JButton("Create Note");
@@ -41,7 +41,7 @@ public class UserInterface extends JFrame {
 
 
     // ===================== Constructors =====================
-    public UserInterface() {
+    public MainFrame() {
         super("SlaySound 3000");
         initialize();
         addListeners();
