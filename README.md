@@ -14,7 +14,10 @@ compile_scripts\win.cmd
 ```
 Linux/MacOS
 ```bash
+# Add permits
 chmod +x compile_scripts/unix.sh
+```
+```bash
 ./compile_scripts/unix.sh
 ```
 
@@ -25,5 +28,9 @@ run_scripts\win.cmd
 ```
 Linux/MacOS
 ```bash
-
+# Add permits
+chmod +x run_scripts/unix.sh 
+```
+```bash
+./run_scripts/unix.sh 
 ```
