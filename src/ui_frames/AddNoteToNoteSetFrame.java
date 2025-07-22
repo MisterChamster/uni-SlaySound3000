@@ -1,3 +1,5 @@
+package ui_frames;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import javax.swing.*;

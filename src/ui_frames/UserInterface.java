@@ -1,3 +1,5 @@
+package ui_frames;
+
 import javax.swing.*;
 import java.util.List;
 import java.util.Arrays;
