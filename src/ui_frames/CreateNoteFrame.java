@@ -11,7 +11,7 @@ import sound_classes.*;
 
 //listening to enter in text fields should work as createnote listener
 //createButton.addActionListener to addListeners, not separate functions
-public class CreateNote extends JFrame {
+public class CreateNoteFrame extends JFrame {
     // ======================= Fields =======================
     // UI variables
     private MainFrame parentFrame;
@@ -27,7 +27,7 @@ public class CreateNote extends JFrame {
 
 
     // ===================== Constructors =====================
-    public CreateNote(MainFrame parentFrame) {
+    public CreateNoteFrame(MainFrame parentFrame) {
         super("Create Note");
         this.parentFrame = parentFrame;
         initialize();

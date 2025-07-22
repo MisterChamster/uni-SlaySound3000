@@ -132,7 +132,7 @@ public class MainFrame extends JFrame {
 
     private void createNoteListenFunction() {
         this.setEnabled(false);
-        CreateNote createNoteWindow = new CreateNote(this);
+        CreateNoteFrame createNoteWindow = new CreateNoteFrame(this);
         createNoteWindow.setVisible(true);
 
         createNoteWindow.addWindowListener(new WindowAdapter() {
