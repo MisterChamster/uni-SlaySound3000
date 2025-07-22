@@ -1,16 +1,20 @@
+package ui_frames;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
+import sound_classes.*;
+
 
 
 //listening to enter in text fields should work as createnote listener
 //createButton.addActionListener to addListeners, not separate functions
-public class CreateNote extends JFrame {
+public class CreateNoteFrame extends JFrame {
     // ======================= Fields =======================
     // UI variables
-    private UserInterface parentFrame;
+    private MainFrame parentFrame;
     private JTextField    noteNameField;
     private JTextField    frequencyField;
     private JPanel        inputPanel = new JPanel(new GridLayout(2, 2, 5, 5));
@@ -23,7 +27,7 @@ public class CreateNote extends JFrame {
 
 
     // ===================== Constructors =====================
-    public CreateNote(UserInterface parentFrame) {
+    public CreateNoteFrame(MainFrame parentFrame) {
         super("Create Note");
         this.parentFrame = parentFrame;
         initialize();

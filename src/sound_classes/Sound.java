@@ -1,3 +1,5 @@
+package sound_classes;
+
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.LineUnavailableException;
@@ -7,17 +9,17 @@ import javax.sound.sampled.SourceDataLine;
 
 public abstract class Sound extends Thread{
     // ======================= Fields =======================
-    String          soundName;
-    float           sampleRate;
-    int             sampleSize;
-    double          durationInSeconds;
-    byte[]          sampleArray;
-    AudioFormat     format;
-    SourceDataLine  line;
+    public String          soundName;
+    public float           sampleRate;
+    public int             sampleSize;
+    public double          durationInSeconds;
+    public byte[]          sampleArray;
+    public AudioFormat     format;
+    public SourceDataLine  line;
 
 
     // ===================== Constructors =====================
-    Sound(){
+    public Sound(){
         this.soundName = null;
         this.sampleRate = 0;
         this.sampleSize = 0;
@@ -27,7 +29,7 @@ public abstract class Sound extends Thread{
         this.format = null;
     }
 
-    Sound(float sampleRate, int sampleSize){
+    public Sound(float sampleRate, int sampleSize){
         this.soundName = "";
         this.sampleRate = sampleRate;
         this.sampleSize = sampleSize;
@@ -37,7 +39,7 @@ public abstract class Sound extends Thread{
         this.format = null;
     }
 
-    Sound(float sampleRate, int sampleSize, double durationInSeconds){
+    public Sound(float sampleRate, int sampleSize, double durationInSeconds){
         this.soundName = "";
         this.sampleRate = sampleRate;
         this.sampleSize = sampleSize;
@@ -47,7 +49,7 @@ public abstract class Sound extends Thread{
         this.format = null;
     }
 
-    Sound(float sampleRate, int sampleSize, double durationInSeconds, String soundName){
+    public Sound(float sampleRate, int sampleSize, double durationInSeconds, String soundName){
         this.soundName = soundName;
         this.sampleRate = sampleRate;
         this.sampleSize = sampleSize;
@@ -59,39 +61,39 @@ public abstract class Sound extends Thread{
 
 
     // ======================= Methods =======================
-    void setSampleRate(float input){
+    public void setSampleRate(float input){
         this.sampleRate = input;
     }
 
-    void setSampleSize(int input){
+    public void setSampleSize(int input){
         this.sampleSize = input;
     }
 
-    void setDurationInSec(double input){
+    public void setDurationInSec(double input){
         this.durationInSeconds = input;
     }
 
-    void setNamee(String input){
+    public void setNamee(String input){
         this.soundName = input;
     }
 
-    byte[] getSampleArray(){
+    public byte[] getSampleArray(){
         return this.sampleArray;
     }
 
-    void prepareToPlay(){
+    public void prepareToPlay(){
         format = new AudioFormat(sampleRate, sampleSize, 1, true, false);
         try {line = AudioSystem.getSourceDataLine(format);}
         catch (LineUnavailableException e) {System.exit(0);}
     }
 
     //cleanup
-    void stopSound(){
+    public void stopSound(){
         line.drain();
         line.close();
     }
 
-    void playSound(){
+    public void playSound(){
         try {line.open(format);} catch (LineUnavailableException e) {System.out.println(e); System.exit(0);}
         line.start();
         //here it starts playing

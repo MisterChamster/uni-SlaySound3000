@@ -1,6 +1,10 @@
-class SoundNote extends Sound {
+package sound_classes;
+
+
+
+public class SoundNote extends Sound {
     // ======================= Fields =======================
-    float frequency;
+    public float frequency;
 
 
     // ===================== Constructors =====================

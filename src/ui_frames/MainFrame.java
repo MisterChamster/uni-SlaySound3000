@@ -1,3 +1,5 @@
+package ui_frames;
+
 import javax.swing.*;
 import java.util.List;
 import java.util.Arrays;
@@ -9,9 +11,11 @@ import java.awt.event.FocusEvent;
 import java.awt.*;
 import java.io.*;
 
+import sound_classes.*;
 
 
-public class UserInterface extends JFrame {
+
+public class MainFrame extends JFrame {
     // ======================= Fields =======================
     // UI variables
     private JButton createNoteButton         = new JButton("Create Note");
@@ -37,7 +41,7 @@ public class UserInterface extends JFrame {
 
 
     // ===================== Constructors =====================
-    public UserInterface() {
+    public MainFrame() {
         super("SlaySound 3000");
         initialize();
         addListeners();
@@ -128,7 +132,7 @@ public class UserInterface extends JFrame {
 
     private void createNoteListenFunction() {
         this.setEnabled(false);
-        CreateNote createNoteWindow = new CreateNote(this);
+        CreateNoteFrame createNoteWindow = new CreateNoteFrame(this);
         createNoteWindow.setVisible(true);
 
         createNoteWindow.addWindowListener(new WindowAdapter() {
@@ -152,7 +156,7 @@ public class UserInterface extends JFrame {
 
     private void createChordListenFunction() {
         this.setEnabled(false);
-        CreateChord createChordWindow = new CreateChord(this);
+        CreateChordFrame createChordWindow = new CreateChordFrame(this);
         createChordWindow.setVisible(true);
 
         createChordWindow.addWindowListener(new WindowAdapter() {
@@ -179,7 +183,7 @@ public class UserInterface extends JFrame {
 
     private void exportToWavListenFunction() {
         this.setEnabled(false);
-        ExportWAV exportWAVWindow = new ExportWAV(this);
+        ExportWAVFrame exportWAVWindow = new ExportWAVFrame(this);
         exportWAVWindow.setVisible(true);
         exportWAVWindow.addWindowListener(new WindowAdapter() {
             @Override
@@ -191,7 +195,7 @@ public class UserInterface extends JFrame {
 
     private void playSoundListenFunction() {
         this.setEnabled(false);
-        PlaySound playSoundWindow = new PlaySound(this);
+        PlaySoundFrame playSoundWindow = new PlaySoundFrame(this);
         playSoundWindow.setVisible(true);
         playSoundWindow.addWindowListener(new WindowAdapter() {
             @Override
@@ -203,7 +207,7 @@ public class UserInterface extends JFrame {
 
     private void deleteNoteListenFunction() {
         this.setEnabled(false);
-        DeleteNote delNoteWindow = new DeleteNote(this);
+        DeleteNoteFrame delNoteWindow = new DeleteNoteFrame(this);
         delNoteWindow.setVisible(true);
         delNoteWindow.addWindowListener(new WindowAdapter() {
             @Override
@@ -215,7 +219,7 @@ public class UserInterface extends JFrame {
 
     private void deleteChordListenFunction() {
         this.setEnabled(false);
-        DeleteNoteset delNotesetWindow = new DeleteNoteset(this);
+        DeleteNotesetFrame delNotesetWindow = new DeleteNotesetFrame(this);
         delNotesetWindow.setVisible(true);
         delNotesetWindow.addWindowListener(new WindowAdapter() {
             @Override

@@ -1,3 +1,5 @@
+package ui_frames;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.BufferedReader;
@@ -10,16 +12,16 @@ import java.util.Arrays;
 
 
 
-public class DeleteNote extends JFrame {
+public class DeleteNoteFrame extends JFrame {
     // ======================= Fields =======================
     private JComboBox<String> dropdown1;
     private JButton           cancelButton, deleteButton;
-    private UserInterface     parentFrame;
+    private MainFrame     parentFrame;
     private String[]          userNoteArray;
 
 
     // ===================== Constructors =====================
-    public DeleteNote(UserInterface parentFrame) {
+    public DeleteNoteFrame(MainFrame parentFrame) {
         super("Delete user note");
         this.parentFrame = parentFrame;
         this.userNoteArray = parentFrame.getUserNoteArray();

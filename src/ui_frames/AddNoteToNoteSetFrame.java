@@ -1,3 +1,5 @@
+package ui_frames;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -7,7 +9,7 @@ import java.util.Arrays;
 
 public class AddNoteToNoteSetFrame extends JFrame {
     // ======================= Fields =======================
-    private CreateChord       parentFrame;
+    private CreateChordFrame       parentFrame;
     private JComboBox<String> basicNotesDropdown;
     private JComboBox<String> userNotesDropdown;
     private JPanel            inputPanel = new JPanel(new GridLayout(2, 2, 5, 5));
@@ -20,7 +22,7 @@ public class AddNoteToNoteSetFrame extends JFrame {
 
 
     // ===================== Constructors =====================
-    public AddNoteToNoteSetFrame(CreateChord parentFrame) {
+    public AddNoteToNoteSetFrame(CreateChordFrame parentFrame) {
         super("Add Note");
         this.parentFrame = parentFrame;
         this.notesUsedField = parentFrame.notesUsedField;

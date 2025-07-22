@@ -1,15 +1,19 @@
+package ui_frames;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Arrays;
 
+import sound_classes.*;
 
 
-public class CreateChord extends JFrame {
+
+public class CreateChordFrame extends JFrame {
     // ======================= Fields =======================
     // UI Components
-    public  UserInterface parentFrame;
+    public  MainFrame parentFrame;
     public  JTextField    notesUsedField;
     private JTextField    chordNameField;
     private JPanel        inputPanel;
@@ -24,7 +28,7 @@ public class CreateChord extends JFrame {
 
 
     // ===================== Constructors =====================
-    public CreateChord(UserInterface parentFrame) {
+    public CreateChordFrame(MainFrame parentFrame) {
         super("Create Chord");
         this.parentFrame = parentFrame;
         this.createdNoteset = new SoundNoteSet();
@@ -267,7 +271,7 @@ public class CreateChord extends JFrame {
 
     private void openDeleteNoteToNoteSetFrame() {
         this.setEnabled(false);
-        DeleteNoteToNoteSetFrame delFrame = new DeleteNoteToNoteSetFrame(this);
+        RemoveNoteFromNotesetFrame delFrame = new RemoveNoteFromNotesetFrame(this);
         delFrame.setVisible(true);
 
         delFrame.addWindowListener(new WindowAdapter() {

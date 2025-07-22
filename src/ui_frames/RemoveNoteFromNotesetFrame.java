@@ -1,17 +1,19 @@
+package ui_frames;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
 
 
-public class DeleteNoteToNoteSetFrame extends JFrame {
+public class RemoveNoteFromNotesetFrame extends JFrame {
     // ======================= Fields =======================
-    private CreateChord parentFrame;
+    private CreateChordFrame parentFrame;
     private JList<String>       notesList;
 
 
     // ===================== Constructors =====================
-    public DeleteNoteToNoteSetFrame(CreateChord parentFrame) {
+    public RemoveNoteFromNotesetFrame(CreateChordFrame parentFrame) {
         super("Delete Note");
         this.parentFrame = parentFrame;
         initialize();

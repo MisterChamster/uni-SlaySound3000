@@ -1,6 +1,10 @@
+package sound_classes;
+
+
+
 public class SoundNoteSet extends Sound {
     // ======================= Fields =======================
-    SoundNote[] noteArray;
+    public SoundNote[] noteArray;
 
 
     // ===================== Constructors =====================

@@ -1,20 +1,24 @@
+package ui_frames;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
 
+import sound_classes.*;
 
 
-public class ExportWAV extends JFrame {
+
+public class PlaySoundFrame extends JFrame {
     // ======================= Fields =======================
     private JTextField        durationField;
     private JComboBox<String> dropdown1, dropdown2, dropdown3, dropdown4;
-    private JButton           cancelButton, exportButton;
-    private UserInterface     parentFrame;
+    private JButton           cancelButton, playButton;
+    private MainFrame     parentFrame;
 
 
     // ===================== Constructors =====================
-    public ExportWAV(UserInterface parentFrame) {
-        super("Export to WAV");
+    public PlaySoundFrame(MainFrame parentFrame) {
+        super("Play");
         this.parentFrame = parentFrame;
         initialize();
         addListeners();
@@ -87,19 +91,19 @@ public class ExportWAV extends JFrame {
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 15, 10));
         cancelButton = new JButton("Cancel");
-        exportButton = new JButton("Export");
+        playButton = new JButton("Play");
         cancelButton.setPreferredSize(new Dimension(100, 40));
-        exportButton.setPreferredSize(new Dimension(100, 40));
+        playButton.setPreferredSize(new Dimension(100, 40));
         buttonPanel.add(cancelButton);
-        buttonPanel.add(exportButton);
+        buttonPanel.add(playButton);
 
         add(buttonPanel, BorderLayout.SOUTH);
     }
 
     private void addListeners() {
         cancelButton.addActionListener(_ -> dispose());
-        exportButton.addActionListener(_ -> {
-            exportButtonListenFunction();
+        playButton.addActionListener(_ -> {
+            playButtonListenFunction();
         });
         dropdown1.addActionListener(_ -> {
             if (dropdown1.getSelectedItem() != " --empty-- ") {
@@ -147,7 +151,7 @@ public class ExportWAV extends JFrame {
         });
     }
 
-    private void exportButtonListenFunction() {
+    private void playButtonListenFunction() {
         if (durationField.getText().isEmpty()) {
             JOptionPane.showMessageDialog(parentFrame, "Duration field is empty!", "Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -165,14 +169,13 @@ public class ExportWAV extends JFrame {
 
         String soundName = (String) dropdown1.getSelectedItem();
         if (!soundName.equals(" --empty-- ")) {
-            SoundNote dd1note = new SoundNote(
-                    parentFrame.mainSampleRate,
+            SoundNote dd1note = new SoundNote(parentFrame.mainSampleRate,
                     parentFrame.mainSampleSize,
                     duration,
                     parentFrame.getNoteFreqFromFile(soundName, "basic"),
                     soundName);
             dd1note.prepareToPlay();
-            WavFileSaver.saveWavFile(dd1note);
+            dd1note.start();
             return;
         }
         soundName = (String) dropdown2.getSelectedItem();
@@ -183,7 +186,7 @@ public class ExportWAV extends JFrame {
                     parentFrame.getNoteFreqFromFile(soundName, "user"),
                     soundName);
             dd2note.prepareToPlay();
-            WavFileSaver.saveWavFile(dd2note);
+            dd2note.start();
             return;
         }
 
@@ -204,7 +207,7 @@ public class ExportWAV extends JFrame {
                     noteArray,
                     soundName);
             dd1noteset.prepareToPlay();
-            WavFileSaver.saveWavFile(dd1noteset);
+            dd1noteset.start();
             return;
         }
         soundName = (String) dropdown4.getSelectedItem();
@@ -227,10 +230,11 @@ public class ExportWAV extends JFrame {
                     noteArray,
                     soundName);
             dd2noteset.prepareToPlay();
-            WavFileSaver.saveWavFile(dd2noteset);
+            dd2noteset.start();
             return;
         }
-        JOptionPane.showMessageDialog(parentFrame, "Choose a sound to export.", "Error", JOptionPane.ERROR_MESSAGE);
+
+        JOptionPane.showMessageDialog(parentFrame, "Choose a sound to play it.", "Error", JOptionPane.ERROR_MESSAGE);
     }
 
     private String[] getNoteNamesArrWithEmpty(String arg) {
