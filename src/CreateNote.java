@@ -153,20 +153,21 @@ public class CreateNote extends JFrame {
                     return;
                 }
 
-                if (parentFrame.isNoteFrequencyInNoteArray(frequency, basicNoteArray)) {
+                boolean noteInBasic = parentFrame.isNoteFrequencyInNoteArray(frequency, basicNoteArray);
+                if (noteInBasic) {
                     JOptionPane.showMessageDialog(parentFrame,
                             "Note with frequency " + frequency + " already exists in basicNotes.txt", "Error",
                             JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
-                if (parentFrame.isNoteFrequencyInNoteArray(frequency, userNoteArray)) {
+                boolean noteInUser = parentFrame.isNoteFrequencyInNoteArray(frequency, userNoteArray);
+                if (noteInUser) {
                     JOptionPane.showMessageDialog(parentFrame,
                             "Note with frequency " + frequency + " already exists in userNotes.txt", "Error",
                             JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-
                 createdNote.setNamee(noteName);
                 createdNote.setFrequency(frequency);
                 dispose();

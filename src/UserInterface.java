@@ -382,7 +382,9 @@ public class UserInterface extends JFrame {
 
     public Boolean isNoteFrequencyInNoteArray(float noteFrequency, String[] basicNoteArray) {
         for (String freq : basicNoteArray) {
-            if (noteFrequency == Float.parseFloat(freq.split(" ")[1]))
+            String[] splitFreq = freq.split(" ");
+            boolean areEqual = (noteFrequency == Float.parseFloat(splitFreq[splitFreq.length-1]));
+            if (areEqual)
                 return true;
         }
         return false;
