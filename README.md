@@ -16,5 +16,5 @@ compile_scripts\win.cmd
 ## Usage
 Windows
 ```bash
-run_scripts\win
+run_scripts\win.cmd
 ```
