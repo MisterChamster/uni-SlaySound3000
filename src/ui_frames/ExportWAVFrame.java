@@ -9,7 +9,7 @@ import utils.WavFileSaver;
 
 
 
-public class ExportWAV extends JFrame {
+public class ExportWAVFrame extends JFrame {
     // ======================= Fields =======================
     private JTextField        durationField;
     private JComboBox<String> dropdown1, dropdown2, dropdown3, dropdown4;
@@ -18,7 +18,7 @@ public class ExportWAV extends JFrame {
 
 
     // ===================== Constructors =====================
-    public ExportWAV(MainFrame parentFrame) {
+    public ExportWAVFrame(MainFrame parentFrame) {
         super("Export to WAV");
         this.parentFrame = parentFrame;
         initialize();

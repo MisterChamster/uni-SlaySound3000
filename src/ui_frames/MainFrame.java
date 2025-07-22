@@ -183,7 +183,7 @@ public class MainFrame extends JFrame {
 
     private void exportToWavListenFunction() {
         this.setEnabled(false);
-        ExportWAV exportWAVWindow = new ExportWAV(this);
+        ExportWAVFrame exportWAVWindow = new ExportWAVFrame(this);
         exportWAVWindow.setVisible(true);
         exportWAVWindow.addWindowListener(new WindowAdapter() {
             @Override
