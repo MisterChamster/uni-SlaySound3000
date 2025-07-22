@@ -195,7 +195,7 @@ public class MainFrame extends JFrame {
 
     private void playSoundListenFunction() {
         this.setEnabled(false);
-        PlaySound playSoundWindow = new PlaySound(this);
+        PlaySoundFrame playSoundWindow = new PlaySoundFrame(this);
         playSoundWindow.setVisible(true);
         playSoundWindow.addWindowListener(new WindowAdapter() {
             @Override

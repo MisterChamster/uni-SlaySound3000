@@ -8,7 +8,7 @@ import sound_classes.*;
 
 
 
-public class PlaySound extends JFrame {
+public class PlaySoundFrame extends JFrame {
     // ======================= Fields =======================
     private JTextField        durationField;
     private JComboBox<String> dropdown1, dropdown2, dropdown3, dropdown4;
@@ -17,7 +17,7 @@ public class PlaySound extends JFrame {
 
 
     // ===================== Constructors =====================
-    public PlaySound(MainFrame parentFrame) {
+    public PlaySoundFrame(MainFrame parentFrame) {
         super("Play");
         this.parentFrame = parentFrame;
         initialize();
