@@ -271,7 +271,7 @@ public class CreateChordFrame extends JFrame {
 
     private void openDeleteNoteToNoteSetFrame() {
         this.setEnabled(false);
-        DeleteNoteToNoteSetFrame delFrame = new DeleteNoteToNoteSetFrame(this);
+        DeleteNoteFromNotesetFrame delFrame = new DeleteNoteFromNotesetFrame(this);
         delFrame.setVisible(true);
 
         delFrame.addWindowListener(new WindowAdapter() {
