@@ -12,9 +12,18 @@ Windows
 ```bash
 compile_scripts\win.cmd
 ```
+Linux/MacOS
+```bash
+chmod +x compile_scripts/unix.sh
+./compile_scripts/unix.sh
+```
 
 ## Usage
 Windows
 ```bash
 run_scripts\win.cmd
+```
+Linux/MacOS
+```bash
+
 ```
