@@ -156,7 +156,7 @@ public class UserInterface extends JFrame {
 
     private void createChordListenFunction() {
         this.setEnabled(false);
-        CreateChord createChordWindow = new CreateChord(this);
+        CreateChordFrame createChordWindow = new CreateChordFrame(this);
         createChordWindow.setVisible(true);
 
         createChordWindow.addWindowListener(new WindowAdapter() {

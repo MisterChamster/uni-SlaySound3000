@@ -10,7 +10,7 @@ import sound_classes.*;
 
 
 
-public class CreateChord extends JFrame {
+public class CreateChordFrame extends JFrame {
     // ======================= Fields =======================
     // UI Components
     public  UserInterface parentFrame;
@@ -28,7 +28,7 @@ public class CreateChord extends JFrame {
 
 
     // ===================== Constructors =====================
-    public CreateChord(UserInterface parentFrame) {
+    public CreateChordFrame(UserInterface parentFrame) {
         super("Create Chord");
         this.parentFrame = parentFrame;
         this.createdNoteset = new SoundNoteSet();
