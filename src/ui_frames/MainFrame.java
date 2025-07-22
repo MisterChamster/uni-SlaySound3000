@@ -207,7 +207,7 @@ public class MainFrame extends JFrame {
 
     private void deleteNoteListenFunction() {
         this.setEnabled(false);
-        DeleteNote delNoteWindow = new DeleteNote(this);
+        DeleteNoteFrame delNoteWindow = new DeleteNoteFrame(this);
         delNoteWindow.setVisible(true);
         delNoteWindow.addWindowListener(new WindowAdapter() {
             @Override

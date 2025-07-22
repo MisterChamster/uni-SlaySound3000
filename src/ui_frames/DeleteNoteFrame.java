@@ -12,7 +12,7 @@ import java.util.Arrays;
 
 
 
-public class DeleteNote extends JFrame {
+public class DeleteNoteFrame extends JFrame {
     // ======================= Fields =======================
     private JComboBox<String> dropdown1;
     private JButton           cancelButton, deleteButton;
@@ -21,7 +21,7 @@ public class DeleteNote extends JFrame {
 
 
     // ===================== Constructors =====================
-    public DeleteNote(MainFrame parentFrame) {
+    public DeleteNoteFrame(MainFrame parentFrame) {
         super("Delete user note");
         this.parentFrame = parentFrame;
         this.userNoteArray = parentFrame.getUserNoteArray();
