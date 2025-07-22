@@ -43,5 +43,5 @@ chmod +x run_scripts/unix.sh
 ./run_scripts/unix.sh 
 ```
 
-# Additional notes
+## Additional notes
 This is a collaborative project for Java at uni made by Szymon Duda and Agnieszka Głowacka. Feel free to try it yourself!
