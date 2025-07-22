@@ -11,7 +11,7 @@ import java.io.IOException;
 
 
 
-public class DeleteNoteset extends JFrame {
+public class DeleteNotesetFrame extends JFrame {
     // ======================= Fields =======================
     private JComboBox<String> dropdown1;
     private JButton           cancelButton, deleteButton;
@@ -20,7 +20,7 @@ public class DeleteNoteset extends JFrame {
 
 
     // ===================== Constructors =====================
-    public DeleteNoteset(MainFrame parentFrame) {
+    public DeleteNotesetFrame(MainFrame parentFrame) {
         super("Delete user chord");
         this.parentFrame = parentFrame;
         this.userNotesetArray = parentFrame.getUserNotesetArray();

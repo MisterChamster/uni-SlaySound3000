@@ -219,7 +219,7 @@ public class MainFrame extends JFrame {
 
     private void deleteChordListenFunction() {
         this.setEnabled(false);
-        DeleteNoteset delNotesetWindow = new DeleteNoteset(this);
+        DeleteNotesetFrame delNotesetWindow = new DeleteNotesetFrame(this);
         delNotesetWindow.setVisible(true);
         delNotesetWindow.addWindowListener(new WindowAdapter() {
             @Override
